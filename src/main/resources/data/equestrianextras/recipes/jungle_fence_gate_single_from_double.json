@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "equestrianextras:jungle_gate_double"
+    }
+  ],
+  "result": {
+    "item": "minecraft:jungle_fence_gate",
+    "count": 2
+  }
+}

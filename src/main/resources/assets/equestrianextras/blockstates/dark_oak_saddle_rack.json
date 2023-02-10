@@ -1,0 +1,68 @@
+{
+  "multipart": [
+      { "when": { 
+            "facing": "north", "on_wall": "false"
+          },
+          "apply": { "model": "equestrianextras:block/dark_oak_saddle_rack", "uvlock": false }
+      },
+      { "when": { 
+            "facing": "east", "on_wall": "false"
+          },
+          "apply": { "model": "equestrianextras:block/dark_oak_saddle_rack", "y":  90, "uvlock": false }
+      },
+      { "when": { 
+            "facing": "south", "on_wall": "false"
+          },
+          "apply": { "model": "equestrianextras:block/dark_oak_saddle_rack", "y":  180, "uvlock": false }
+      },
+      {   "when": { 
+            "facing": "west", "on_wall": "false"
+          },
+          "apply": { "model": "equestrianextras:block/dark_oak_saddle_rack", "y":  270, "uvlock": false }
+      },
+
+      { "when": { 
+            "facing": "north", "on_wall": "true"
+          },
+          "apply": { "model": "equestrianextras:block/dark_oak_saddle_rack_wall", "uvlock": false }
+      },
+      { "when": { 
+            "facing": "east", "on_wall": "true"
+          },
+          "apply": { "model": "equestrianextras:block/dark_oak_saddle_rack_wall", "y":  90, "uvlock": false }
+      },
+      { "when": { 
+            "facing": "south", "on_wall": "true"
+          },
+          "apply": { "model": "equestrianextras:block/dark_oak_saddle_rack_wall", "y":  180, "uvlock": false }
+      },
+      {   "when": { 
+            "facing": "west", "on_wall": "true"
+          },
+          "apply": { "model": "equestrianextras:block/dark_oak_saddle_rack_wall", "y":  270, "uvlock": false }
+      },
+      
+
+      { "when": { 
+        "facing": "north", "saddle": "true"
+      },
+          "apply": { "model": "equestrianextras:block/saddle_rack_saddle", "uvlock": false }
+      },
+      { "when": { 
+            "facing": "east", "saddle": "true"
+          },
+          "apply": { "model": "equestrianextras:block/saddle_rack_saddle", "y":  90, "uvlock": false }
+      },
+      { "when": { 
+            "facing": "south", "saddle": "true"
+          },
+          "apply": { "model": "equestrianextras:block/saddle_rack_saddle", "y":  180, "uvlock": false }
+      },
+      {   "when": { 
+            "facing": "west", "saddle": "true"
+          },
+          "apply": { "model": "equestrianextras:block/saddle_rack_saddle", "y":  270, "uvlock": false }
+      }
+]
+}
+

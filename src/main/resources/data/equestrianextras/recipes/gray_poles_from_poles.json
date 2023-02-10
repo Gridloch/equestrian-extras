@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "item": "minecraft:gray_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:gray_poles",
+      "count": 6
+    }
+  }

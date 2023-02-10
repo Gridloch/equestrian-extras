@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FTF"
+  ],
+  "key": {
+    "F": {
+      "item": "equestrianextras:white_fence"
+    },
+    "T": {
+      "item": "minecraft:red_glazed_terracotta"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:red_fancy_panel_wing_standard",
+    "count": 2
+  }
+}

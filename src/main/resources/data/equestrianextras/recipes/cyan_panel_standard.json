@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    "FPF"
+  ],
+  "key": {
+    "F": {
+      "item": "equestrianextras:white_fence"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "D": {
+      "item": "minecraft:cyan_dye"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:cyan_panel_wing_standard",
+    "count": 2
+  }
+}

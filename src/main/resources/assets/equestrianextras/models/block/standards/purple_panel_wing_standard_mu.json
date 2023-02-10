@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/standards/white_panel_wing_standard_mu",
+	"textures": {
+		"2": "equestrianextras:block/purple_planks"
+	}
+}

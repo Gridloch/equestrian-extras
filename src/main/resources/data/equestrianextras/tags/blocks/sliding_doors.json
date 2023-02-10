@@ -1,0 +1,22 @@
+{
+    "replace": false,
+    "values": [
+      "equestrianextras:oak_slide_door",
+      "equestrianextras:spruce_slide_door",
+      "equestrianextras:birch_slide_door",
+      "equestrianextras:jungle_slide_door",
+      "equestrianextras:acacia_slide_door",
+      "equestrianextras:dark_oak_slide_door",
+      "equestrianextras:crimson_slide_door",
+      "equestrianextras:warped_slide_door",
+
+      "equestrianextras:oak_v_front_door",
+      "equestrianextras:spruce_v_front_door",
+      "equestrianextras:birch_v_front_door",
+      "equestrianextras:jungle_v_front_door",
+      "equestrianextras:acacia_v_front_door",
+      "equestrianextras:dark_oak_v_front_door",
+      "equestrianextras:crimson_v_front_door",
+      "equestrianextras:warped_v_front_door"
+    ]
+  }

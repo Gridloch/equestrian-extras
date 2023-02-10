@@ -1,0 +1,35 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"texture_size": [35, 32],
+	"textures": {
+		"1": "equestrianextras:block/o_door_hinge",
+		"4": "equestrianextras:block/osdoor_tb",
+		"5": "equestrianextras:block/osdoor_tf",
+		"6": "equestrianextras:block/v_bars",
+		"particle": "#5"
+	},
+	"elements": [
+		{
+			"name": "bottom",
+			"from": [13, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [4, 14, 7, 16], "texture": "#1", "cullface": "north"},
+				"east": {"uv": [0, 14, 16, 16], "texture": "#4", "cullface": "east"},
+				"south": {"uv": [4, 14, 7, 16], "texture": "#1", "cullface": "south"},
+				"west": {"uv": [0, 14, 16, 16], "texture": "#5"},
+				"up": {"uv": [4, 0, 7, 16], "texture": "#1"}
+			}
+		},
+		{
+			"name": "bars",
+			"from": [14.5, 2, 0],
+			"to": [14.5, 14, 16],
+			"faces": {
+				"east": {"uv": [16, 2, 0, 14], "texture": "#6"},
+				"west": {"uv": [0, 2, 16, 14], "texture": "#6"}
+			}
+		}
+	]
+}

@@ -1,0 +1,14 @@
+{
+    "replace": false,
+    "values": [
+      "equestrianextras:oak_gate_double",
+      "equestrianextras:spruce_gate_double",
+      "equestrianextras:birch_gate_double",
+      "equestrianextras:jungle_gate_double",
+      "equestrianextras:acacia_gate_double",
+      "equestrianextras:dark_oak_gate_double",
+      "equestrianextras:crimson_gate_double",
+      "equestrianextras:warped_gate_double",
+      "equestrianextras:white_gate_double"
+    ]
+  }

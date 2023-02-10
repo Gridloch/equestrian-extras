@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "||",
+    "SS",
+    "PP"
+  ],
+  "key": {
+    "|": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "minecraft:oak_slab"
+    },
+    "P": {
+      "item": "minecraft:oak_planks"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:oak_v_front_door",
+    "count": 3
+  }
+}

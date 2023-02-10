@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "item": "minecraft:lime_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:lime_ladder_gate_filler",
+      "count": 6
+    }
+  }

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "equestrianextras:red_iron_gate"
+    },
+    {
+      "item": "equestrianextras:red_iron_gate"
+    }
+  ],
+  "result": {
+    "item": "equestrianextras:red_iron_gate_double",
+    "count": 1
+  }
+}

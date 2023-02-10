@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/panels/iron_bars_panel_centred",
+	"textures": {
+		"1": "equestrianextras:block/warped_bar_panel"
+	}
+}

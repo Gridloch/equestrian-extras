@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:metal_barrels"
+      },
+      {
+        "tag": "equestrianextras:metal_barrels"
+      },
+      {
+        "tag": "equestrianextras:metal_barrels"
+      },
+      {
+        "tag": "equestrianextras:metal_barrels"
+      },
+      {
+        "tag": "equestrianextras:metal_barrels"
+      },
+      {
+        "tag": "equestrianextras:metal_barrels"
+      },
+      {
+        "item": "minecraft:green_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:green_barrel",
+      "count": 6
+    }
+  }

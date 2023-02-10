@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:vertical_rail_standards"
+      },
+      {
+        "tag": "equestrianextras:vertical_rail_standards"
+      },
+      {
+        "tag": "equestrianextras:vertical_rail_standards"
+      },
+      {
+        "tag": "equestrianextras:vertical_rail_standards"
+      },
+      {
+        "tag": "equestrianextras:vertical_rail_standards"
+      },
+      {
+        "tag": "equestrianextras:vertical_rail_standards"
+      },
+      {
+        "item": "minecraft:light_blue_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:light_blue_vertical_rail_standard",
+      "count": 6
+    }
+  }

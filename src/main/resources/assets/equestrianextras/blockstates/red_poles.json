@@ -1,0 +1,151 @@
+{
+    "multipart": [
+        {   "when": { "OR": [
+                { "facing": "north", "type": "bottom", "placement": "1" },
+                { "facing": "north", "type": "double", "placement": "1" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom", "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "east", "type": "bottom", "placement": "1" },
+                { "facing": "east", "type": "double", "placement": "1" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom", "y":  90, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "south", "type": "bottom", "placement": "1" },
+                { "facing": "south", "type": "double", "placement": "1" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom", "y":  180, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "west", "type": "bottom", "placement": "1" },
+                { "facing": "west", "type": "double", "placement": "1" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom", "y":  270, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "north", "type": "top", "placement": "1" },
+                { "facing": "north", "type": "double", "placement": "1" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top", "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "east", "type": "top", "placement": "1" },
+                { "facing": "east", "type": "double", "placement": "1" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top", "y":  90, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "south", "type": "top", "placement": "1" },
+                { "facing": "south", "type": "double", "placement": "1" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top", "y":  180, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "west", "type": "top", "placement": "1" },
+                { "facing": "west", "type": "double", "placement": "1" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top", "y":  270, "uvlock": false }
+        },
+
+        {   "when": { "OR": [
+                { "facing": "north", "type": "bottom", "placement": "2" },
+                { "facing": "north", "type": "double", "placement": "2" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom_down", "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "east", "type": "bottom", "placement": "2" },
+                { "facing": "east", "type": "double", "placement": "2" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom_down", "y":  90, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "south", "type": "bottom", "placement": "2" },
+                { "facing": "south", "type": "double", "placement": "2" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom_down", "y":  180, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "west", "type": "bottom", "placement": "2" },
+                { "facing": "west", "type": "double", "placement": "2" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom_down", "y":  270, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "north", "type": "top", "placement": "2" },
+                { "facing": "north", "type": "double", "placement": "2" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top_down", "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "east", "type": "top", "placement": "2" },
+                { "facing": "east", "type": "double", "placement": "2" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top_down", "y":  90, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "south", "type": "top", "placement": "2" },
+                { "facing": "south", "type": "double", "placement": "2" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top_down", "y":  180, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "west", "type": "top", "placement": "2" },
+                { "facing": "west", "type": "double", "placement": "2" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top_down", "y":  270, "uvlock": false }
+        },
+
+        {   "when": { "OR": [
+            { "facing": "north", "type": "bottom", "placement": "3" },
+            { "facing": "north", "type": "double", "placement": "3" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom_up", "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "east", "type": "bottom", "placement": "3" },
+                { "facing": "east", "type": "double", "placement": "3" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom_up", "y":  90, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "south", "type": "bottom", "placement": "3" },
+                { "facing": "south", "type": "double", "placement": "3" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom_up", "y":  180, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "west", "type": "bottom", "placement": "3" },
+                { "facing": "west", "type": "double", "placement": "3" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_bottom_up", "y":  270, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "north", "type": "top", "placement": "3" },
+                { "facing": "north", "type": "double", "placement": "3" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top_up", "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "east", "type": "top", "placement": "3" },
+                { "facing": "east", "type": "double", "placement": "3" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top_up", "y":  90, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "south", "type": "top", "placement": "3" },
+                { "facing": "south", "type": "double", "placement": "3" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top_up", "y":  180, "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "facing": "west", "type": "top", "placement": "3" },
+                { "facing": "west", "type": "double", "placement": "3" }
+            ]},
+            "apply": { "model": "equestrianextras:block/red_poles_top_up", "y":  270, "uvlock": false }
+        }
+  ]
+}
+

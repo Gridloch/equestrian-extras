@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "equestrianextras:block/thatch_slab"
+    },
+    "type=double": {
+      "model": "equestrianextras:block/thatch"
+    },
+    "type=top": {
+      "model": "equestrianextras:block/thatch_slab_top"
+    }
+  }
+}

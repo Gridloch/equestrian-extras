@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/gates/oak_gate_double_open_lo",
+	"textures": {
+		"0": "block/birch_planks"
+	}
+}

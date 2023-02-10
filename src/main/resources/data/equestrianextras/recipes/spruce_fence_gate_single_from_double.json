@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "equestrianextras:spruce_gate_double"
+    }
+  ],
+  "result": {
+    "item": "minecraft:spruce_fence_gate",
+    "count": 2
+  }
+}

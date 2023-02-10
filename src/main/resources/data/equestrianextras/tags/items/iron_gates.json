@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+      "equestrianextras:brown_iron_gate",
+      "equestrianextras:red_iron_gate",
+      "equestrianextras:orange_iron_gate",
+      "equestrianextras:yellow_iron_gate",
+      "equestrianextras:lime_iron_gate",
+      "equestrianextras:green_iron_gate",
+      "equestrianextras:cyan_iron_gate",
+      "equestrianextras:light_blue_iron_gate",
+      "equestrianextras:blue_iron_gate",
+      "equestrianextras:purple_iron_gate",
+      "equestrianextras:magenta_iron_gate",
+      "equestrianextras:pink_iron_gate",
+      "equestrianextras:white_iron_gate",
+      "equestrianextras:light_gray_iron_gate",
+      "equestrianextras:gray_iron_gate",
+      "equestrianextras:black_iron_gate"
+    ]
+  }

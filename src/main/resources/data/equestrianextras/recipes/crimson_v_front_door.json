@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "||",
+    "SS",
+    "PP"
+  ],
+  "key": {
+    "|": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "minecraft:crimson_slab"
+    },
+    "P": {
+      "item": "minecraft:crimson_planks"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:crimson_v_front_door",
+    "count": 3
+  }
+}

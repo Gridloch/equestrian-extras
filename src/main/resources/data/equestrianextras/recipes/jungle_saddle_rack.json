@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      " P ",
+      "P|P",
+      " | "
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:jungle_planks"
+      },
+      "|": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:jungle_saddle_rack"
+    }
+  }

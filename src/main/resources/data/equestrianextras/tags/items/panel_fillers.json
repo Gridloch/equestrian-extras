@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+      "equestrianextras:brown_panel_gate_filler",
+      "equestrianextras:red_panel_gate_filler",
+      "equestrianextras:orange_panel_gate_filler",
+      "equestrianextras:yellow_panel_gate_filler",
+      "equestrianextras:lime_panel_gate_filler",
+      "equestrianextras:green_panel_gate_filler",
+      "equestrianextras:cyan_panel_gate_filler",
+      "equestrianextras:light_blue_panel_gate_filler",
+      "equestrianextras:blue_panel_gate_filler",
+      "equestrianextras:purple_panel_gate_filler",
+      "equestrianextras:magenta_panel_gate_filler",
+      "equestrianextras:pink_panel_gate_filler",
+      "equestrianextras:white_panel_gate_filler",
+      "equestrianextras:light_gray_panel_gate_filler",
+      "equestrianextras:gray_panel_gate_filler",
+      "equestrianextras:black_panel_gate_filler"
+    ]
+  }

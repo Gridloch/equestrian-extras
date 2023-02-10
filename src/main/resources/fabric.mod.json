@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "equestrianextras",
+  "version": "1.0.1",
+
+  "name": "Equestrian Extras",
+  "description": "Adds horse jumps, tack and more!",
+  "authors": [
+    "cubed_equine"
+  ],
+
+  "license": "CC BY-NC-SA 4.0",
+  "icon": "assets/equestrianextras/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.equestrian.extras.EquestrianExtras"
+    ],
+    "client": [
+      "net.equestrian.extras.EquestrianExtrasClient"
+    ],
+    "modmenu": [
+       "net.equestrian.extras.config.ModMenuImpl" 
+    ]
+  },
+  "mixins": [
+    "equestrianextras.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": ">=0.43.1+1.17",
+    "minecraft": "1.17.x",
+    "java": ">=16",
+    "cloth-config2": ">=5.1.40"
+  }
+}

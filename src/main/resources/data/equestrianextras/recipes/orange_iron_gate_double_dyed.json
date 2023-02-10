@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "equestrianextras:double_iron_gates"
+    },
+    {
+      "tag": "equestrianextras:double_iron_gates"
+    },
+    {
+      "tag": "equestrianextras:double_iron_gates"
+    },
+    {
+      "tag": "equestrianextras:double_iron_gates"
+    },
+    {
+      "tag": "equestrianextras:double_iron_gates"
+    },
+    {
+      "tag": "equestrianextras:double_iron_gates"
+    },
+    {
+      "item": "minecraft:orange_dye"
+    }
+  ],
+  "result": {
+    "item": "equestrianextras:orange_iron_gate_double",
+    "count": 6
+  }
+}

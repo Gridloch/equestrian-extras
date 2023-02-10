@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/white_barrel_bottom",
+	"textures": {
+		"0": "equestrianextras:block/green_metal"
+	}
+ }

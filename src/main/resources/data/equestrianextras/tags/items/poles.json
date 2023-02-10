@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+      "equestrianextras:brown_poles",
+      "equestrianextras:red_poles",
+      "equestrianextras:orange_poles",
+      "equestrianextras:yellow_poles",
+      "equestrianextras:lime_poles",
+      "equestrianextras:green_poles",
+      "equestrianextras:cyan_poles",
+      "equestrianextras:light_blue_poles",
+      "equestrianextras:blue_poles",
+      "equestrianextras:purple_poles",
+      "equestrianextras:magenta_poles",
+      "equestrianextras:pink_poles",
+      "equestrianextras:white_poles",
+      "equestrianextras:light_gray_poles",
+      "equestrianextras:gray_poles",
+      "equestrianextras:black_poles"
+    ]
+  }

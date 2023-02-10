@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "item": "minecraft:yellow_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:yellow_panel_wing_standard",
+      "count": 6
+    }
+  }

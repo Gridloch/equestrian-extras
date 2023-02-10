@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "|||",
+    "|#|",
+    "|||"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:red_dye"
+    },
+    "|": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:red_barrel",
+    "count": 3
+  }
+}

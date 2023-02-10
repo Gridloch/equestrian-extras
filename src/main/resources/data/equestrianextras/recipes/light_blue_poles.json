@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "|||"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:light_blue_dye"
+    },
+    "|": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:light_blue_poles",
+    "count": 2
+  }
+}

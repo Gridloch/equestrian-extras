@@ -1,0 +1,49 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "equestrianextras:block/white_metal",
+		"1": "equestrianextras:block/white_metal",
+		"particle": "#0"
+	},
+	"elements": [
+		{
+			"name": "bottom_top",
+			"from": [0, 7, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {"uv": [0, 14, 16, 15], "texture": "#0"},
+				"east": {"uv": [0, 14, 16, 15], "texture": "#0"},
+				"south": {"uv": [0, 14, 16, 15], "texture": "#0"},
+				"west": {"uv": [0, 14, 16, 15], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "bottom",
+			"from": [1, 1, 1],
+			"to": [15, 7, 15],
+			"faces": {
+				"north": {"uv": [1, 0, 15, 6], "texture": "#0"},
+				"east": {"uv": [1, 0, 15, 6], "texture": "#0"},
+				"south": {"uv": [1, 0, 15, 6], "texture": "#0"},
+				"west": {"uv": [1, 0, 15, 6], "texture": "#0"},
+				"up": {"uv": [0, 0, 14, 14], "texture": "#0"},
+				"down": {"uv": [0, 0, 14, 14], "texture": "#0"}
+			}
+		},
+		{
+			"name": "bottom_bottom",
+			"from": [0, -1, 0],
+			"to": [16, 1, 16],
+			"faces": {
+				"north": {"uv": [0, 12, 16, 14], "texture": "#0"},
+				"east": {"uv": [0, 12, 16, 14], "texture": "#0"},
+				"south": {"uv": [0, 12, 16, 14], "texture": "#0"},
+				"west": {"uv": [0, 12, 16, 14], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
+}

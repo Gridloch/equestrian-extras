@@ -1,0 +1,17 @@
+{
+    "multipart": [
+        {   "when": { "OR": [
+                { "type": "bottom" },
+                { "type": "double" }
+            ]},
+            "apply": { "model": "equestrianextras:block/cyan_barrel_bottom", "uvlock": false }
+        },
+        {   "when": { "OR": [
+                { "type": "top" },
+                { "type": "double" }
+            ]},
+            "apply": { "model": "equestrianextras:block/cyan_barrel_top", "uvlock": false }
+        }
+  ]
+}
+

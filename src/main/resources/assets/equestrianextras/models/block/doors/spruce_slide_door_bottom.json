@@ -1,0 +1,8 @@
+{
+	"parent": "equestrianextras:block/doors/oak_slide_door_bottom",
+	"textures": {
+		"1": "equestrianextras:block/s_door_hinge",
+		"2": "equestrianextras:block/ssdoor_bb",
+		"3": "equestrianextras:block/ssdoor_bf"
+	}
+}

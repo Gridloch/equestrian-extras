@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:short_fences"
+      },
+      {
+        "tag": "equestrianextras:short_fences"
+      },
+      {
+        "tag": "equestrianextras:short_fences"
+      },
+      {
+        "tag": "equestrianextras:short_fences"
+      },
+      {
+        "tag": "equestrianextras:short_fences"
+      },
+      {
+        "tag": "equestrianextras:short_fences"
+      },
+      {
+        "item": "minecraft:white_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:white_short_fence",
+      "count": 6
+    }
+  }

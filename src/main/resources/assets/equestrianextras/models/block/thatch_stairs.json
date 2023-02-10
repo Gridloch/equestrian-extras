@@ -1,0 +1,8 @@
+{   "parent": "minecraft:block/stairs",
+    "textures": {
+		"bottom": "#side",
+		"top": "#side",
+		"side": "equestrianextras:block/thatch",
+        "particle": "#side"
+    }
+}

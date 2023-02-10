@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "W#W"
+    ],
+    "key": {
+      "W": {
+        "item": "minecraft:birch_planks"
+      },
+      "#": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:birch_short_fence",
+      "count": 3
+    }
+  }

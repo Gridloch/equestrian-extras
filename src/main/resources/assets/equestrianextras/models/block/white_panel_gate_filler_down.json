@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0":"equestrianextras:block/white_planks",
+		"particle": "#0"
+	},
+	"elements": [
+		{
+			"name": "panel 2",
+			"from": [0.0005, 0, 7.75],
+			"to": [15.9995, 8, 8.25],
+			"faces": {
+				"north": {"uv": [0, 8, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 8, 1, 16], "texture": "#0"},
+				"south": {"uv": [16, 8, 0, 16], "texture": "#0"},
+				"west": {"uv": [15, 8, 16, 16], "texture": "#0"},
+				"up": {"uv": [16, 1.5, 0, 0.5], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [16, 1.5, 0, 0.5], "rotation": 180, "texture": "#0"}
+			}
+		}
+	]
+}

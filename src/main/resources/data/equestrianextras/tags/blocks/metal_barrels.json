@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [      
+      "equestrianextras:brown_barrel",
+      "equestrianextras:red_barrel",
+      "equestrianextras:orange_barrel",
+      "equestrianextras:yellow_barrel",
+      "equestrianextras:lime_barrel",
+      "equestrianextras:green_barrel",
+      "equestrianextras:cyan_barrel",
+      "equestrianextras:light_blue_barrel",
+      "equestrianextras:blue_barrel",
+      "equestrianextras:purple_barrel",
+      "equestrianextras:magenta_barrel",
+      "equestrianextras:pink_barrel",
+      "equestrianextras:white_barrel",
+      "equestrianextras:light_gray_barrel",
+      "equestrianextras:gray_barrel",
+      "equestrianextras:black_barrel"
+    ]
+}

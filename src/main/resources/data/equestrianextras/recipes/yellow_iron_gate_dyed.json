@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "equestrianextras:iron_gates"
+    },
+    {
+      "tag": "equestrianextras:iron_gates"
+    },
+    {
+      "tag": "equestrianextras:iron_gates"
+    },
+    {
+      "tag": "equestrianextras:iron_gates"
+    },
+    {
+      "tag": "equestrianextras:iron_gates"
+    },
+    {
+      "tag": "equestrianextras:iron_gates"
+    },
+    {
+      "item": "minecraft:yellow_dye"
+    }
+  ],
+  "result": {
+    "item": "equestrianextras:yellow_iron_gate",
+    "count": 6
+  }
+}

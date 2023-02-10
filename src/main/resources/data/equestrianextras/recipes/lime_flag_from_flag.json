@@ -1,0 +1,14 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:flags"
+      },
+      {
+        "item": "minecraft:lime_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:lime_flag"
+    }
+  }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "equestrianextras:oak_gate_double"
+    }
+  ],
+  "result": {
+    "item": "minecraft:oak_fence_gate",
+    "count": 2
+  }
+}

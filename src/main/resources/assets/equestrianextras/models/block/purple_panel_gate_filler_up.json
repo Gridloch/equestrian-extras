@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/white_panel_gate_filler_up",
+	"textures": {
+		"0":"equestrianextras:block/purple_planks"
+	}
+}

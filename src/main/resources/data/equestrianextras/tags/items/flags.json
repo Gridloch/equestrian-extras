@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+      "equestrianextras:brown_flag",
+      "equestrianextras:red_flag",
+      "equestrianextras:orange_flag",
+      "equestrianextras:yellow_flag",
+      "equestrianextras:lime_flag",
+      "equestrianextras:green_flag",
+      "equestrianextras:cyan_flag",
+      "equestrianextras:light_blue_flag",
+      "equestrianextras:blue_flag",
+      "equestrianextras:purple_flag",
+      "equestrianextras:magenta_flag",
+      "equestrianextras:pink_flag",
+      "equestrianextras:white_flag",
+      "equestrianextras:light_gray_flag",
+      "equestrianextras:gray_flag",
+      "equestrianextras:black_flag"
+    ]
+  }

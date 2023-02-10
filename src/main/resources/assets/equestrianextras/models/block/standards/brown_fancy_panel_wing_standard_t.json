@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/standards/white_panel_wing_standard_t",
+	"textures": {
+		"2": "equestrianextras:block/brown_panel"
+	}
+}

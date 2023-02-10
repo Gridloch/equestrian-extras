@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    " | ",
+    "F|F"
+  ],
+  "key": {
+    "F": {
+      "item": "equestrianextras:white_fence"
+    },
+    "|": {
+      "item": "minecraft:stick"
+    },
+    "D": {
+      "item": "minecraft:cyan_dye"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:cyan_vertical_rail_standard",
+    "count": 2
+  }
+}

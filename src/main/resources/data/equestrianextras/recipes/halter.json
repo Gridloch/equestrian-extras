@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "X X",
+      "YXY",
+      "X X"
+    ],
+    "key": {
+      "X": {
+        "item": "minecraft:leather"
+      },
+      "Y": {
+        "item": "minecraft:iron_nugget"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:halter"
+    }
+  }

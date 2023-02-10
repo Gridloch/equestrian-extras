@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "W#W"
+    ],
+    "key": {
+      "W": {
+        "item": "minecraft:acacia_planks"
+      },
+      "#": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:acacia_short_fence",
+      "count": 3
+    }
+  }

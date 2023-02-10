@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "## ",
+    "BBB"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:carpets"
+    },
+    "B": {
+      "item": "minecraft:black_carpet"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:blanket_black_bottom"
+  }
+}

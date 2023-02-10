@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/white_ladder_gate_filler_up",
+	"textures": {
+		"0":"equestrianextras:block/green_planks"
+	}
+}

@@ -1,0 +1,14 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "equestrianextras:blanket_dark_top"
+      },
+      {
+        "item": "equestrianextras:halter"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:blanket_dark_top_halter"
+    }
+  }

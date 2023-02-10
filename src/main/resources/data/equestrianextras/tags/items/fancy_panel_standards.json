@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+      "equestrianextras:brown_fancy_panel_wing_standard",
+      "equestrianextras:red_fancy_panel_wing_standard",
+      "equestrianextras:orange_fancy_panel_wing_standard",
+      "equestrianextras:yellow_fancy_panel_wing_standard",
+      "equestrianextras:lime_fancy_panel_wing_standard",
+      "equestrianextras:green_fancy_panel_wing_standard",
+      "equestrianextras:cyan_fancy_panel_wing_standard",
+      "equestrianextras:light_blue_fancy_panel_wing_standard",
+      "equestrianextras:blue_fancy_panel_wing_standard",
+      "equestrianextras:purple_fancy_panel_wing_standard",
+      "equestrianextras:magenta_fancy_panel_wing_standard",
+      "equestrianextras:pink_fancy_panel_wing_standard",
+      "equestrianextras:white_fancy_panel_wing_standard",
+      "equestrianextras:light_gray_fancy_panel_wing_standard",
+      "equestrianextras:gray_fancy_panel_wing_standard",
+      "equestrianextras:black_fancy_panel_wing_standard"
+    ]
+  }

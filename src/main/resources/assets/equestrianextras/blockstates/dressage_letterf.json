@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "equestrianextras:block/dressage_letter_f", "uvlock": false },
+    "facing=east": { "model": "equestrianextras:block/dressage_letter_f", "y":  90, "uvlock": false },
+    "facing=south": { "model": "equestrianextras:block/dressage_letter_f", "y":  180, "uvlock": false },
+    "facing=west": { "model": "equestrianextras:block/dressage_letter_f", "y":  270, "uvlock": false }
+  }
+}

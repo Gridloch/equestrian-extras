@@ -1,0 +1,29 @@
+{
+    "parent": "equestrianextras:block/standards/light_blue_panel_wing_standard_b",
+    "display": {
+        "thirdperson_righthand": {
+            "scale": [ 0.5, 0.5, 0.5 ]
+        },
+        "thirdperson_lefthand": {
+            "scale": [ 0.5, 0.5, 0.5 ]
+        },
+        "firstperson_righthand": {
+            "scale": [ 0.5, 0.5, 0.5 ]
+        },
+        "firstperson_lefthand": {
+            "scale": [ 0.5, 0.5, 0.5 ]
+        },
+        "gui": {
+            "scale": [ 1, 1, 1 ]
+        },
+        "head": {
+            "scale": [ 0.5, 0.5, 0.5 ]
+        },
+        "ground": {
+            "scale": [ 0.5, 0.5, 0.5 ]
+        },
+        "fixed": {
+            "scale": [ 1, 1, 0.1 ]
+        }
+    }
+}

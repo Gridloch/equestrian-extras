@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/white_poles_top",
+	"textures": {
+		"0": "equestrianextras:block/magenta_planks"
+	}
+ }

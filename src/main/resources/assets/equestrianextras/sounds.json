@@ -1,0 +1,39 @@
+{
+    "door_opens": {
+        "subtitle": "subtitles.equestrianextras.door_opens",
+      "sounds": [
+        "equestrianextras:door_open"
+      ]
+    },
+    "door_closes": {
+        "subtitle": "subtitles.equestrianextras.door_closes",
+      "sounds": [
+        "equestrianextras:door_close"
+      ]
+    },
+    "gate_opens": {
+      "subtitle": "subtitles.equestrianextras.gate_opens",
+    "sounds": [
+      "equestrianextras:gate_open"
+    ]
+  },
+  "gate_closes": {
+      "subtitle": "subtitles.equestrianextras.gate_closes",
+    "sounds": [
+      "equestrianextras:gate_close"
+    ]
+  },
+  "barrel_hit": {
+      "subtitle": "subtitles.equestrianextras.barrel_hit",
+    "sounds": [
+      "equestrianextras:barrel_hit"
+    ]
+  },
+  "pole_hit": {
+      "subtitle": "subtitles.equestrianextras.pole_hit",
+    "sounds": [
+      "equestrianextras:pole_hit"
+    ]
+  }
+}
+

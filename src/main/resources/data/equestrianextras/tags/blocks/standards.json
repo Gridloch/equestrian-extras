@@ -1,0 +1,24 @@
+{
+    "replace": false,
+    "values": [
+      "#equestrianextras:vertical_rail_standards",
+      "#equestrianextras:panel_standards",
+
+      "equestrianextras:brown_horizontal_rail_standard",
+      "equestrianextras:red_horizontal_rail_standard",
+      "equestrianextras:orange_horizontal_rail_standard",
+      "equestrianextras:yellow_horizontal_rail_standard",
+      "equestrianextras:lime_horizontal_rail_standard",
+      "equestrianextras:green_horizontal_rail_standard",
+      "equestrianextras:cyan_horizontal_rail_standard",
+      "equestrianextras:light_blue_horizontal_rail_standard",
+      "equestrianextras:blue_horizontal_rail_standard",
+      "equestrianextras:purple_horizontal_rail_standard",
+      "equestrianextras:magenta_horizontal_rail_standard",
+      "equestrianextras:pink_horizontal_rail_standard",
+      "equestrianextras:white_horizontal_rail_standard",
+      "equestrianextras:light_gray_horizontal_rail_standard",
+      "equestrianextras:gray_horizontal_rail_standard",
+      "equestrianextras:black_horizontal_rail_standard"
+    ]
+  }

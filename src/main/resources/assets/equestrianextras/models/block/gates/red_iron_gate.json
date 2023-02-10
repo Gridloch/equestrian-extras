@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/gates/white_iron_gate",
+	"textures": {
+		"0": "equestrianextras:block/red_metal"
+	}
+}

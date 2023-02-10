@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "|||",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "equestrianextras:yellow_poles"
+    },
+    "|": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:yellow_ladder_gate_filler",
+    "count": 2
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "W#W"
+    ],
+    "key": {
+      "W": {
+        "item": "minecraft:warped_planks"
+      },
+      "#": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:warped_short_fence",
+      "count": 3
+    }
+  }

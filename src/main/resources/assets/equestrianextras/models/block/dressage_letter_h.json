@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/dressage_letter_a",
+	"textures": {
+		"1": "equestrianextras:block/letter_h"
+	}
+ }

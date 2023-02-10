@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "F  ",
+      "  P"
+    ],
+    "key": {
+      "F": {
+        "item": "minecraft:paper"
+      },
+      "P": {
+        "tag": "minecraft:planks"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:dressage_letterf"
+    }
+  }

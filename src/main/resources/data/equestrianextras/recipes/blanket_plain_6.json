@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#N ",
+    "##N"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:carpets"
+    },
+    "N": {
+      "tag": "equestrianextras:nonkey_carpets"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:blanket_plain"
+  }
+}

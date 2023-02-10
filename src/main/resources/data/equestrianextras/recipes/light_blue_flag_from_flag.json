@@ -1,0 +1,14 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:flags"
+      },
+      {
+        "item": "minecraft:light_blue_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:light_blue_flag"
+    }
+  }

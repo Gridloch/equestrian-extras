@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:item/oak_gate_double",
+	"textures": {
+		"0": "block/acacia_planks"
+	}
+}

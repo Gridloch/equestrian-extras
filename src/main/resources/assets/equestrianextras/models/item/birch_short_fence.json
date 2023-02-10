@@ -1,0 +1,6 @@
+{
+  "parent": "equestrianextras:block/white_fence_short_inventory",
+	"textures": {
+		"texture":"block/birch_planks"
+	}
+}

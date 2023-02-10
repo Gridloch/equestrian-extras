@@ -1,0 +1,9 @@
+{
+	"parent": "equestrianextras:block/doors/oak_v_front_door_top_hinge",
+	"textures": {
+		"1": "equestrianextras:block/j_door_hinge",
+		"4": "equestrianextras:block/jsdoor_tb",
+		"5": "equestrianextras:block/jsdoor_tf",
+		"6": "equestrianextras:block/v_bars"
+	}
+}

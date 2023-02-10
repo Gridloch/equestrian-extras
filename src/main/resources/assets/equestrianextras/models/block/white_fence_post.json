@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/fence_post",
+	"textures": {
+	  "texture": "equestrianextras:block/white_planks"
+	}
+  }

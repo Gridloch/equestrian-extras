@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+      "layer0": "equestrianextras:item/birch_dutch_door"
+    }
+  }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "|||",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "equestrianextras:green_poles"
+    },
+    "|": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:green_ladder_gate_filler",
+    "count": 2
+  }
+}

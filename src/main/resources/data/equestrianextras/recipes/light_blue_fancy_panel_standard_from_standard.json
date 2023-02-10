@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:fancy_panel_standards"
+      },
+      {
+        "tag": "equestrianextras:fancy_panel_standards"
+      },
+      {
+        "tag": "equestrianextras:fancy_panel_standards"
+      },
+      {
+        "tag": "equestrianextras:fancy_panel_standards"
+      },
+      {
+        "tag": "equestrianextras:fancy_panel_standards"
+      },
+      {
+        "tag": "equestrianextras:fancy_panel_standards"
+      },
+      {
+        "item": "minecraft:light_blue_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:light_blue_fancy_panel_wing_standard",
+      "count": 6
+    }
+  }

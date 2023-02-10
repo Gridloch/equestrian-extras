@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "tag": "equestrianextras:ladder_fillers"
+      },
+      {
+        "item": "minecraft:magenta_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:magenta_ladder_gate_filler",
+      "count": 6
+    }
+  }

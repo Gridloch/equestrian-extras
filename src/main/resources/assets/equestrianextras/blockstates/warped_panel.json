@@ -1,0 +1,41 @@
+{
+    "variants": {
+      "facing=east,centred=false": {
+        "model": "equestrianextras:block/panels/warped_panel",
+        "y": 270
+      },
+      "facing=east,centred=true": {
+        "model": "equestrianextras:block/panels/warped_panel_centred",
+        "y": 270
+      },
+
+
+      "facing=north,centred=false": {
+        "model": "equestrianextras:block/panels/warped_panel",
+        "y": 180
+      },
+      "facing=north,centred=true": {
+        "model": "equestrianextras:block/panels/warped_panel_centred",
+        "y": 180
+      },
+      
+
+
+      "facing=south,centred=false": {
+        "model": "equestrianextras:block/panels/warped_panel"
+      },
+      "facing=south,centred=true": {
+        "model": "equestrianextras:block/panels/warped_panel_centred"
+      },
+
+
+      "facing=west,centred=false": {
+        "model": "equestrianextras:block/panels/warped_panel",
+        "y": 90
+      },
+      "facing=west,centred=true": {
+        "model": "equestrianextras:block/panels/warped_panel_centred",
+        "y": 90
+      }
+    }
+  }

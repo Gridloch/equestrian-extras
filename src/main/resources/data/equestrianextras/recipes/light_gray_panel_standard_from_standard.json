@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "tag": "equestrianextras:panel_standards"
+      },
+      {
+        "item": "minecraft:light_gray_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:light_gray_panel_wing_standard",
+      "count": 6
+    }
+  }

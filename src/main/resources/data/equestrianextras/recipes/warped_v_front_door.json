@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "||",
+    "SS",
+    "PP"
+  ],
+  "key": {
+    "|": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "minecraft:warped_slab"
+    },
+    "P": {
+      "item": "minecraft:warped_planks"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:warped_v_front_door",
+    "count": 3
+  }
+}

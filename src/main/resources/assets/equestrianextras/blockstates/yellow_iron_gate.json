@@ -1,0 +1,127 @@
+{
+  "variants": {
+    "facing=east,open=false,in_wall=false": {
+      "uvlock": true,
+      "y": 270,
+      "model": "equestrianextras:block/gates/yellow_iron_gate"
+    },
+    "facing=east,open=true,hinge=left,in_wall=false": {
+      "uvlock": true,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_open_l"
+    },
+    "facing=east,open=true,hinge=right,in_wall=false": {
+      "uvlock": true,
+      "y": 180,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_open_r"
+    },
+
+    "facing=north,open=false,in_wall=false": {
+      "uvlock": true,
+      "y": 180,
+      "model": "equestrianextras:block/gates/yellow_iron_gate"
+    },
+    "facing=north,open=true,hinge=left,in_wall=false": {
+      "uvlock": true,
+      "y": 270,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_open_l"
+    },
+    "facing=north,open=true,hinge=right,in_wall=false": {
+      "uvlock": true,
+      "y": 90,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_open_r"
+    },
+
+    "facing=south,open=false,in_wall=false": {
+      "uvlock": true,
+      "model": "equestrianextras:block/gates/yellow_iron_gate"
+    },
+    "facing=south,open=true,hinge=left,in_wall=false": {
+      "uvlock": true,
+      "y": 90,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_open_l"
+    },
+    "facing=south,open=true,hinge=right,in_wall=false": {
+      "uvlock": true,
+      "y": 270,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_open_r"
+    },
+
+    "facing=west,open=false,in_wall=false": {
+      "uvlock": true,
+      "y": 90,
+      "model": "equestrianextras:block/gates/yellow_iron_gate"
+    },
+    "facing=west,open=true,hinge=left,in_wall=false": {
+      "uvlock": true,
+      "y": 180,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_open_l"
+    },
+    "facing=west,open=true,hinge=right,in_wall=false": {
+      "uvlock": true,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_open_r"
+    },
+
+
+    "facing=east,open=false,in_wall=true": {
+      "uvlock": true,
+      "y": 270,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall"
+    },
+    "facing=east,open=true,hinge=left,in_wall=true": {
+      "uvlock": true,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall_open_l"
+    },
+    "facing=east,open=true,hinge=right,in_wall=true": {
+      "uvlock": true,
+      "y": 180,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall_open_r"
+    },
+
+    "facing=north,open=false,in_wall=true": {
+      "uvlock": true,
+      "y": 180,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall"
+    },
+    "facing=north,open=true,hinge=left,in_wall=true": {
+      "uvlock": true,
+      "y": 270,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall_open_l"
+    },
+    "facing=north,open=true,hinge=right,in_wall=true": {
+      "uvlock": true,
+      "y": 90,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall_open_r"
+    },
+
+    "facing=south,open=false,in_wall=true": {
+      "uvlock": true,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall"
+    },
+    "facing=south,open=true,hinge=left,in_wall=true": {
+      "uvlock": true,
+      "y": 90,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall_open_l"
+    },
+    "facing=south,open=true,hinge=right,in_wall=true": {
+      "uvlock": true,
+      "y": 270,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall_open_r"
+    },
+
+    "facing=west,open=false,in_wall=true": {
+      "uvlock": true,
+      "y": 90,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall"
+    },
+    "facing=west,open=true,hinge=left,in_wall=true": {
+      "uvlock": true,
+      "y": 180,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall_open_l"
+    },
+    "facing=west,open=true,hinge=right,in_wall=true": {
+      "uvlock": true,
+      "model": "equestrianextras:block/gates/yellow_iron_gate_wall_open_r"
+    }
+  
+}
+}

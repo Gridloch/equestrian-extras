@@ -1,0 +1,54 @@
+{
+    "replace": false,
+    "values": [
+      "#equestrianextras:short_fences",
+      "#equestrianextras:standards",
+      "#equestrianextras:gate_fillers",
+      "#equestrianextras:sliding_doors",
+      
+      "equestrianextras:brown_poles",
+      "equestrianextras:red_poles",
+      "equestrianextras:orange_poles",
+      "equestrianextras:yellow_poles",
+      "equestrianextras:lime_poles",
+      "equestrianextras:green_poles",
+      "equestrianextras:cyan_poles",
+      "equestrianextras:light_blue_poles",
+      "equestrianextras:blue_poles",
+      "equestrianextras:purple_poles",
+      "equestrianextras:magenta_poles",
+      "equestrianextras:pink_poles",
+      "equestrianextras:white_poles",
+      "equestrianextras:light_gray_poles",
+      "equestrianextras:gray_poles",
+      "equestrianextras:black_poles",
+
+      "equestrianextras:oak_saddle_rack",
+      "equestrianextras:spruce_saddle_rack",
+      "equestrianextras:birch_saddle_rack",
+      "equestrianextras:jungle_saddle_rack",
+      "equestrianextras:acacia_saddle_rack",
+      "equestrianextras:dark_oak_saddle_rack",
+      "equestrianextras:crimson_saddle_rack",
+      "equestrianextras:warped_saddle_rack",
+
+      "equestrianextras:dressage_lettera",
+      "equestrianextras:dressage_letterk",
+      "equestrianextras:dressage_lettere",
+      "equestrianextras:dressage_letterh",
+      "equestrianextras:dressage_letterc",
+      "equestrianextras:dressage_letterm",
+      "equestrianextras:dressage_letterb",
+      "equestrianextras:dressage_letterf",
+
+      "equestrianextras:oak_panel",
+      "equestrianextras:spruce_panel",
+      "equestrianextras:birch_panel",
+      "equestrianextras:jungle_panel",
+      "equestrianextras:acacia_panel",
+      "equestrianextras:dark_oak_panel",
+      "equestrianextras:crimson_panel",
+      "equestrianextras:warped_panel"
+    ]
+  }
+

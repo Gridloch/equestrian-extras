@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "||",
+    "SS",
+    "PP"
+  ],
+  "key": {
+    "|": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "minecraft:acacia_slab"
+    },
+    "P": {
+      "item": "minecraft:acacia_planks"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:acacia_v_front_door",
+    "count": 3
+  }
+}

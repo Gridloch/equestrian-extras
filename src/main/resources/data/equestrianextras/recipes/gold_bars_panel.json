@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "|||",
+    "|N|",
+    "|||"
+  ],
+  "key": {
+    "|": {
+      "item": "equestrianextras:iron_bars_panel"
+    },
+    "N": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:gold_bars_panel",
+    "count": 8
+  }
+}

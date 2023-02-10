@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "equestrianextras:crimson_gate_double"
+    }
+  ],
+  "result": {
+    "item": "minecraft:crimson_fence_gate",
+    "count": 2
+  }
+}

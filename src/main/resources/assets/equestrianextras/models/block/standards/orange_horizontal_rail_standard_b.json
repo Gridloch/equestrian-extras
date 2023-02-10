@@ -1,0 +1,6 @@
+{
+	"parent": "equestrianextras:block/standards/white_horizontal_rail_standard_b",
+	"textures": {
+		"1": "equestrianextras:block/orange_planks"
+	}
+}

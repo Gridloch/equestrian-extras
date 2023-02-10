@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "PN"
+    ],
+    "key": {
+      "N": {
+        "item": "minecraft:gold_nugget"
+      },
+      "P": {
+        "item": "equestrianextras:saddle_pad"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:race_tack_3"
+    }
+  }

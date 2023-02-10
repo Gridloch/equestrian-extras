@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:panel_fillers"
+      },
+      {
+        "tag": "equestrianextras:panel_fillers"
+      },
+      {
+        "tag": "equestrianextras:panel_fillers"
+      },
+      {
+        "tag": "equestrianextras:panel_fillers"
+      },
+      {
+        "tag": "equestrianextras:panel_fillers"
+      },
+      {
+        "tag": "equestrianextras:panel_fillers"
+      },
+      {
+        "item": "minecraft:purple_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:purple_panel_gate_filler",
+      "count": 6
+    }
+  }

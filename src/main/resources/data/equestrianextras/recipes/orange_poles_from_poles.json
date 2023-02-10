@@ -1,0 +1,30 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "tag": "equestrianextras:poles"
+      },
+      {
+        "item": "minecraft:orange_dye"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:orange_poles",
+      "count": 6
+    }
+  }

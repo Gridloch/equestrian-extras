@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "minVersion": "0.1",
+    "package": "net.equestrian.extras.mixin",
+    "compatibilityLevel": "JAVA_16",
+    "mixins": [
+      "HorseBreeding"
+    ],
+    "injectors": {
+      "defaultRequire": 1
+    }
+  }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "facing=north,centred=false": { "model": "equestrianextras:block/light_blue_flag", "uvlock": false },
+    "facing=east,centred=false": { "model": "equestrianextras:block/light_blue_flag", "y":  90, "uvlock": false },
+    "facing=south,centred=false": { "model": "equestrianextras:block/light_blue_flag", "y":  180, "uvlock": false },
+    "facing=west,centred=false": { "model": "equestrianextras:block/light_blue_flag", "y":  270, "uvlock": false },
+    
+    "facing=north,centred=true": { "model": "equestrianextras:block/light_blue_flag_c", "uvlock": false },
+    "facing=east,centred=true": { "model": "equestrianextras:block/light_blue_flag_c", "y":  90, "uvlock": false },
+    "facing=south,centred=true": { "model": "equestrianextras:block/light_blue_flag_c", "y":  180, "uvlock": false },
+    "facing=west,centred=true": { "model": "equestrianextras:block/light_blue_flag_c", "y":  270, "uvlock": false }
+  }
+}

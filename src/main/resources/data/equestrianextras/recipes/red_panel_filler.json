@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P",
+    "|",
+    "P"
+  ],
+  "key": {
+    "P": {
+      "item": "equestrianextras:red_poles"
+    },
+    "|": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:red_panel_gate_filler",
+    "count": 2
+  }
+}

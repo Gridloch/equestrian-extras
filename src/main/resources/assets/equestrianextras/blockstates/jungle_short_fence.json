@@ -1,0 +1,63 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "block/jungle_fence_post",
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "OR": [
+        { "up": "false", "down": "true" },
+        { "up": "false", "down": "false", "north": "false", "east": "false", "south": "false", "west": "false" }]
+      },
+      "apply": {
+        "model": "equestrianextras:block/jungle_fence_short_post",
+        "uvlock": true
+      }
+    },
+
+    {
+      "when": {
+        "north": "true", "up": "false"
+      },
+      "apply": {
+        "model": "equestrianextras:block/jungle_fence_short_side",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "true", "up": "false"
+      },
+      "apply": {
+        "model": "equestrianextras:block/jungle_fence_short_side",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "true", "up": "false"
+      },
+      "apply": {
+        "model": "equestrianextras:block/jungle_fence_short_side",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "true", "up": "false"
+      },
+      "apply": {
+        "model": "equestrianextras:block/jungle_fence_short_side",
+        "y": 270,
+        "uvlock": true
+      }
+    }
+  ]
+}
