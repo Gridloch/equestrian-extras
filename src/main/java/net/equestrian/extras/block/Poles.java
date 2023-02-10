@@ -71,7 +71,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
 
     public Poles(AbstractBlock.Settings settings) {
         super(settings.nonOpaque());
-        this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(TYPE, SlabType.BOTTOM)).with(WATERLOGGED, false)).with(PLACEMENT, 1)).with(HIT, false));
+        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, false).with(PLACEMENT, 1).with(HIT, false));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
@@ -86,84 +86,51 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         // and placement (up, down, or centred)
 
         SlabType slabType = state.get(TYPE);
-        Direction dir = state.get(FACING);   
-		switch (slabType) {
-            case DOUBLE: {
+        Direction dir = state.get(FACING);
+        switch (slabType) {
+            case DOUBLE -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            return FULL_SHAPE_N;  
-                        case 2:
-                            return FULL_SHAPE_DOWN_N; 
-                        case 3:
-                            return FULL_SHAPE_UP_N; 
-                        default:
-                            return FULL_SHAPE_N; 
-                    }   
-                }
-                else {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            return FULL_SHAPE_E; 
-                        case 2:
-                            return FULL_SHAPE_DOWN_E;
-                        case 3:
-                            return FULL_SHAPE_UP_E;
-                        default:
-                            return FULL_SHAPE_E; 
-                    }  
+                    return switch (state.get(PLACEMENT)) {
+                        case 2 -> FULL_SHAPE_DOWN_N;
+                        case 3 -> FULL_SHAPE_UP_N;
+                        default -> FULL_SHAPE_N;
+                    };
+                } else {
+                    return switch (state.get(PLACEMENT)) {
+                        case 2 -> FULL_SHAPE_DOWN_E;
+                        case 3 -> FULL_SHAPE_UP_E;
+                        default -> FULL_SHAPE_E;
+                    };
                 }
             }
-            case TOP: {
+            case TOP -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            return TOP_SHAPE_N; 
-                        case 2:
-                            return TOP_SHAPE_DOWN_N; 
-                        case 3:
-                            return TOP_SHAPE_UP_N; 
-                        default:
-                            return TOP_SHAPE_N;
-                    } 
-                }
-                else {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            return TOP_SHAPE_E; 
-                        case 2:
-                            return TOP_SHAPE_DOWN_E; 
-                        case 3:
-                            return TOP_SHAPE_UP_E; 
-                        default:
-                            return TOP_SHAPE_E;
-                    }  
+                    return switch (state.get(PLACEMENT)) {
+                        case 2 -> TOP_SHAPE_DOWN_N;
+                        case 3 -> TOP_SHAPE_UP_N;
+                        default -> TOP_SHAPE_N;
+                    };
+                } else {
+                    return switch (state.get(PLACEMENT)) {
+                        case 2 -> TOP_SHAPE_DOWN_E;
+                        case 3 -> TOP_SHAPE_UP_E;
+                        default -> TOP_SHAPE_E;
+                    };
                 }
             }
-            case BOTTOM: {
+            case BOTTOM -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            return BOTTOM_SHAPE_N;
-                        case 2:
-                            return BOTTOM_SHAPE_DOWN_N;
-                        case 3:
-                            return BOTTOM_SHAPE_UP_N;
-                        default:
-                            return BOTTOM_SHAPE_N;
-                    }
-                }
-                else {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            return BOTTOM_SHAPE_E;
-                        case 2:
-                            return BOTTOM_SHAPE_DOWN_E;
-                        case 3:
-                            return BOTTOM_SHAPE_UP_E;
-                        default:
-                            return BOTTOM_SHAPE_E;
-                    }   
+                    return switch (state.get(PLACEMENT)) {
+                        case 2 -> BOTTOM_SHAPE_DOWN_N;
+                        case 3 -> BOTTOM_SHAPE_UP_N;
+                        default -> BOTTOM_SHAPE_N;
+                    };
+                } else {
+                    return switch (state.get(PLACEMENT)) {
+                        case 2 -> BOTTOM_SHAPE_DOWN_E;
+                        case 3 -> BOTTOM_SHAPE_UP_E;
+                        default -> BOTTOM_SHAPE_E;
+                    };
                 }
             }
         }
@@ -178,16 +145,16 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
 
         if (blockState.isOf(this)) {
-            return (BlockState)((BlockState)blockState.with(TYPE, SlabType.DOUBLE)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
+            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
         }
-        BlockState blockState2 = (BlockState)((BlockState)this.getDefaultState().with(TYPE, SlabType.BOTTOM)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
+        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
         Direction direction = ctx.getSide();
         if (direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.5) {
-            return (BlockState)blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
+            return blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
         }
 
         if (!ctx.getWorld().isClient() && ctx.getPlayer().isSneaking()) {
-            return (BlockState)blockState2.with(PLACEMENT, 2);
+            return blockState2.with(PLACEMENT, 2);
         }
 
         return blockState2;
@@ -213,7 +180,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
         return super.getFluidState(state);
@@ -231,7 +198,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -249,7 +216,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         if (!player.getAbilities().allowModifyWorld || !itemStack.isEmpty()) {
             return ActionResult.PASS;
         }
-        world.setBlockState(pos, (BlockState)state.cycle(PLACEMENT));
+        world.setBlockState(pos, state.cycle(PLACEMENT));
         return ActionResult.success(world.isClient);
     }
 
@@ -331,112 +298,71 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         Box box = new Box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
 
         SlabType slabType = state.get(TYPE);
-        Direction dir = state.get(FACING); 
-        
-        
-		switch (slabType) {
-            case DOUBLE: {
+        Direction dir = state.get(FACING);
+
+
+        switch (slabType) {
+            case DOUBLE -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            box = new Box(0.0, 0.125, 0.375, 1.0, 0.813, 0.625);
-                            // Should match shape (0.0, 3.0, 7.0, 16.0, 13.0, 9.0)
-                            break;
-                        case 3:
-                            box = new Box(0.0, 0.312, 0.375, 1.0, 1.0, 0.625);
-                            // Should match shape (0.0, 6.0, 7.0, 16.0, 16.0, 9.0)
-                            break;
-                        default:
-                            box = new Box(0.0, 0.0, 0.375, 1.0, 0.625, 0.625);
-                            // Should match shape (0.0, 0.0, 7.0, 16.0, 10.0, 9.0)
-                            break;
-                    }   
+                    box = switch (state.get(PLACEMENT)) {
+                        case 1 -> new Box(0.0, 0.125, 0.375, 1.0, 0.813, 0.625);
+                        // Should match shape (0.0, 3.0, 7.0, 16.0, 13.0, 9.0)
+                        case 3 -> new Box(0.0, 0.312, 0.375, 1.0, 1.0, 0.625);
+                        // Should match shape (0.0, 6.0, 7.0, 16.0, 16.0, 9.0)
+                        default -> new Box(0.0, 0.0, 0.375, 1.0, 0.625, 0.625);
+                        // Should match shape (0.0, 0.0, 7.0, 16.0, 10.0, 9.0)
+                    };
+                } else {
+                    box = switch (state.get(PLACEMENT)) {
+                        case 1 -> new Box(0.375, 0.125, 0.0, 0.625, 0.813, 1.0);
+                        // Should match shape (7.0, 3.0, 0.0, 9.0, 13.0, 16.0)
+                        case 3 -> new Box(0.375, 0.312, 0.0, 0.625, 1.0, 1.0);
+                        // Should match shape (7.0, 6.0, 0.0, 9.0, 16.0, 16.0)
+                        default -> new Box(0.375, 0.0, 0.0, 0.625, 0.625, 1.0);
+                        // Should match shape (7.0, 0.0, 0.0, 9.0, 10.0, 16.0)
+                    };
                 }
-                else {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            box = new Box(0.375, 0.125, 0.0, 0.625, 0.813, 1.0);
-                            // Should match shape (7.0, 3.0, 0.0, 9.0, 13.0, 16.0)
-                            break;
-                        case 3:
-                            box = new Box(0.375, 0.312, 0.0, 0.625, 1.0, 1.0);
-                            // Should match shape (7.0, 6.0, 0.0, 9.0, 16.0, 16.0)
-                            break;
-                        default:
-                            box = new Box(0.375, 0.0, 0.0, 0.625, 0.625, 1.0);
-                            // Should match shape (7.0, 0.0, 0.0, 9.0, 10.0, 16.0)
-                            break;
-                    }  
-                }
-                break;
             }
-            case TOP: {
+            case TOP -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            box = new Box(0.0, 0.625, 0.375, 1.0, 0.813, 0.625);
-                            // Should match shape (0.0, 11.0, 7.0, 16.0, 13.0, 9.0)
-                            break;
-                        case 3:
-                            box = new Box(0.0, 0.875, 0.375, 1.0, 1.0, 0.625);
-                            // Should match shape (0.0, 14.0, 7.0, 16.0, 16.0, 9.0)
-                            break;
-                        default:
-                            box = new Box(0.0, 0.437, 0.375, 1.0, 0.625, 0.625);
-                            // Should match shape (0.0, 8.0, 7.0, 16.0, 10.0, 9.0)
-                            break;
-                    } 
+                    box = switch (state.get(PLACEMENT)) {
+                        case 1 -> new Box(0.0, 0.625, 0.375, 1.0, 0.813, 0.625);
+                        // Should match shape (0.0, 11.0, 7.0, 16.0, 13.0, 9.0)
+                        case 3 -> new Box(0.0, 0.875, 0.375, 1.0, 1.0, 0.625);
+                        // Should match shape (0.0, 14.0, 7.0, 16.0, 16.0, 9.0)
+                        default -> new Box(0.0, 0.437, 0.375, 1.0, 0.625, 0.625);
+                        // Should match shape (0.0, 8.0, 7.0, 16.0, 10.0, 9.0)
+                    };
+                } else {
+                    box = switch (state.get(PLACEMENT)) {
+                        case 1 -> new Box(0.375, 0.625, 0.0, 0.625, 0.813, 1.0);
+                        // Should match shape (7.0, 11.0, 0.0, 9.0, 13.0, 16.0)
+                        case 3 -> new Box(0.375, 0.875, 0.0, 0.625, 1.0, 1.0);
+                        // Should match shape (7.0, 14.0, 0.0, 9.0, 16.0, 16.0)
+                        default -> new Box(0.375, 0.437, 0.0, 0.625, 0.625, 1.0);
+                        // Should match shape (7.0, 8.0, 0.0, 9.0, 10.0, 16.0)
+                    };
                 }
-                else {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            box = new Box(0.375, 0.625, 0.0, 0.625, 0.813, 1.0);
-                            // Should match shape (7.0, 11.0, 0.0, 9.0, 13.0, 16.0)
-                            break;
-                        case 3:
-                            box = new Box(0.375, 0.875, 0.0, 0.625, 1.0, 1.0);
-                            // Should match shape (7.0, 14.0, 0.0, 9.0, 16.0, 16.0)
-                            break;
-                        default:
-                            box = new Box(0.375, 0.437, 0.0, 0.625, 0.625, 1.0);
-                            // Should match shape (7.0, 8.0, 0.0, 9.0, 10.0, 16.0)
-                            break;
-                    }  
-                }
-                break;
             }
-            case BOTTOM: {
+            case BOTTOM -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            box = new Box(0.0, 0.125, 0.375, 1.0, 0.313, 0.625);
-                            // Should match shape (0.0, 3.0, 7.0, 16.0, 5.0, 9.0)
-                            break;
-                        case 3:
-                            box = new Box(0.0, 0.313, 0.375, 1.0, 0.5, 0.625);
-                            // Should match shape (0.0, 6.0, 7.0, 16.0, 8.0, 9.0)
-                            break;
-                        default:
-                        box = new Box(0.0, 0.0, 0.375, 1.0, 0.125, 0.625);
+                    box = switch (state.get(PLACEMENT)) {
+                        case 1 -> new Box(0.0, 0.125, 0.375, 1.0, 0.313, 0.625);
+                        // Should match shape (0.0, 3.0, 7.0, 16.0, 5.0, 9.0)
+                        case 3 -> new Box(0.0, 0.313, 0.375, 1.0, 0.5, 0.625);
+                        // Should match shape (0.0, 6.0, 7.0, 16.0, 8.0, 9.0)
+                        default -> new Box(0.0, 0.0, 0.375, 1.0, 0.125, 0.625);
                         // Should match shape (0.0, 0.0, 7.0, 16.0, 2.0, 9.0)
-                        break;
-                    }
-                }
-                else {
-                    switch(state.get(PLACEMENT)) {
-                        case 1:
-                            box = new Box(0.375, 0.125, 0.0, 0.625, 0.313, 1.0);
-                            // Should match shape (7.0, 11.0, 0.0, 9.0, 13.0, 16.0)
-                            break;
-                        case 3:
-                            box = new Box(0.375, 0.313, 0.0, 0.625, 0.5, 1.0);
-                            // Should match shape (7.0, 14.0, 0.0, 9.0, 16.0, 16.0)
-                            break;
-                        default:
-                            box = new Box(0.375, 0.0, 0.0, 0.625, 0.125, 1.0);
-                            // Should match shape (7.0, 8.0, 0.0, 9.0, 10.0, 16.0)
-                            break;
-                    } 
+                    };
+                } else {
+                    box = switch (state.get(PLACEMENT)) {
+                        case 1 -> new Box(0.375, 0.125, 0.0, 0.625, 0.313, 1.0);
+                        // Should match shape (7.0, 11.0, 0.0, 9.0, 13.0, 16.0)
+                        case 3 -> new Box(0.375, 0.313, 0.0, 0.625, 0.5, 1.0);
+                        // Should match shape (7.0, 14.0, 0.0, 9.0, 16.0, 16.0)
+                        default -> new Box(0.375, 0.0, 0.0, 0.625, 0.125, 1.0);
+                        // Should match shape (7.0, 8.0, 0.0, 9.0, 10.0, 16.0)
+                    };
                 }
             }
         }

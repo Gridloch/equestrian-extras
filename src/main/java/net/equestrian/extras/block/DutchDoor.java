@@ -19,7 +19,7 @@ public class DutchDoor extends DoorBlock {
         DoubleBlockHalf doubleBlockHalf = state.get(HALF);
         if (direction.getAxis() == Direction.Axis.Y && doubleBlockHalf == DoubleBlockHalf.LOWER == (direction == Direction.UP)) {
             if (neighborState.isOf(this) && neighborState.get(HALF) != doubleBlockHalf) {
-                return (BlockState)((BlockState)((BlockState)state.with(FACING, neighborState.get(FACING))).with(HINGE, neighborState.get(HINGE))).with(POWERED, neighborState.get(POWERED));
+                return state.with(FACING, neighborState.get(FACING)).with(HINGE, neighborState.get(HINGE)).with(POWERED, neighborState.get(POWERED));
             }
             return Blocks.AIR.getDefaultState();
         }

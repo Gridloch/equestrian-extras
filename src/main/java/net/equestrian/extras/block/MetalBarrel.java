@@ -33,12 +33,12 @@ public class MetalBarrel extends SlabBlock {
     protected static final VoxelShape TOP_SHAPE = Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
     protected static final VoxelShape DOUBLE_SHAPE = Block.createCuboidShape(0.0, -1.0, 0.0, 16.0, 16.0, 16.0);
     protected static final VoxelShape BOTTOM_SHAPE2 = Block.createCuboidShape(0.1, -1.0, 0.1, 15.9, 8.0, 15.9);
-    protected static final VoxelShape TOP_SHAPE2 = Block.createCuboidShape(0.1, 8.0, 001, 15.9, 16.0, 15.9);
+    protected static final VoxelShape TOP_SHAPE2 = Block.createCuboidShape(0.1, 8.0, 0.1, 15.9, 16.0, 15.9);
     protected static final VoxelShape DOUBLE_SHAPE2 = Block.createCuboidShape(0.1, -1.0, 0.1, 15.9, 16.0, 15.9);
 
     public MetalBarrel(Settings settings) {
         super(settings.nonOpaque());
-        this.setDefaultState((BlockState)((BlockState)((BlockState)this.getDefaultState().with(TYPE, SlabType.BOTTOM)).with(WATERLOGGED, false)).with(HIT, false));
+        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, false).with(HIT, false));
     }
 
     @Override
@@ -50,13 +50,13 @@ public class MetalBarrel extends SlabBlock {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         SlabType slabType = state.get(TYPE);
         switch (slabType) {
-            case DOUBLE: {
+            case DOUBLE -> {
                 return DOUBLE_SHAPE;
             }
-            case TOP: {
+            case TOP -> {
                 return TOP_SHAPE;
             }
-            default: {
+            default -> {
                 return BOTTOM_SHAPE;
             }
         }
@@ -66,13 +66,13 @@ public class MetalBarrel extends SlabBlock {
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         SlabType slabType = state.get(TYPE);
         switch (slabType) {
-            case DOUBLE: {
+            case DOUBLE -> {
                 return DOUBLE_SHAPE2;
             }
-            case TOP: {
+            case TOP -> {
                 return TOP_SHAPE2;
             }
-            default: {
+            default -> {
                 return BOTTOM_SHAPE2;
             }
         }
@@ -152,20 +152,12 @@ public class MetalBarrel extends SlabBlock {
 
         Box box = new Box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
 
-        SlabType slabType = state.get(TYPE);        
-        
-		switch (slabType) {
-            case DOUBLE: {
-                box = new Box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
-                break;
-            }
-            case TOP: {
-                box = new Box(0.0, 0.5, 0.0, 1.0, 1.0, 1.0);
-                break;
-            }
-            case BOTTOM: {
-                box = new Box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
-            }
+        SlabType slabType = state.get(TYPE);
+
+        switch (slabType) {
+            case DOUBLE -> box = new Box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
+            case TOP -> box = new Box(0.0, 0.5, 0.0, 1.0, 1.0, 1.0);
+            case BOTTOM -> box = new Box(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
         }
         return box;
 	}

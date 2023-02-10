@@ -1,19 +1,12 @@
 package net.equestrian.extras.block;
 
-import org.jetbrains.annotations.Nullable;
-
 import me.shedaniel.autoconfig.AutoConfig;
 import net.equestrian.extras.EquestrianExtras;
 import net.equestrian.extras.config.ModConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.enums.DoorHinge;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,12 +28,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldEvents;
-import net.minecraft.world.WorldView;
+import net.minecraft.world.*;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
 public class SlidingDoor extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
@@ -55,23 +45,24 @@ public class SlidingDoor extends Block {
 
     protected SlidingDoor(Settings settings) {
         super(settings.nonOpaque());
-        this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(OPEN, false)).with(HINGE, DoorHinge.LEFT)).with(POWERED, false)).with(HALF, DoubleBlockHalf.LOWER));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false).with(HINGE, DoorHinge.LEFT).with(POWERED, false).with(HALF, DoubleBlockHalf.LOWER));
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         Direction direction = state.get(FACING);
         switch (direction) {
-            case EAST: {
+            case EAST -> {
                 return EAST_SHAPE;
             }
-            case SOUTH: {
+            case SOUTH -> {
                 return SOUTH_SHAPE;
             }
-            case WEST: {
+            case WEST -> {
                 return WEST_SHAPE;
             }
-            default: 
+            default -> {
+            }
         }
         return NORTH_SHAPE;
     }
@@ -87,9 +78,9 @@ public class SlidingDoor extends Block {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         
         if (Boolean.TRUE.equals(doorSlide(state, world, pos))) {
-            state = (BlockState)state.cycle(OPEN);
+            state = state.cycle(OPEN);
             this.playDoorSlideSound(Boolean.TRUE.equals(state.get(OPEN)), world, pos);
-            world.emitGameEvent((Entity)player, this.isOpen(state) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+            world.emitGameEvent(player, this.isOpen(state) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
 
             // move second door if used door is a double door
             if (world.isClient) {
@@ -102,7 +93,7 @@ public class SlidingDoor extends Block {
                     if (Boolean.TRUE.equals(bl)) {
                         doorSlide(pairState, world, pairPos);
                         this.playDoorSlideSound(Boolean.TRUE.equals(!pairState.get(OPEN)), world, pos);
-                        world.emitGameEvent((Entity)player, !this.isOpen(pairState) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+                        world.emitGameEvent(player, !this.isOpen(pairState) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
                     }
                 }
             }
@@ -131,7 +122,7 @@ public class SlidingDoor extends Block {
         World world = ctx.getWorld();
         if (blockPos.getY() < world.getTopY() - 1 && world.getBlockState(blockPos.up()).canReplace(ctx)) {
             boolean bl = world.isReceivingRedstonePower(blockPos) || world.isReceivingRedstonePower(blockPos.up());
-            return (BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(FACING, ctx.getPlayerFacing())).with(HINGE, this.getSlideDirection(ctx))).with(POWERED, bl)).with(HALF, DoubleBlockHalf.LOWER);
+            return this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(HINGE, this.getSlideDirection(ctx)).with(POWERED, bl).with(HALF, DoubleBlockHalf.LOWER);
         }
         return null;
     }
@@ -238,7 +229,7 @@ public class SlidingDoor extends Block {
         DoubleBlockHalf doubleBlockHalf = state.get(HALF);
         if (direction.getAxis() == Direction.Axis.Y && doubleBlockHalf == DoubleBlockHalf.LOWER == (direction == Direction.UP)) {
             if (neighborState.isOf(this) && neighborState.get(HALF) != doubleBlockHalf) {
-                return (BlockState)((BlockState)((BlockState)((BlockState)state.with(FACING, neighborState.get(FACING))).with(OPEN, neighborState.get(OPEN))).with(HINGE, neighborState.get(HINGE))).with(POWERED, neighborState.get(POWERED));
+                return state.with(FACING, neighborState.get(FACING)).with(OPEN, neighborState.get(OPEN)).with(HINGE, neighborState.get(HINGE)).with(POWERED, neighborState.get(POWERED));
             }
             return Blocks.AIR.getDefaultState();
         }
@@ -265,7 +256,7 @@ public class SlidingDoor extends Block {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        world.setBlockState(pos.up(), (BlockState)state.with(HALF, DoubleBlockHalf.UPPER), Block.NOTIFY_ALL);
+        world.setBlockState(pos.up(), state.with(HALF, DoubleBlockHalf.UPPER), Block.NOTIFY_ALL);
     }
 
     public boolean isOpen(BlockState state) {
@@ -289,7 +280,7 @@ public class SlidingDoor extends Block {
 
     @Override
     public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return (BlockState)state.with(FACING, rotation.rotate(state.get(FACING)));
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
     @Override
@@ -297,7 +288,7 @@ public class SlidingDoor extends Block {
         if (mirror == BlockMirror.NONE) {
             return state;
         }
-        return (BlockState)state.rotate(mirror.getRotation(state.get(FACING))).cycle(HINGE);
+        return state.rotate(mirror.getRotation(state.get(FACING))).cycle(HINGE);
     }
 
     @Override

@@ -45,7 +45,7 @@ public abstract class HorseBreeding extends AnimalEntity {
 
             //Jump
             double j = Math.random();
-            double jBonus = (Math.random()*(config.maxIncrease()-config.minIncrease())+config.minIncrease())*1.0/100; // random bonus between max and min percent of 1.0
+            double jBonus = (Math.random() * (config.maxIncrease() - config.minIncrease()) + config.minIncrease()) / 100; // random bonus between max and min percent of 1.0
             double jump = (this.getAttributeBaseValue(EntityAttributes.HORSE_JUMP_STRENGTH)*j) + (mate.getAttributeBaseValue(EntityAttributes.HORSE_JUMP_STRENGTH)*(1-j)) + jBonus;
             
             if (jump > config.maxBreedJump()) {

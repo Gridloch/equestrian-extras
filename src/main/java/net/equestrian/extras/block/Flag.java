@@ -30,7 +30,7 @@ public class Flag extends Block implements Waterloggable {
 
     public Flag(Settings settings) {
         super(settings.nonOpaque());  
-		this.setDefaultState((BlockState)((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(CENTRED, true)));
+		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false).with(CENTRED, true));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
@@ -45,57 +45,47 @@ public class Flag extends Block implements Waterloggable {
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
         
-        return (BlockState)this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(CENTRED, !blockView.getBlockState(blockPos.down()).isIn(EquestrianExtras.BlockTags.STANDARDS));
+        return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(CENTRED, !blockView.getBlockState(blockPos.down()).isIn(EquestrianExtras.BlockTags.STANDARDS));
 	}
     
     @Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
 		Direction dir = state.get(FACING);
         if (Boolean.TRUE.equals(state.get(CENTRED))) {
-            switch(dir) {
-                case NORTH:
-                    return VoxelShapes.cuboid(0.17f, 0.0f, 0.45f, 0.57f, 0.45f, 0.55f);
-                case SOUTH:
-                    return VoxelShapes.cuboid(0.43f, 0.0f, 0.45f, 0.83f, 0.45f, 0.55f);
-                case EAST:
-                    return VoxelShapes.cuboid(0.45f, 0.0f, 0.17f, 0.55f, 0.45f, 0.57f);
-                case WEST:
-                    return VoxelShapes.cuboid(0.45f, 0.0f, 0.43f, 0.55f, 0.45f, 0.83f);
-                default:
-                    return VoxelShapes.cuboid(0.55f, 0.0f, 0.45f, 0.94f, 0.45f, 0.55f);
-            }
+            return switch (dir) {
+                case NORTH -> VoxelShapes.cuboid(0.17f, 0.0f, 0.45f, 0.57f, 0.45f, 0.55f);
+                case SOUTH -> VoxelShapes.cuboid(0.43f, 0.0f, 0.45f, 0.83f, 0.45f, 0.55f);
+                case EAST -> VoxelShapes.cuboid(0.45f, 0.0f, 0.17f, 0.55f, 0.45f, 0.57f);
+                case WEST -> VoxelShapes.cuboid(0.45f, 0.0f, 0.43f, 0.55f, 0.45f, 0.83f);
+                default -> VoxelShapes.cuboid(0.55f, 0.0f, 0.45f, 0.94f, 0.45f, 0.55f);
+            };
         }
 		else {
-            switch(dir) {
-                case NORTH:
-                    return VoxelShapes.cuboid(0.55f, 0.0f, 0.45f, 0.95f, 0.45f, 0.55f);
-                case SOUTH:
-                    return VoxelShapes.cuboid(0.05f, 0.0f, 0.45f, 0.45f, 0.45f, 0.55f);
-                case EAST:
-                    return VoxelShapes.cuboid(0.45f, 0.0f, 0.55f, 0.55f, 0.45f, 0.94f);
-                case WEST:
-                    return VoxelShapes.cuboid(0.45f, 0.0f, 0.06f, 0.55f, 0.45f, 0.45f);
-                default:
-                    return VoxelShapes.cuboid(0.55f, 0.0f, 0.45f, 0.94f, 0.45f, 0.55f);
-            }
+            return switch (dir) {
+                case NORTH -> VoxelShapes.cuboid(0.55f, 0.0f, 0.45f, 0.95f, 0.45f, 0.55f);
+                case SOUTH -> VoxelShapes.cuboid(0.05f, 0.0f, 0.45f, 0.45f, 0.45f, 0.55f);
+                case EAST -> VoxelShapes.cuboid(0.45f, 0.0f, 0.55f, 0.55f, 0.45f, 0.94f);
+                case WEST -> VoxelShapes.cuboid(0.45f, 0.0f, 0.06f, 0.55f, 0.45f, 0.45f);
+                default -> VoxelShapes.cuboid(0.55f, 0.0f, 0.45f, 0.94f, 0.45f, 0.55f);
+            };
         }
 	}
 
     
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         if (direction == Direction.DOWN) {
-            return (BlockState)state.with(CENTRED, !neighborState.isIn(EquestrianExtras.BlockTags.STANDARDS));
+            return state.with(CENTRED, !neighborState.isIn(EquestrianExtras.BlockTags.STANDARDS));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
         return super.getFluidState(state);

@@ -18,6 +18,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 
+
+@SuppressWarnings("unused")
 public class ModBlocks {
     public static final List<Block> transparentBlocks = new LinkedList<>();
 

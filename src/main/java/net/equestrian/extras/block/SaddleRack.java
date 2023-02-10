@@ -30,7 +30,7 @@ public class SaddleRack extends Block {
 
     public SaddleRack(Settings settings) {
         super(settings.nonOpaque());  
-		this.setDefaultState((BlockState)((BlockState)((BlockState)this.getDefaultState().with(SADDLE, false)).with(ON_WALL, true)));
+		this.setDefaultState(this.getDefaultState().with(SADDLE, false).with(ON_WALL, true));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
@@ -45,32 +45,16 @@ public class SaddleRack extends Block {
 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
 		Direction dir = state.get(FACING);
         if (Boolean.FALSE.equals(state.get(ON_WALL))) {
-            switch(dir) {
-                case NORTH:
-                    return VoxelShapes.cuboid(0.1875f, 0.0f, 0.0f, 0.8125f, 0.875f, 1.0f);
-                case SOUTH:
-                    return VoxelShapes.cuboid(0.1875f, 0.0f, 0.0f, 0.8125f, 0.875f, 1.0f);
-                case EAST:
-                    return VoxelShapes.cuboid(0.0f, 0.0f, 0.1875f, 1.0f, 0.875f, 0.8125f);
-                case WEST:
-                    return VoxelShapes.cuboid(0.0f, 0.0f, 0.1875f, 1.0f, 0.875f, 0.8125f);
-                default:
-                    return VoxelShapes.cuboid(0.1875f, 0.0f, 0.0f, 0.8125f, 0.875f, 1.0f);
-            }
+            return switch (dir) {
+                case EAST, WEST -> VoxelShapes.cuboid(0.0f, 0.0f, 0.1875f, 1.0f, 0.875f, 0.8125f);
+                default -> VoxelShapes.cuboid(0.1875f, 0.0f, 0.0f, 0.8125f, 0.875f, 1.0f);
+            };
         }
 		else {
-            switch(dir) {
-                case NORTH:
-                    return VoxelShapes.cuboid(0.1875f, 0.375f, 0.0f, 0.8125f, 0.875f, 1.0f);
-                case SOUTH:
-                    return VoxelShapes.cuboid(0.1875f, 0.375f, 0.0f, 0.8125f, 0.875f, 1.0f);
-                case EAST:
-                    return VoxelShapes.cuboid(0.0f, 0.375f, 0.1875f, 1.0f, 0.875f, 0.8125f);
-                case WEST:
-                    return VoxelShapes.cuboid(0.0f, 0.375f, 0.1875f, 1.0f, 0.875f, 0.8125f);
-                default:
-                    return VoxelShapes.cuboid(0.1875f, 0.375f, 0.0f, 0.8125f, 0.875f, 1.0f);
-            }
+            return switch (dir) {
+                case EAST, WEST -> VoxelShapes.cuboid(0.0f, 0.375f, 0.1875f, 1.0f, 0.875f, 0.8125f);
+                default -> VoxelShapes.cuboid(0.1875f, 0.375f, 0.0f, 0.8125f, 0.875f, 1.0f);
+            };
         }
 	}
 
@@ -79,10 +63,10 @@ public class SaddleRack extends Block {
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockPos blockPos = ctx.getBlockPos();
 
-        BlockState blockState2 = (BlockState)((BlockState)this.getDefaultState().with(ON_WALL, false)).with(SADDLE, false).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
+        BlockState blockState2 = this.getDefaultState().with(ON_WALL, false).with(SADDLE, false).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
         Direction direction = ctx.getSide();
         if (direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.1) {
-            return (BlockState)blockState2.with(ON_WALL, true).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
+            return blockState2.with(ON_WALL, true).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
         }
         return blockState2;
     }
@@ -101,14 +85,14 @@ public class SaddleRack extends Block {
             } else if (!player.giveItemStack(itemStack2)) {
                 player.dropItem(itemStack2, false);
             }
-            world.setBlockState(pos, (BlockState)state.with(SADDLE, false), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(SADDLE, false), Block.NOTIFY_ALL);
             return ActionResult.SUCCESS;
         }
         else if (itemStack.isOf(Items.SADDLE) && !Boolean.TRUE.equals(state.get(SADDLE))) { // Checks if block is 'empty' and the player is holding a saddle
             if (!player.getAbilities().creativeMode) {
                 itemStack.decrement(1);
             }
-            world.setBlockState(pos, (BlockState)state.with(SADDLE, true), Block.NOTIFY_ALL);
+            world.setBlockState(pos, state.with(SADDLE, true), Block.NOTIFY_ALL);
             return ActionResult.SUCCESS;
         }
         else {

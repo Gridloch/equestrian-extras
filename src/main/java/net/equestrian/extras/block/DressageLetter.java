@@ -27,7 +27,7 @@ public class DressageLetter extends Block implements Waterloggable {
 
     public DressageLetter(Settings settings) {
         super(settings.nonOpaque());  
-		this.setDefaultState((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)));
+		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
@@ -41,7 +41,7 @@ public class DressageLetter extends Block implements Waterloggable {
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
         
-        return (BlockState)this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
 	}
     
     @Override
@@ -52,7 +52,7 @@ public class DressageLetter extends Block implements Waterloggable {
     
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -60,7 +60,7 @@ public class DressageLetter extends Block implements Waterloggable {
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
         return super.getFluidState(state);

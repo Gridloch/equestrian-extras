@@ -54,7 +54,7 @@ public class GateFiller extends HorizontalFacingBlock implements Waterloggable {
 
     public GateFiller(AbstractBlock.Settings settings) {
         super(settings.nonOpaque());
-        this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(TYPE, SlabType.BOTTOM)).with(WATERLOGGED, false)).with(UP, false)).with(DOWN, false));
+        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, false).with(UP, false).with(DOWN, false));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
@@ -69,30 +69,27 @@ public class GateFiller extends HorizontalFacingBlock implements Waterloggable {
         // and placement (up, down, or centred)
 
         SlabType slabType = state.get(TYPE);
-        Direction dir = state.get(FACING);   
-		switch (slabType) {
-            case DOUBLE: {
+        Direction dir = state.get(FACING);
+        switch (slabType) {
+            case DOUBLE -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return FULL_SHAPE_N;
-                }
-                else {
+                } else {
                     return FULL_SHAPE_E;
                 }
             }
-            case TOP: {
+            case TOP -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return TOP_SHAPE_N;
-                }
-                else {
-                    return TOP_SHAPE_E;  
+                } else {
+                    return TOP_SHAPE_E;
                 }
             }
-            case BOTTOM: {
+            case BOTTOM -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return BOTTOM_SHAPE_N;
-                }
-                else {
-                    return BOTTOM_SHAPE_E;  
+                } else {
+                    return BOTTOM_SHAPE_E;
                 }
             }
         }
@@ -107,13 +104,13 @@ public class GateFiller extends HorizontalFacingBlock implements Waterloggable {
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
 
         if (blockState.isOf(this)) {
-            return (BlockState)((BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(TYPE, SlabType.DOUBLE)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx))).with(DOWN, checkDown(ctx))));
+            return this.getDefaultState().with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
         }
 
-        BlockState blockState2 = (BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(TYPE, SlabType.BOTTOM)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx))).with(DOWN, checkDown(ctx)));
+        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
         Direction direction = ctx.getSide();
         if (direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.5) {
-            return (BlockState)((BlockState)((BlockState)blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx))).with(DOWN, checkDown(ctx)));
+            return blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
         }
         return blockState2;
     }
@@ -158,7 +155,7 @@ public class GateFiller extends HorizontalFacingBlock implements Waterloggable {
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
         return super.getFluidState(state);
@@ -176,20 +173,20 @@ public class GateFiller extends HorizontalFacingBlock implements Waterloggable {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         
         if (neighborState.isIn(EquestrianExtras.BlockTags.GATEFILLER) && direction == Direction.DOWN) {
-            return (BlockState)state.with(DOWN, !neighborState.get(TYPE).equals(SlabType.BOTTOM));
+            return state.with(DOWN, !neighborState.get(TYPE).equals(SlabType.BOTTOM));
 
         }
         if (neighborState.isIn(EquestrianExtras.BlockTags.GATEFILLER) && direction == Direction.UP) {
-            return (BlockState)state.with(UP, !neighborState.get(TYPE).equals(SlabType.TOP));
+            return state.with(UP, !neighborState.get(TYPE).equals(SlabType.TOP));
         }
         
         if (neighborState.isOf(Blocks.AIR) && direction.getAxis().getType() == Direction.Type.VERTICAL) {
-            return (BlockState)state.with(FACING_PROPERTIES.get(direction), false);
+            return state.with(FACING_PROPERTIES.get(direction), false);
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }

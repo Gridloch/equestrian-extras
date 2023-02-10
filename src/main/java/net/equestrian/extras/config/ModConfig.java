@@ -9,40 +9,40 @@ import net.equestrian.extras.EquestrianExtras;
 public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip
-    private boolean doubleDoorsSlideTogether = false;
+    private final boolean doubleDoorsSlideTogether = false;
 
     @ConfigEntry.Gui.Tooltip
-    private Integer barrelBreakChance = 15;
+    private final Integer barrelBreakChance = 15;
 
     @ConfigEntry.Gui.Tooltip
-    private Integer poleBreakChance = 10;
+    private final Integer poleBreakChance = 10;
 
     @ConfigEntry.Gui.Tooltip
-    private boolean useImprovedBreeding = true;
+    private final boolean useImprovedBreeding = true;
 
     @ConfigEntry.Gui.Tooltip
-    private double maxPercentIncrease = 5;
+    private final double maxPercentIncrease = 5;
 
     @ConfigEntry.Gui.Tooltip
-    private double minPercentIncrease = -2.5;
+    private final double minPercentIncrease = -2.5;
 
     @ConfigEntry.Gui.Tooltip
-    private double maxBreedHealth = 30;
+    private final double maxBreedHealth = 30;
 
     @ConfigEntry.Gui.Tooltip
-    private double minBreedHealth = 15;
+    private final double minBreedHealth = 15;
 
     @ConfigEntry.Gui.Tooltip
-    private double maxBreedJump = 1.0;
+    private final double maxBreedJump = 1.0;
 
     @ConfigEntry.Gui.Tooltip
-    private double minBreedJump = 0.4;
+    private final double minBreedJump = 0.4;
 
     @ConfigEntry.Gui.Tooltip
-    private double maxBreedSpeed = 0.3375;
+    private final double maxBreedSpeed = 0.3375;
 
     @ConfigEntry.Gui.Tooltip
-    private double minBreedSpeed = 0.1125;
+    private final double minBreedSpeed = 0.1125;
 
 
     public boolean doubleDoorsSlideTogether() {

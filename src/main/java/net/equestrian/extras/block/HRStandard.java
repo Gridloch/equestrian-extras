@@ -46,7 +46,7 @@ public class HRStandard extends Block implements Waterloggable {
 
     public HRStandard(Settings settings) {
         super(settings.nonOpaque());  
-		this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(UP, 0)).with(DOWN, 0)));
+		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false).with(UP, 0).with(DOWN, 0));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
@@ -59,18 +59,11 @@ public class HRStandard extends Block implements Waterloggable {
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
 		Direction dir = state.get(FACING);
-		switch(dir) {
-			case NORTH:
-				return VoxelShapes.cuboid(0.0f, 0.0f, 0.375f, 1.0f, 1.0f, 0.625f);
-			case SOUTH:
-				return VoxelShapes.cuboid(0.0f, 0.0f, 0.375f, 1.0f, 1.0f, 0.625f);
-			case EAST:
-				return VoxelShapes.cuboid(0.375f, 0.0f, 0.0f, 0.625f, 1.0f, 1.0f);
-			case WEST:
-				return VoxelShapes.cuboid(0.375f, 0.0f, 0.0f, 0.625f, 1.0f, 1.0f);
-			default:
-				return VoxelShapes.fullCube();
-		}
+        return switch (dir) {
+            case NORTH, SOUTH -> VoxelShapes.cuboid(0.0f, 0.0f, 0.375f, 1.0f, 1.0f, 0.625f);
+            case EAST, WEST -> VoxelShapes.cuboid(0.375f, 0.0f, 0.0f, 0.625f, 1.0f, 1.0f);
+            default -> VoxelShapes.fullCube();
+        };
 	}
  
     @Override
@@ -80,37 +73,37 @@ public class HRStandard extends Block implements Waterloggable {
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
         if (blockView.getBlockState(blockPos.down()).isIn(EquestrianExtras.BlockTags.STANDARDS)) {
             if (blockView.getBlockState(blockPos.up()).isIn(EquestrianExtras.BlockTags.STANDARDS)) {
-                return (BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, 1)).with(DOWN, 1)));
+                return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, 1).with(DOWN, 1);
             }
             else
-                return (BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, 0)).with(DOWN, 1)));
+                return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, 0).with(DOWN, 1);
         }
         else
             if (blockView.getBlockState(blockPos.up()).isIn(EquestrianExtras.BlockTags.STANDARDS)) {
-                return (BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, 1)).with(DOWN, 0)));
+                return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, 1).with(DOWN, 0);
             }
             else
-		        return (BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, 0)).with(DOWN, 0)));
+		        return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, 0).with(DOWN, 0);
 	}
     //blockView.getBlockState(blockPos.up()).isOf(this) AND blockView.getBlockState(blockPos.down()).isOf(this) are boolean
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         if (neighborState.isIn(EquestrianExtras.BlockTags.STANDARDS) && direction.getAxis().getType() == Direction.Type.VERTICAL) {
-            return (BlockState)state.with(FACING_PROPERTIES.get(direction), 1);
+            return state.with(FACING_PROPERTIES.get(direction), 1);
         }
         if (neighborState.isOf(Blocks.AIR) && direction.getAxis().getType() == Direction.Type.VERTICAL) {
-            return (BlockState)state.with(FACING_PROPERTIES.get(direction), 0);
+            return state.with(FACING_PROPERTIES.get(direction), 0);
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
 	@Override
     public FluidState getFluidState(BlockState state) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
         return super.getFluidState(state);

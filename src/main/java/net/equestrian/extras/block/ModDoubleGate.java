@@ -1,16 +1,8 @@
 package net.equestrian.extras.block;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.equestrian.extras.EquestrianExtras;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.Material;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.enums.DoorHinge;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -33,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldEvents;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
 public class ModDoubleGate extends FenceGateBlock {
 
@@ -45,7 +38,7 @@ public class ModDoubleGate extends FenceGateBlock {
 
     protected ModDoubleGate(Settings settings) {
         super(settings.nonOpaque());
-        this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(OPEN, false)).with(POWERED, false)).with(IN_WALL, false)).with(HINGE, DoorHinge.LEFT)).with(OUTER, true));
+        this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT).with(OUTER, true));
     }
 
     @Override
@@ -58,7 +51,7 @@ public class ModDoubleGate extends FenceGateBlock {
         
         if (world.getBlockState(otherBlockPos(blockPos, this.getDefaultState().with(FACING, facing).with(HINGE, hinge))).canReplace(ctx)) {
             boolean bl = world.isReceivingRedstonePower(blockPos);
-            return (BlockState)((BlockState)((BlockState)((BlockState)this.getDefaultState().with(FACING, facing)).with(HINGE, hinge)).with(POWERED, bl));
+            return this.getDefaultState().with(FACING, facing).with(HINGE, hinge).with(POWERED, bl);
         }
         return null;
 
@@ -66,7 +59,7 @@ public class ModDoubleGate extends FenceGateBlock {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        world.setBlockState(otherBlockPos(pos, state), (BlockState)state.with(OUTER, false), Block.NOTIFY_ALL);
+        world.setBlockState(otherBlockPos(pos, state), state.with(OUTER, false), Block.NOTIFY_ALL);
     }
 
     private static BlockPos otherBlockPos(BlockPos blockPos, BlockState state) {
@@ -178,12 +171,12 @@ public class ModDoubleGate extends FenceGateBlock {
         if (state.get(FACING).rotateYClockwise().getAxis() == axis && Boolean.TRUE.equals(outer)) {
             boolean bl = this.isWall(neighborState) || this.isWall(world.getBlockState(pos.offset(direction.getOpposite())));
             world.setBlockState(otherBlockPos(pos, state), state.with(IN_WALL, bl).with(OUTER, false), Block.FORCE_STATE);
-            return (BlockState)state.with(IN_WALL, bl);
+            return state.with(IN_WALL, bl);
         }
         
         if (Boolean.TRUE.equals(posMatch)) {
             if (neighborState.isOf(this) && neighborState.get(OUTER).equals(!outer)) {
-                return (BlockState)((BlockState)((BlockState)((BlockState)((BlockState)state.with(FACING, neighborState.get(FACING))).with(OPEN, neighborState.get(OPEN))).with(HINGE, neighborState.get(HINGE))).with(IN_WALL, neighborState.get(IN_WALL))).with(POWERED, neighborState.get(POWERED));
+                return state.with(FACING, neighborState.get(FACING)).with(OPEN, neighborState.get(OPEN)).with(HINGE, neighborState.get(HINGE)).with(IN_WALL, neighborState.get(IN_WALL)).with(POWERED, neighborState.get(POWERED));
             }
             return Blocks.AIR.getDefaultState();
         }
@@ -196,23 +189,23 @@ public class ModDoubleGate extends FenceGateBlock {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!state.get(OPEN).booleanValue()) {
+        if (!state.get(OPEN)) {
             Direction direction = player.getHorizontalFacing();
             if (state.get(FACING) == direction.getOpposite()) {
                 if (state.get(HINGE) == DoorHinge.LEFT) {
-                    state = (BlockState)state.with(FACING, direction).with(HINGE, DoorHinge.RIGHT);
+                    state = state.with(FACING, direction).with(HINGE, DoorHinge.RIGHT);
                 }
                 else {
-                    state = (BlockState)state.with(FACING, direction).with(HINGE, DoorHinge.LEFT);
+                    state = state.with(FACING, direction).with(HINGE, DoorHinge.LEFT);
                 }
             }
         }
 
         if (gateOpen(state, world, pos)) {
-            state = (BlockState)state.cycle(OPEN);
+            state = state.cycle(OPEN);
             boolean direction = state.get(OPEN);
             playSound(world, pos, player, direction);
-            world.emitGameEvent((Entity)player, direction ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+            world.emitGameEvent(player, direction ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
         }
 
         return ActionResult.success(world.isClient);
@@ -318,41 +311,37 @@ public class ModDoubleGate extends FenceGateBlock {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(IN_WALL).booleanValue()) {
-            if (state.get(OPEN).booleanValue()) {
+        if (state.get(IN_WALL)) {
+            if (state.get(OPEN)) {
                 Direction dir = state.get(FACING);
-                switch (dir) {
-                    case NORTH:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.0, -7.0, 4.0, 16.0, 9.0) : Block.createCuboidShape(12.0, 0.0, -7.0, 16.0, 16.0, 9.0);
-                    case SOUTH:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(12.0, 0.0, 7.0, 16.0, 16.0, 23.0) : Block.createCuboidShape(0.0, 0.0, 7.0, 4.0, 16.0, 23.0);
-                    case EAST:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(7.0, 0.0, 0.0, 23.0, 16.0, 4.0) : Block.createCuboidShape(7.0, 0.0, 12.0, 23.0, 16.0, 16.0);
-                    case WEST:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(-7.0, 0.0, 12.0, 9.0, 16.0, 16.0) : Block.createCuboidShape(-7.0, 0.0, 0.0, 9.0, 16.0, 4.0);
-                    default:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.0, -7.0, 4.0, 16.0, 9.0) : Block.createCuboidShape(12.0, 0.0, -7.0, 16.0, 16.0, 9.0);
-                } 
+                return switch (dir) {
+                    case SOUTH ->
+                            state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(12.0, 0.0, 7.0, 16.0, 16.0, 23.0) : Block.createCuboidShape(0.0, 0.0, 7.0, 4.0, 16.0, 23.0);
+                    case EAST ->
+                            state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(7.0, 0.0, 0.0, 23.0, 16.0, 4.0) : Block.createCuboidShape(7.0, 0.0, 12.0, 23.0, 16.0, 16.0);
+                    case WEST ->
+                            state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(-7.0, 0.0, 12.0, 9.0, 16.0, 16.0) : Block.createCuboidShape(-7.0, 0.0, 0.0, 9.0, 16.0, 4.0);
+                    default ->
+                            state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.0, -7.0, 4.0, 16.0, 9.0) : Block.createCuboidShape(12.0, 0.0, -7.0, 16.0, 16.0, 9.0);
+                };
             }
             else {
                 return state.get(FACING).getAxis() == Direction.Axis.X ? Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 16.0, 16.0) : Block.createCuboidShape(0.0, 0.0, 6.0, 16.0, 16.0, 10.0);
             }
         }
         else {
-            if (state.get(OPEN).booleanValue()) {
+            if (state.get(OPEN)) {
                 Direction dir = state.get(FACING);
-                switch (dir) {
-                    case NORTH:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.3, -7.0, 4.0, 19.0, 9.0) : Block.createCuboidShape(12.0, 0.3, -7.0, 16.0, 19.0, 9.0);
-                    case SOUTH:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(12.0, 0.3, 7.0, 16.0, 19.0, 23.0) : Block.createCuboidShape(0.0, 0.3, 7.0, 4.0, 19.0, 23.0);
-                    case EAST:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(7.0, 0.3, 0.0, 23.0, 19.0, 4.0) : Block.createCuboidShape(7.0, 0.3, 12.0, 23.0, 19.0, 16.0);
-                    case WEST:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(-7.0, 0.3, 12.0, 9.0, 19.0, 16.0) : Block.createCuboidShape(-7.0, 0.3, 0.0, 9.0, 19.0, 4.0);
-                    default:
-                        return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.3, -7.0, 4.0, 19.0, 9.0) : Block.createCuboidShape(12.0, 0.3, -7.0, 16.0, 19.0, 9.0);
-                } 
+                return switch (dir) {
+                    case SOUTH ->
+                            state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(12.0, 0.3, 7.0, 16.0, 19.0, 23.0) : Block.createCuboidShape(0.0, 0.3, 7.0, 4.0, 19.0, 23.0);
+                    case EAST ->
+                            state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(7.0, 0.3, 0.0, 23.0, 19.0, 4.0) : Block.createCuboidShape(7.0, 0.3, 12.0, 23.0, 19.0, 16.0);
+                    case WEST ->
+                            state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(-7.0, 0.3, 12.0, 9.0, 19.0, 16.0) : Block.createCuboidShape(-7.0, 0.3, 0.0, 9.0, 19.0, 4.0);
+                    default ->
+                            state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.3, -7.0, 4.0, 19.0, 9.0) : Block.createCuboidShape(12.0, 0.3, -7.0, 16.0, 19.0, 9.0);
+                };
             }
             else {
                 return state.get(FACING).getAxis() == Direction.Axis.X ? Block.createCuboidShape(6.0, 0.3, 0.0, 10.0, 19.0, 16.0) : Block.createCuboidShape(0.0, 0.3, 6.0, 16.0, 19.0, 10.0);
@@ -362,20 +351,18 @@ public class ModDoubleGate extends FenceGateBlock {
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(OPEN).booleanValue()) {
+        if (state.get(OPEN)) {
             Direction dir = state.get(FACING);
-            switch (dir) {
-                case NORTH:
-                    return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.0, -8.0, 4.0, 24.0, 8.0) : Block.createCuboidShape(12.0, 0.0, -8.0, 16.0, 24.0, 8.0);
-                case SOUTH:
-                    return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(12.0, 0.0, 8.0, 16.0, 24.0, 24.0) : Block.createCuboidShape(0.0, 0.0, 8.0, 4.0, 24.0, 24.0);
-                case EAST:
-                    return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(8.0, 0.0, 0.0, 24.0, 24.0, 4.0) : Block.createCuboidShape(8.0, 0.0, 12.0, 24.0, 24.0, 16.0);
-                case WEST:
-                    return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(-8.0, 0.0, 12.0, 8.0, 24.0, 16.0) : Block.createCuboidShape(-8.0, 0.0, 0.0, 8.0, 24.0, 4.0);
-                default:
-                    return state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.0, -8.0, 4.0, 24.0, 8.0) : Block.createCuboidShape(12.0, 0.0, -8.0, 16.0, 24.0, 8.0);
-            }
+            return switch (dir) {
+                case SOUTH ->
+                        state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(12.0, 0.0, 8.0, 16.0, 24.0, 24.0) : Block.createCuboidShape(0.0, 0.0, 8.0, 4.0, 24.0, 24.0);
+                case EAST ->
+                        state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(8.0, 0.0, 0.0, 24.0, 24.0, 4.0) : Block.createCuboidShape(8.0, 0.0, 12.0, 24.0, 24.0, 16.0);
+                case WEST ->
+                        state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(-8.0, 0.0, 12.0, 8.0, 24.0, 16.0) : Block.createCuboidShape(-8.0, 0.0, 0.0, 8.0, 24.0, 4.0);
+                default ->
+                        state.get(HINGE) == DoorHinge.LEFT ? Block.createCuboidShape(0.0, 0.0, -8.0, 4.0, 24.0, 8.0) : Block.createCuboidShape(12.0, 0.0, -8.0, 16.0, 24.0, 8.0);
+            };
         }
         else {
             return state.get(FACING).getAxis() == Direction.Axis.Z ? Z_AXIS_COLLISION_SHAPE : X_AXIS_COLLISION_SHAPE;

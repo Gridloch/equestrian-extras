@@ -28,7 +28,7 @@ public class HalfFence extends FenceBlock {
 
     public HalfFence(Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(NORTH, false)).with(EAST, false)).with(SOUTH, false)).with(WEST, false)).with(UP, false)).with(DOWN, true)).with(WATERLOGGED, false));
+        this.setDefaultState(this.stateManager.getDefaultState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(UP, false).with(DOWN, true).with(WATERLOGGED, false));
         this.cullingShapes = this.createShapes(2.0f, 1.0f, 8.0f, 4.0f, 7.0f);
         this.tallcullingShapes = this.createShapes(2.0f, 1.0f, 16.0f, 0.0f, 0.0f);
         this.postlesscullingShapes = this.createShapes(2.0f, 1.0f, 0.0f, 4.0f, 7.0f);
@@ -99,26 +99,26 @@ public class HalfFence extends FenceBlock {
         boolean fullside = (north && south) || (east && west);
         boolean onsolid = !blockView.getBlockState(blockPos.down()).isAir();
 
-        return (BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)super.getPlacementState(ctx).with(NORTH, north)).with(EAST, east)).with(SOUTH, south)).with(WEST, west)).with(UP, up)).with(DOWN, !(fullside && !onsolid))).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+        return super.getPlacementState(ctx).with(NORTH, north).with(EAST, east).with(SOUTH, south).with(WEST, west).with(UP, up).with(DOWN, !(fullside && !onsolid)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
     }
     
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
         if (direction.getAxis().getType() == Direction.Type.HORIZONTAL) {
             // Horizontal changes
-            state = (BlockState)state.with(FACING_PROPERTIES.get(direction), this.canConnect(neighborState, neighborState.isSideSolidFullSquare(world, neighborPos, direction.getOpposite()), direction.getOpposite()));
+            state = state.with(FACING_PROPERTIES.get(direction), this.canConnect(neighborState, neighborState.isSideSolidFullSquare(world, neighborPos, direction.getOpposite()), direction.getOpposite()));
         }
         if (direction == Direction.UP) {
-            state = (BlockState)state.with(UP, neighborState.isIn(EquestrianExtras.BlockTags.SHORT_FENCE));
+            state = state.with(UP, neighborState.isIn(EquestrianExtras.BlockTags.SHORT_FENCE));
         }
         else {
             boolean fullside = state.get(NORTH) && state.get(SOUTH) || state.get(EAST) && state.get(WEST);
             boolean onsolid = !world.getBlockState(pos.down()).isAir();
-            state = (BlockState)state.with(DOWN, !(fullside && !onsolid));
+            state = state.with(DOWN, !(fullside && !onsolid));
         }
 
         return state;

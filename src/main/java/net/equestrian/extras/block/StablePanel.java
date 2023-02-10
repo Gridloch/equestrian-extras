@@ -43,7 +43,7 @@ public class StablePanel extends HorizontalFacingBlock implements Waterloggable 
 
     protected StablePanel(Settings settings) {
         super(settings.nonOpaque());  
-		this.setDefaultState((BlockState)((BlockState)((BlockState)this.getDefaultState().with(WATERLOGGED, false)).with(CENTRED, true)));
+		this.setDefaultState(this.getDefaultState().with(WATERLOGGED, false).with(CENTRED, true));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
@@ -58,10 +58,10 @@ public class StablePanel extends HorizontalFacingBlock implements Waterloggable 
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
 
-        BlockState blockState = (BlockState)this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(CENTRED, false);
+        BlockState blockState = this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(CENTRED, false);
 
         if (!ctx.getWorld().isClient() && ctx.getPlayer().isSneaking()) {
-            return (BlockState)blockState.with(CENTRED, true);
+            return blockState.with(CENTRED, true);
         }
         
         return blockState;
@@ -75,16 +75,12 @@ public class StablePanel extends HorizontalFacingBlock implements Waterloggable 
 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
 		Direction dir = state.get(FACING);
         if (Boolean.FALSE.equals(state.get(CENTRED))) {
-            switch(dir) {
-                case SOUTH:
-                    return SOUTH_SHAPE;
-                case EAST:
-                    return EAST_SHAPE;
-                case WEST:
-                    return WEST_SHAPE;
-                default:
-                    return NORTH_SHAPE;
-            }
+            return switch (dir) {
+                case SOUTH -> SOUTH_SHAPE;
+                case EAST -> EAST_SHAPE;
+                case WEST -> WEST_SHAPE;
+                default -> NORTH_SHAPE;
+            };
         }
 		else {
             if (dir.equals(Direction.NORTH) || dir.equals(Direction.SOUTH)) {
@@ -104,14 +100,14 @@ public class StablePanel extends HorizontalFacingBlock implements Waterloggable 
         if (!player.getAbilities().allowModifyWorld || !itemStack.isEmpty()) {
             return ActionResult.PASS;
         }
-        world.setBlockState(pos, (BlockState)state.cycle(CENTRED));
+        world.setBlockState(pos, state.cycle(CENTRED));
         return ActionResult.success(world.isClient);
     }
 
     
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -119,7 +115,7 @@ public class StablePanel extends HorizontalFacingBlock implements Waterloggable 
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        if (state.get(WATERLOGGED).booleanValue()) {
+        if (state.get(WATERLOGGED)) {
             return Fluids.WATER.getStill(false);
         }
         return super.getFluidState(state);
