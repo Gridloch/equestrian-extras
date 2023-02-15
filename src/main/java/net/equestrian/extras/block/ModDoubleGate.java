@@ -3,6 +3,7 @@ package net.equestrian.extras.block;
 import net.equestrian.extras.EquestrianExtras;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoorHinge;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -372,5 +373,10 @@ public class ModDoubleGate extends FenceGateBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, OPEN, POWERED, IN_WALL, HINGE, OUTER);
+    }
+
+    @Override
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.DESTROY;
     }
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
+import net.minecraft.block.piston.PistonBehavior;
 import org.jetbrains.annotations.Nullable;
 
 import net.equestrian.extras.EquestrianExtras;
@@ -195,6 +196,12 @@ public class GateFiller extends HorizontalFacingBlock implements Waterloggable {
     public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
         return false;
     }
+
+    @Override
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.DESTROY;
+    }
+
 }
 
 

@@ -3,6 +3,8 @@ package net.equestrian.extras.block;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.state.property.*;
 import org.jetbrains.annotations.Nullable;
 
 import me.shedaniel.autoconfig.AutoConfig;
@@ -27,10 +29,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -84,7 +82,6 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
 	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
 		// Determines the outline shape based on the block's slab type, direction,
         // and placement (up, down, or centred)
-
         SlabType slabType = state.get(TYPE);
         Direction dir = state.get(FACING);
         switch (slabType) {
@@ -210,6 +207,11 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     }
 
     @Override
+    public PistonBehavior getPistonBehavior(BlockState state) {
+        return PistonBehavior.DESTROY;
+    }
+
+    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getStackInHand(hand);
 
@@ -223,18 +225,15 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (world.isClient) {
-            return;
-        }
-
-        if (entity.hasPlayerRider() && world.getBlockState(pos.up()).canPathfindThrough(world, pos.up(), NavigationType.LAND) && !((state.get(TYPE).equals(SlabType.BOTTOM) && state.get(PLACEMENT).equals(2)) && world.getBlockState(pos.down()).shouldSuffocate(world, pos))) {
+        boolean blockIsHighestPole = world.getBlockState(pos.up()).canPathfindThrough(world, pos.up(), NavigationType.LAND);
+        boolean blockIsGroundPole = state.get(TYPE).equals(SlabType.BOTTOM) && state.get(PLACEMENT).equals(2);
+        boolean blockBelowIsSolid = world.getBlockState(pos.down()).shouldSuffocate(world, pos);
+        if (!world.isClient && entity.hasPlayerRider() && blockIsHighestPole && !(blockIsGroundPole && blockBelowIsSolid)) {
             // If entity has a player rider, can be jumped over, and is not a ground pole, then
             // check that entity is in close contact with the poles
-            List<LivingEntity> list;
             Box box = getBox(state).offset(pos);
+            List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, box);
             Boolean b1 = false;
-
-            list = world.getNonSpectatingEntities(LivingEntity.class, box);
 
             if (!list.isEmpty()) {
                 for (Entity listentity : list) {
@@ -243,12 +242,11 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 }
             }
 
-
-            if (Boolean.TRUE.equals(b1)) {
+            if (b1) {
                 // If entity has a player rider and is in close contact with poles, play sound on first contact
                 // and continue to check for it
                 world.getBlockTickScheduler().schedule(new BlockPos(pos), this, 20);
-                
+
                 if (state.get(HIT).equals(false)) {
                     world.playSound(
                         null, // Player - if non-null, will play sound for every nearby player *except* the specified player
@@ -259,12 +257,10 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                         1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
                     );
                     world.setBlockState(pos, state.with(HIT, true), Block.NOTIFY_LISTENERS);
-
-
-                    // Chance to break block when hit  
-                    int x = EquestrianExtras.RANDOM.nextInt(100); // Generates random integers 0 to 99  
+                    // Chance to break block when hit
+                    int x = EquestrianExtras.RANDOM.nextInt(100); // Generates random integers 0 to 99
                     ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
-                    if (x<config.poleBreakChance()) {
+                    if (x < config.poleBreakChance()) {
                         world.breakBlock(pos, true);
                     }
                 }
@@ -275,10 +271,9 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         // checks for contact with poles
-        Boolean b1 = false;
-        List<LivingEntity> list;
         Box box = getBox(state).offset(pos);
-        list = world.getNonSpectatingEntities(LivingEntity.class, box);
+        List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, box);
+        boolean b1 = false;
 
         if (!list.isEmpty()) {
             for (Entity entity : list) {
@@ -286,7 +281,6 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 b1 = true;
             }
         }
-
         world.setBlockState(pos, state.with(HIT, b1), Block.NOTIFY_LISTENERS);
     }
 
