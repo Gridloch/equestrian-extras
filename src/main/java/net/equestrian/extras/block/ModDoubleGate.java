@@ -31,8 +31,6 @@ import org.jetbrains.annotations.Nullable;
 public class ModDoubleGate extends FenceGateBlock {
 
     public static final EnumProperty<DoorHinge> HINGE = Properties.DOOR_HINGE;
-    protected static final VoxelShape Z_AXIS_SHAPE = Block.createCuboidShape(0.0, 0.0, 6.0, 16.0, 16.0, 10.0);
-    protected static final VoxelShape X_AXIS_SHAPE = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 16.0, 16.0);
     protected static final VoxelShape Z_AXIS_COLLISION_SHAPE = Block.createCuboidShape(0.0, 0.0, 6.0, 16.0, 24.0, 10.0);
     protected static final VoxelShape X_AXIS_COLLISION_SHAPE = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 24.0, 16.0);
     public static final BooleanProperty OUTER = BooleanProperty.of("outer");
@@ -55,7 +53,6 @@ public class ModDoubleGate extends FenceGateBlock {
             return this.getDefaultState().with(FACING, facing).with(HINGE, hinge).with(POWERED, bl);
         }
         return null;
-
     }
 
     @Override
@@ -63,8 +60,13 @@ public class ModDoubleGate extends FenceGateBlock {
         world.setBlockState(otherBlockPos(pos, state), state.with(OUTER, false), Block.NOTIFY_ALL);
     }
 
+    /**
+     * Locates the other half of gate
+     * @param blockPos The BlockPos of one half of a gate
+     * @param state The BlockState of the block at blockPos
+     * @return The blockPos of the other half of the gate
+     */
     private static BlockPos otherBlockPos(BlockPos blockPos, BlockState state) {
-        // locates other half of gate
         DoorHinge hinge = state.get(HINGE);
         boolean isLeftHinge = hinge.equals(DoorHinge.LEFT);
         Direction facing = state.get(FACING);
@@ -151,18 +153,6 @@ public class ModDoubleGate extends FenceGateBlock {
         super.onBreak(world, pos, state, player);
     }
 
-    protected static void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        Boolean outer = state.get(OUTER);
-        BlockPos blockPos = otherBlockPos(pos, state);
-        BlockState blockState = world.getBlockState(blockPos);
-
-        if (Boolean.TRUE.equals(!outer && (blockState).isOf(state.getBlock()))) {
-            BlockState blockState2 = blockState.contains(Properties.WATERLOGGED) && Boolean.TRUE.equals(blockState.get(Properties.WATERLOGGED)) ? Blocks.WATER.getDefaultState() : Blocks.AIR.getDefaultState();
-            world.setBlockState(blockPos, blockState2, Block.NOTIFY_ALL | Block.SKIP_DROPS);
-            world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(blockState));
-        }
-    }
-
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         Boolean outer = state.get(OUTER);
@@ -204,30 +194,30 @@ public class ModDoubleGate extends FenceGateBlock {
 
         if (gateOpen(state, world, pos)) {
             state = state.cycle(OPEN);
-            boolean direction = state.get(OPEN);
-            playSound(world, pos, player, direction);
-            world.emitGameEvent(player, direction ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+            boolean movementDirection = state.get(OPEN);
+            playSound(world, pos, player, movementDirection);
+            world.emitGameEvent(player, movementDirection ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
         }
 
         return ActionResult.success(world.isClient);
     }
 
 
-    private void playSound(World world, BlockPos pos, PlayerEntity player, Boolean direction) {
+    private void playSound(World world, BlockPos pos, PlayerEntity player, Boolean isOpened) {
         if (this.material == Material.METAL) {
             if (!world.isClient) {
                 world.playSound(
-                    null, // Player - if non-null, will play sound for every nearby player *except* the specified player
-                    pos, // The position of where the sound will come from
-                    Boolean.TRUE.equals(direction) ? EquestrianExtras.GATE_OPEN_EVENT : EquestrianExtras.GATE_CLOSE_EVENT, // The sound that will play
-                    SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
-                    1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
-                    1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
+                        null, // Player - if non-null, will play sound for every nearby player *except* the specified player
+                        pos, // The position of where the sound will come from
+                        Boolean.TRUE.equals(isOpened) ? EquestrianExtras.GATE_OPEN_EVENT : EquestrianExtras.GATE_CLOSE_EVENT, // The sound that will play
+                        SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
+                        1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
+                        1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
                 );
             }
         }
         else {
-            world.syncWorldEvent(player, Boolean.TRUE.equals(direction) ? WorldEvents.FENCE_GATE_OPENS : WorldEvents.FENCE_GATE_CLOSES, pos, 0);
+            world.syncWorldEvent(player, Boolean.TRUE.equals(isOpened) ? WorldEvents.FENCE_GATE_OPENS : WorldEvents.FENCE_GATE_CLOSES, pos, 0);
         }
     }
 
@@ -235,27 +225,27 @@ public class ModDoubleGate extends FenceGateBlock {
     private BlockPos movePos(BlockPos pos, BlockState state) {
         Direction dir = state.get(FACING);
         Boolean open = state.get(OPEN);
-        Boolean lhinge = state.get(HINGE) == DoorHinge.LEFT; // true if left hinge, false if right hinge
+        Boolean isLeftHinge = state.get(HINGE) == DoorHinge.LEFT; // true if left hinge, false if right hinge
 
-        if (Boolean.TRUE.equals(dir == Direction.NORTH && (!open && !lhinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (open && !lhinge))) {
+        if (Boolean.TRUE.equals(dir == Direction.NORTH && (!open && !isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (open && !isLeftHinge))) {
             return pos.east().north();
         }
-        else if (Boolean.TRUE.equals(dir == Direction.NORTH && (open && lhinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (!open && lhinge))) {
+        else if (Boolean.TRUE.equals(dir == Direction.NORTH && (open && isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (!open && isLeftHinge))) {
             return pos.east().south();
         }
-        else if (Boolean.TRUE.equals(dir == Direction.EAST && (!open && !lhinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (open && !lhinge))) {
+        else if (Boolean.TRUE.equals(dir == Direction.EAST && (!open && !isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (open && !isLeftHinge))) {
             return pos.south().east();
         }
-        else if (Boolean.TRUE.equals(dir == Direction.EAST && (open && lhinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (!open && lhinge))) {
+        else if (Boolean.TRUE.equals(dir == Direction.EAST && (open && isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (!open && isLeftHinge))) {
             return pos.south().west();
         }
-        else if (Boolean.TRUE.equals(dir == Direction.NORTH && (open && !lhinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (!open && !lhinge))) {
+        else if (Boolean.TRUE.equals(dir == Direction.NORTH && (open && !isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (!open && !isLeftHinge))) {
             return pos.west().south();
         }
         else if (Boolean.TRUE.equals(dir == Direction.SOUTH) || Boolean.TRUE.equals(dir == Direction.NORTH)) {
             return pos.west().north();
         }
-        else if (Boolean.TRUE.equals(dir == Direction.EAST && (open && !lhinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (!open && !lhinge))) {
+        else if (Boolean.TRUE.equals(dir == Direction.EAST && (open && !isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (!open && !isLeftHinge))) {
             return pos.north().west();
         }
         else {
@@ -264,8 +254,14 @@ public class ModDoubleGate extends FenceGateBlock {
     }
 
 
+    /**
+     * Attempts to open or close the gate and returns a boolean for the success status of the attempt
+     * @param state The block state of one block in the gate
+     * @param world The world
+     * @param pos The block position of the gate block
+     * @return True if the gates open state was changed, false if it was not
+     */
     private boolean gateOpen(BlockState state, World world, BlockPos pos) {
-
         Boolean outer = state.get(OUTER);
         Boolean opened = false;
 
@@ -275,12 +271,12 @@ public class ModDoubleGate extends FenceGateBlock {
         Boolean power = world.isReceivingRedstonePower(outerPos);
 
         if (world.isAir(movePos)) {
-            // update outer block
-            world.setBlockState(outerPos, state.with(POWERED, power).with(OUTER, true).cycle(OPEN), Block.FORCE_STATE);
-            // move inner block
-            world.setBlockState(movePos, state.with(POWERED, power).with(OUTER, false).cycle(OPEN), Block.NOTIFY_LISTENERS);
+            // move inner (swinging) block
+            world.setBlockState(movePos, state.with(POWERED, power).with(OUTER, false).cycle(OPEN), Block.NOTIFY_ALL);
+            // update outer (hinge) block
+            world.setBlockState(outerPos, state.with(POWERED, power).with(OUTER, true).cycle(OPEN), Block.NOTIFY_ALL);
             // remove block which was moved
-            world.setBlockState(initialInnerPos, Blocks.AIR.getDefaultState(), Block.MOVED);
+            world.removeBlock(initialInnerPos, true);
             // gate opened
             opened = true;
         }
@@ -288,25 +284,19 @@ public class ModDoubleGate extends FenceGateBlock {
     }
 
 
-    // Redstone?
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-        // if (world.isClient) {
-        //     return;
-        // }
-        // boolean bl = world.isReceivingRedstonePower(pos);
-        // if (Boolean.TRUE.equals(state.get(POWERED) != bl) && state.get(OUTER).equals(Boolean.TRUE)) {
-        //     BlockPos initialInnerPos = Boolean.TRUE.equals(!state.get(OUTER)) ? pos : otherBlockPos(pos, state);
-        //     if (gateOpen(state, world, pos)) {
-        //         world.setBlockState(pos, (BlockState)((BlockState)state.with(POWERED, bl)).with(OPEN, bl), Block.NOTIFY_LISTENERS);
-        //         // remove block which was moved
-        //         world.setBlockState(initialInnerPos, Blocks.AIR.getDefaultState(), Block.MOVED);
-        //     }
-        //     if (Boolean.TRUE.equals(state.get(OPEN)) != bl) {
-        //         world.syncWorldEvent(null, bl ? WorldEvents.FENCE_GATE_OPENS : WorldEvents.FENCE_GATE_CLOSES, pos, 0);
-        //         world.emitGameEvent(bl ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
-        //     }
-        // }
+        if (!world.isClient) {
+            boolean posPowered = world.isReceivingRedstonePower(pos);
+
+            // If the block is on the hinge side and has its powered status updated, try to open/close the gate
+            if ((state.get(POWERED) != posPowered) && state.get(OUTER) && gateOpen(state, world, pos)) {
+                state = state.cycle(OPEN);
+                boolean isOpened = state.get(OPEN);
+                playSound(world, pos, null, isOpened);
+                world.emitGameEvent(posPowered ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+            }
+         }
     }
 
 
