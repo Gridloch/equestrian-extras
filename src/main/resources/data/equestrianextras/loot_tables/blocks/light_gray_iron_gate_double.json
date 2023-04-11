@@ -12,7 +12,7 @@
                 "condition": "minecraft:block_state_property",
                 "block": "equestrianextras:light_gray_iron_gate_double",
                 "properties": {
-                  "outer": "true"
+                  "is_hinge": "true"
                 }
               }
             ],

@@ -8,13 +8,13 @@
     "facing=east,half=bottom,shape=inner_right": {
       "model": "equestrianextras:block/thatch_stairs_inner"
     },
-    "facing=east,half=bottom,shape=outer_left": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=east,half=bottom,shape=is_hinge_left": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "y": 270,
       "uvlock": true
     },
-    "facing=east,half=bottom,shape=outer_right": {
-      "model": "equestrianextras:block/thatch_stairs_outer"
+    "facing=east,half=bottom,shape=is_hinge_right": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge"
     },
     "facing=east,half=bottom,shape=straight": {
       "model": "equestrianextras:block/thatch_stairs"
@@ -30,13 +30,13 @@
       "y": 90,
       "uvlock": true
     },
-    "facing=east,half=top,shape=outer_left": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=east,half=top,shape=is_hinge_left": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "x": 180,
       "uvlock": true
     },
-    "facing=east,half=top,shape=outer_right": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=east,half=top,shape=is_hinge_right": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "x": 180,
       "y": 90,
       "uvlock": true
@@ -56,13 +56,13 @@
       "y": 270,
       "uvlock": true
     },
-    "facing=north,half=bottom,shape=outer_left": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=north,half=bottom,shape=is_hinge_left": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "y": 180,
       "uvlock": true
     },
-    "facing=north,half=bottom,shape=outer_right": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=north,half=bottom,shape=is_hinge_right": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "y": 270,
       "uvlock": true
     },
@@ -82,14 +82,14 @@
       "x": 180,
       "uvlock": true
     },
-    "facing=north,half=top,shape=outer_left": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=north,half=top,shape=is_hinge_left": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "x": 180,
       "y": 270,
       "uvlock": true
     },
-    "facing=north,half=top,shape=outer_right": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=north,half=top,shape=is_hinge_right": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "x": 180,
       "uvlock": true
     },
@@ -107,11 +107,11 @@
       "y": 90,
       "uvlock": true
     },
-    "facing=south,half=bottom,shape=outer_left": {
-      "model": "equestrianextras:block/thatch_stairs_outer"
+    "facing=south,half=bottom,shape=is_hinge_left": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge"
     },
-    "facing=south,half=bottom,shape=outer_right": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=south,half=bottom,shape=is_hinge_right": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "y": 90,
       "uvlock": true
     },
@@ -132,14 +132,14 @@
       "y": 180,
       "uvlock": true
     },
-    "facing=south,half=top,shape=outer_left": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=south,half=top,shape=is_hinge_left": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "x": 180,
       "y": 90,
       "uvlock": true
     },
-    "facing=south,half=top,shape=outer_right": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=south,half=top,shape=is_hinge_right": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "x": 180,
       "y": 180,
       "uvlock": true
@@ -160,13 +160,13 @@
       "y": 180,
       "uvlock": true
     },
-    "facing=west,half=bottom,shape=outer_left": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=west,half=bottom,shape=is_hinge_left": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "y": 90,
       "uvlock": true
     },
-    "facing=west,half=bottom,shape=outer_right": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=west,half=bottom,shape=is_hinge_right": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "y": 180,
       "uvlock": true
     },
@@ -187,14 +187,14 @@
       "y": 270,
       "uvlock": true
     },
-    "facing=west,half=top,shape=outer_left": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=west,half=top,shape=is_hinge_left": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "x": 180,
       "y": 180,
       "uvlock": true
     },
-    "facing=west,half=top,shape=outer_right": {
-      "model": "equestrianextras:block/thatch_stairs_outer",
+    "facing=west,half=top,shape=is_hinge_right": {
+      "model": "equestrianextras:block/thatch_stairs_is_hinge",
       "x": 180,
       "y": 270,
       "uvlock": true

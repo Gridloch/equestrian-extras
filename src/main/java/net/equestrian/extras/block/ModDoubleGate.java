@@ -31,13 +31,13 @@ import org.jetbrains.annotations.Nullable;
 public class ModDoubleGate extends FenceGateBlock {
 
     public static final EnumProperty<DoorHinge> HINGE = Properties.DOOR_HINGE;
+    public static final BooleanProperty IS_HINGE = BooleanProperty.of("is_hinge");
     protected static final VoxelShape Z_AXIS_COLLISION_SHAPE = Block.createCuboidShape(0.0, 0.0, 6.0, 16.0, 24.0, 10.0);
     protected static final VoxelShape X_AXIS_COLLISION_SHAPE = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 24.0, 16.0);
-    public static final BooleanProperty OUTER = BooleanProperty.of("outer");
 
     protected ModDoubleGate(Settings settings) {
         super(settings.nonOpaque());
-        this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT).with(OUTER, true));
+        this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT).with(IS_HINGE, true));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ModDoubleGate extends FenceGateBlock {
         DoorHinge hinge = this.getHinge(ctx);
         Direction facing = ctx.getPlayerFacing();
         
-        if (world.getBlockState(otherBlockPos(blockPos, this.getDefaultState().with(FACING, facing).with(HINGE, hinge))).canReplace(ctx)) {
+        if (world.getBlockState(findPosOfOtherGateHalf(blockPos, this.getDefaultState().with(FACING, facing).with(HINGE, hinge))).canReplace(ctx)) {
             boolean bl = world.isReceivingRedstonePower(blockPos);
             return this.getDefaultState().with(FACING, facing).with(HINGE, hinge).with(POWERED, bl);
         }
@@ -57,7 +57,7 @@ public class ModDoubleGate extends FenceGateBlock {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        world.setBlockState(otherBlockPos(pos, state), state.with(OUTER, false), Block.NOTIFY_ALL);
+        world.setBlockState(findPosOfOtherGateHalf(pos, state), state.with(IS_HINGE, false), Block.NOTIFY_ALL);
     }
 
     /**
@@ -66,14 +66,14 @@ public class ModDoubleGate extends FenceGateBlock {
      * @param state The BlockState of the block at blockPos
      * @return The blockPos of the other half of the gate
      */
-    private static BlockPos otherBlockPos(BlockPos blockPos, BlockState state) {
+    private static BlockPos findPosOfOtherGateHalf(BlockPos blockPos, BlockState state) {
         DoorHinge hinge = state.get(HINGE);
         boolean isLeftHinge = hinge.equals(DoorHinge.LEFT);
         Direction facing = state.get(FACING);
-        Boolean isOuter = state.get(OUTER);
+        Boolean isHinge = state.get(IS_HINGE);
         Boolean open = state.get(OPEN);
 
-        if (Boolean.TRUE.equals(isOuter)) {
+        if (Boolean.TRUE.equals(isHinge)) {
             if (facing.equals(Direction.NORTH)) {
                 return Boolean.TRUE.equals(open) ? blockPos.north() : Boolean.TRUE.equals(isLeftHinge) ? blockPos.east(): blockPos.west();
             }
@@ -136,10 +136,10 @@ public class ModDoubleGate extends FenceGateBlock {
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient) {
-            BlockPos blockPos = otherBlockPos(pos, state);
+            BlockPos blockPos = findPosOfOtherGateHalf(pos, state);
             BlockState blockState = world.getBlockState(blockPos);
-            Boolean doubleBlockHalf = state.get(OUTER);
-            if (Boolean.TRUE.equals(!doubleBlockHalf) && (blockState).isOf(state.getBlock()) && Boolean.TRUE.equals(blockState.get(OUTER))) {
+            Boolean doubleBlockHalf = state.get(IS_HINGE);
+            if (Boolean.TRUE.equals(!doubleBlockHalf) && (blockState).isOf(state.getBlock()) && Boolean.TRUE.equals(blockState.get(IS_HINGE))) {
                 BlockState blockState2 = blockState.contains(Properties.WATERLOGGED) && Boolean.TRUE.equals(blockState.get(Properties.WATERLOGGED)) ? Blocks.WATER.getDefaultState() : Blocks.AIR.getDefaultState();
                 if (player.isCreative()) {
                     world.setBlockState(blockPos, blockState2, Block.NOTIFY_ALL | Block.SKIP_DROPS);
@@ -155,18 +155,18 @@ public class ModDoubleGate extends FenceGateBlock {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        Boolean outer = state.get(OUTER);
-        Boolean posMatch = neighborPos.equals(otherBlockPos(pos, state));
+        Boolean isHingeBlock = state.get(IS_HINGE);
+        Boolean posMatchOtherGateHalf = neighborPos.equals(findPosOfOtherGateHalf(pos, state));
 
         Direction.Axis axis = direction.getAxis();
-        if (state.get(FACING).rotateYClockwise().getAxis() == axis && Boolean.TRUE.equals(outer)) {
+        if (state.get(FACING).rotateYClockwise().getAxis() == axis && Boolean.TRUE.equals(isHingeBlock)) {
             boolean bl = this.isWall(neighborState) || this.isWall(world.getBlockState(pos.offset(direction.getOpposite())));
-            world.setBlockState(otherBlockPos(pos, state), state.with(IN_WALL, bl).with(OUTER, false), Block.FORCE_STATE);
+            world.setBlockState(findPosOfOtherGateHalf(pos, state), state.with(IN_WALL, bl).with(IS_HINGE, false), Block.FORCE_STATE);
             return state.with(IN_WALL, bl);
         }
         
-        if (Boolean.TRUE.equals(posMatch)) {
-            if (neighborState.isOf(this) && neighborState.get(OUTER).equals(!outer)) {
+        if (Boolean.TRUE.equals(posMatchOtherGateHalf)) {
+            if (neighborState.isOf(this) && neighborState.get(IS_HINGE).equals(!isHingeBlock)) {
                 return state.with(FACING, neighborState.get(FACING)).with(OPEN, neighborState.get(OPEN)).with(HINGE, neighborState.get(HINGE)).with(IN_WALL, neighborState.get(IN_WALL)).with(POWERED, neighborState.get(POWERED));
             }
             return Blocks.AIR.getDefaultState();
@@ -222,34 +222,40 @@ public class ModDoubleGate extends FenceGateBlock {
     }
 
 
-    private BlockPos movePos(BlockPos pos, BlockState state) {
+    /**
+     * Determines the new position of the swinging portion of the gate when the gate is opened or closed
+     * @param initialPos is the initial position of the block being moved
+     * @param state is the current block state
+     * @return the position the block should be moved to
+     */
+    private BlockPos movePos(BlockPos initialPos, BlockState state) {
         Direction dir = state.get(FACING);
         Boolean open = state.get(OPEN);
         Boolean isLeftHinge = state.get(HINGE) == DoorHinge.LEFT; // true if left hinge, false if right hinge
 
         if (Boolean.TRUE.equals(dir == Direction.NORTH && (!open && !isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (open && !isLeftHinge))) {
-            return pos.east().north();
+            return initialPos.east().north();
         }
         else if (Boolean.TRUE.equals(dir == Direction.NORTH && (open && isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (!open && isLeftHinge))) {
-            return pos.east().south();
+            return initialPos.east().south();
         }
         else if (Boolean.TRUE.equals(dir == Direction.EAST && (!open && !isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (open && !isLeftHinge))) {
-            return pos.south().east();
+            return initialPos.south().east();
         }
         else if (Boolean.TRUE.equals(dir == Direction.EAST && (open && isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (!open && isLeftHinge))) {
-            return pos.south().west();
+            return initialPos.south().west();
         }
         else if (Boolean.TRUE.equals(dir == Direction.NORTH && (open && !isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.SOUTH && (!open && !isLeftHinge))) {
-            return pos.west().south();
+            return initialPos.west().south();
         }
         else if (Boolean.TRUE.equals(dir == Direction.SOUTH) || Boolean.TRUE.equals(dir == Direction.NORTH)) {
-            return pos.west().north();
+            return initialPos.west().north();
         }
         else if (Boolean.TRUE.equals(dir == Direction.EAST && (open && !isLeftHinge)) || Boolean.TRUE.equals(dir == Direction.WEST && (!open && !isLeftHinge))) {
-            return pos.north().west();
+            return initialPos.north().west();
         }
         else {
-            return pos.north().east();
+            return initialPos.north().east();
         }
     }
 
@@ -259,22 +265,22 @@ public class ModDoubleGate extends FenceGateBlock {
      * @param state The block state of one block in the gate
      * @param world The world
      * @param pos The block position of the gate block
-     * @return True if the gates open state was changed, false if it was not
+     * @return True if the gate's open state was changed, false if it was not
      */
     private boolean gateOpen(BlockState state, World world, BlockPos pos) {
-        Boolean outer = state.get(OUTER);
+        Boolean isHinge = state.get(IS_HINGE);
         Boolean opened = false;
 
-        BlockPos initialInnerPos = Boolean.TRUE.equals(!outer) ? pos : otherBlockPos(pos, state);
-        BlockPos outerPos = Boolean.TRUE.equals(outer) ? pos : otherBlockPos(pos, state);
+        BlockPos initialInnerPos = Boolean.TRUE.equals(!isHinge) ? pos : findPosOfOtherGateHalf(pos, state);
+        BlockPos hingeBlockPos = Boolean.TRUE.equals(isHinge) ? pos : findPosOfOtherGateHalf(pos, state);
         BlockPos movePos = this.movePos(initialInnerPos, state);
-        Boolean power = world.isReceivingRedstonePower(outerPos);
+        Boolean power = world.isReceivingRedstonePower(hingeBlockPos);
 
         if (world.isAir(movePos)) {
-            // move inner (swinging) block
-            world.setBlockState(movePos, state.with(POWERED, power).with(OUTER, false).cycle(OPEN), Block.NOTIFY_ALL);
-            // update outer (hinge) block
-            world.setBlockState(outerPos, state.with(POWERED, power).with(OUTER, true).cycle(OPEN), Block.NOTIFY_ALL);
+            // move swinging block
+            world.setBlockState(movePos, state.with(POWERED, power).with(IS_HINGE, false).cycle(OPEN), Block.NOTIFY_ALL);
+            // update hinge block
+            world.setBlockState(hingeBlockPos, state.with(POWERED, power).with(IS_HINGE, true).cycle(OPEN), Block.NOTIFY_ALL);
             // remove block which was moved
             world.removeBlock(initialInnerPos, true);
             // gate opened
@@ -290,11 +296,15 @@ public class ModDoubleGate extends FenceGateBlock {
             boolean posPowered = world.isReceivingRedstonePower(pos);
 
             // If the block is on the hinge side and has its powered status updated, try to open/close the gate
-            if ((state.get(POWERED) != posPowered) && state.get(OUTER) && gateOpen(state, world, pos)) {
-                state = state.cycle(OPEN);
-                boolean isOpened = state.get(OPEN);
-                playSound(world, pos, null, isOpened);
-                world.emitGameEvent(posPowered ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+            if ((state.get(POWERED) != posPowered) && state.get(IS_HINGE)) {
+                world.setBlockState(pos, state.with(POWERED, posPowered));
+                if (posPowered != state.get(OPEN)) {
+                    if (gateOpen(state, world, pos)) {
+                        boolean isOpened = state.cycle(OPEN).get(OPEN);
+                        playSound(world, pos, null, isOpened);
+                        world.emitGameEvent(posPowered ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+                    }
+                }
             }
          }
     }
@@ -362,7 +372,7 @@ public class ModDoubleGate extends FenceGateBlock {
     
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, OPEN, POWERED, IN_WALL, HINGE, OUTER);
+        builder.add(FACING, OPEN, POWERED, IN_WALL, HINGE, IS_HINGE);
     }
 
     @Override
