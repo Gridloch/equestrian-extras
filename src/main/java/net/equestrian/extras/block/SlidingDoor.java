@@ -1,8 +1,6 @@
 package net.equestrian.extras.block;
 
-import me.shedaniel.autoconfig.AutoConfig;
 import net.equestrian.extras.EquestrianExtras;
-import net.equestrian.extras.config.ModConfig;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoorHinge;
 import net.minecraft.block.enums.DoubleBlockHalf;
@@ -28,7 +26,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.*;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldView;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -73,30 +74,14 @@ public class SlidingDoor extends Block {
         return false;
     }
 
-    
+
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        
+
         if (Boolean.TRUE.equals(doorSlide(state, world, pos))) {
             state = state.cycle(OPEN);
             this.playDoorSlideSound(Boolean.TRUE.equals(state.get(OPEN)), world, pos);
             world.emitGameEvent(player, this.isOpen(state) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
-
-            // move second door if used door is a double door
-            if (world.isClient) {
-                ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
-
-                BlockPos pairPos = movePos(pos, state.with(OPEN, true), this.isOpen(state) ? 1 : 3);
-                BlockState pairState = world.getBlockState(pairPos);
-                if(pairState.isIn(EquestrianExtras.BlockTags.SLIDEDOORS) && config.doubleDoorsSlideTogether()) {
-                    Boolean bl = !pairState.get(OPEN).equals(state.get(OPEN)) && pairState.get(FACING).equals(state.get(FACING))  && !pairState.get(HINGE).equals(state.get(HINGE))  && pairState.get(HALF).equals(state.get(HALF));
-                    if (Boolean.TRUE.equals(bl)) {
-                        doorSlide(pairState, world, pairPos);
-                        this.playDoorSlideSound(Boolean.TRUE.equals(!pairState.get(OPEN)), world, pos);
-                        world.emitGameEvent(player, !this.isOpen(pairState) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
-                    }
-                }
-            }
         }
         return ActionResult.success(world.isClient);
     }
@@ -105,12 +90,12 @@ public class SlidingDoor extends Block {
     private void playDoorSlideSound(Boolean opening, World world, BlockPos pos) {
         if (!world.isClient) {
             world.playSound(
-                null, // Player - if non-null, will play sound for every nearby player *except* the specified player
-                pos, // The position of where the sound will come from
-                Boolean.TRUE.equals(opening) ? EquestrianExtras.DOOR_OPEN_EVENT : EquestrianExtras.DOOR_CLOSE_EVENT, // The sound that will play
-                SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
-                1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
-                1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
+                    null, // Player - if non-null, will play sound for every nearby player *except* the specified player
+                    pos, // The position of where the sound will come from
+                    Boolean.TRUE.equals(opening) ? EquestrianExtras.DOOR_OPEN_EVENT : EquestrianExtras.DOOR_CLOSE_EVENT, // The sound that will play
+                    SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
+                    1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
+                    1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
             );
         }
     }
@@ -161,22 +146,29 @@ public class SlidingDoor extends Block {
 
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-        // Sorry! No working redstone functionality yet. Maybe someday...?
-        // Issue: door is placed back in original position after being 'moved' (produces two doors)
-        
-        // BlockPos movepos = this.movePos(pos, state);
-        // boolean power = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.offset(state.get(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
-        // if (Boolean.TRUE.equals(state.get(OPEN))) {
-        //     power = world.isReceivingRedstonePower(movepos) || world.isReceivingRedstonePower(movepos.offset(state.get(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
-        // }
-        // if (state.get(HALF) == DoubleBlockHalf.LOWER && !this.getDefaultState().isOf(block) && Boolean.TRUE.equals(power != state.get(POWERED) && Boolean.TRUE.equals(power != state.get(OPEN)))) {
-        //     System.out.println("pos: " + pos + ", open: " + state.get(OPEN) + ", powered: " + state.get(POWERED));
-        //     // this.doorSlide(state, world, pos);
-        //     // this.playDoorSlideSound(Boolean.TRUE.equals(state.get(OPEN)), world, pos);
-        //     // world.emitGameEvent(bl ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos); 
-        // }
+        if (!world.isClient) {
+            BlockPos movePos = movePos(pos, state, 1);
+
+            boolean power = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.offset(state.get(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
+            if (Boolean.TRUE.equals(state.get(OPEN))) {
+                power = world.isReceivingRedstonePower(movePos) || world.isReceivingRedstonePower(movePos.offset(state.get(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
+            }
+
+            if ((state.get(POWERED) != power) && Boolean.TRUE.equals(doorSlide(state, world, pos))) {
+                state = state.cycle(OPEN);
+                this.playDoorSlideSound(Boolean.TRUE.equals(state.get(OPEN)), world, pos);
+                world.emitGameEvent(null, this.isOpen(state) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+            }
+        }
     }
 
+    /**
+     *
+     * @param pos the block position of a door block
+     * @param state the block state for the block at pos
+     * @param i the distance moved in blocks
+     * @return the position that the door should be moved to
+     */
     private BlockPos movePos(BlockPos pos, BlockState state, Integer i) {
         Direction dir = state.get(FACING);
         Boolean open = state.get(OPEN);
@@ -195,13 +187,21 @@ public class SlidingDoor extends Block {
         }
     }
 
+    /**
+     * First determines which direction the door should slide
+     * then determines if the door can slide (i.e. is not obstructed).
+     * If the door can slide, both top and bottom blocks are moved one block to the side.
+     * @param state BlockState of one of the door blocks
+     * @param world The world
+     * @param pos Position of the door block whose state was used
+     * @return True if the door's open state was changed, false if it was not
+     */
     private boolean doorSlide(BlockState state, World world, BlockPos pos) {
-        // First determines which direction the door should slide
-        // then determines if the door can slide (i.e. is not obstructed).
-        // If the door can slide, both top and bottom blocks are moved one block to the side
+        // TODO This sort of works now but probably shouldn't produce block breaking particles every time
+        //  you open/close a door...
 
-        DoubleBlockHalf half = state.get(HALF);
         Boolean slide = false;
+        boolean isUpperBlock = state.get(HALF) == DoubleBlockHalf.UPPER;
         BlockPos movepos = this.movePos(pos, state, 1);
 
         boolean power = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.offset(state.get(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
@@ -209,14 +209,14 @@ public class SlidingDoor extends Block {
             power = world.isReceivingRedstonePower(movepos) || world.isReceivingRedstonePower(movepos.offset(state.get(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
         }
 
-        if (world.isAir(movepos) && world.isAir(half == DoubleBlockHalf.UPPER ? movepos.down() : movepos.up())) {
+        if (world.isAir(movepos) && world.isAir(isUpperBlock ? movepos.down() : movepos.up())) {
             // move current block
-            world.setBlockState(movepos, state.with(POWERED, power).cycle(OPEN), Block.NOTIFY_LISTENERS);
+            world.setBlockState(movepos, state.with(POWERED, power).cycle(OPEN), Block.NOTIFY_ALL);
             // move other block
-            world.setBlockState(half == DoubleBlockHalf.UPPER ? movepos.down() : movepos.up(), state.with(POWERED, power).with(HALF, half == DoubleBlockHalf.UPPER ? DoubleBlockHalf.LOWER : DoubleBlockHalf.UPPER).cycle(OPEN), Block.NOTIFY_LISTENERS);
+            world.setBlockState(isUpperBlock ? movepos.down() : movepos.up(), state.with(POWERED, power).with(HALF, isUpperBlock ? DoubleBlockHalf.LOWER : DoubleBlockHalf.UPPER).cycle(OPEN), Block.NOTIFY_ALL);
             // remove blocks which were moved
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.FORCE_STATE);
-            world.setBlockState(half == DoubleBlockHalf.UPPER ? pos.down() : pos.up(), Blocks.AIR.getDefaultState(), Block.MOVED);
+            world.removeBlock(isUpperBlock ? pos.down() : pos, false);
+            world.removeBlock(isUpperBlock ? pos : pos.up(), false);
             // door slid
             slide = true;
         }
@@ -242,15 +242,18 @@ public class SlidingDoor extends Block {
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient && player.isCreative()) {
-            BlockPos blockPos = pos.down();
-            BlockState blockState = world.getBlockState(blockPos);
-            DoubleBlockHalf doubleBlockHalf = state.get(HALF);
-            if (doubleBlockHalf == DoubleBlockHalf.UPPER && (blockState).isOf(state.getBlock()) && blockState.get(HALF) == DoubleBlockHalf.LOWER) {
-                BlockState blockState2 = blockState.contains(Properties.WATERLOGGED) && Boolean.TRUE.equals(blockState.get(Properties.WATERLOGGED)) ? Blocks.WATER.getDefaultState() : Blocks.AIR.getDefaultState();
-                world.setBlockState(blockPos, blockState2, Block.NOTIFY_ALL | Block.SKIP_DROPS);
-                world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(blockState));
+            DoubleBlockHalf doubleBlockHalf = (DoubleBlockHalf)state.get(HALF);
+            if (doubleBlockHalf == DoubleBlockHalf.UPPER) {
+                BlockPos blockPos = pos.down();
+                BlockState blockState = world.getBlockState(blockPos);
+                if (blockState.isOf(state.getBlock()) && blockState.get(HALF) == DoubleBlockHalf.LOWER) {
+                    BlockState blockState2 = blockState.contains(Properties.WATERLOGGED) && (Boolean)blockState.get(Properties.WATERLOGGED) ? Blocks.WATER.getDefaultState() : Blocks.AIR.getDefaultState();
+                    world.setBlockState(blockPos, blockState2, 35);
+                    world.syncWorldEvent(player, 2001, blockPos, Block.getRawIdFromState(blockState));
+                }
             }
         }
+
         super.onBreak(world, pos, state, player);
     }
 

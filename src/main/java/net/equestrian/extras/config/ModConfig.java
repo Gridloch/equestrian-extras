@@ -9,9 +9,6 @@ import net.equestrian.extras.EquestrianExtras;
 public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip
-    private final boolean doubleDoorsSlideTogether = false;
-
-    @ConfigEntry.Gui.Tooltip
     private final Integer barrelBreakChance = 15;
 
     @ConfigEntry.Gui.Tooltip
@@ -43,11 +40,6 @@ public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip
     private final double minBreedSpeed = 0.1125;
-
-
-    public boolean doubleDoorsSlideTogether() {
-        return doubleDoorsSlideTogether;
-    }
 
     public Integer barrelBreakChance() {
         return barrelBreakChance;
