@@ -36,6 +36,8 @@ import org.jetbrains.annotations.Nullable;
 public class SlidingDoor extends Block {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty OPEN = Properties.OPEN;
+
+    public static final BooleanProperty OPENING = BooleanProperty.of("opening");
     public static final EnumProperty<DoorHinge> HINGE = Properties.DOOR_HINGE;
     public static final BooleanProperty POWERED = Properties.POWERED;
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
@@ -46,7 +48,7 @@ public class SlidingDoor extends Block {
 
     protected SlidingDoor(Settings settings) {
         super(settings.nonOpaque());
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false).with(HINGE, DoorHinge.LEFT).with(POWERED, false).with(HALF, DoubleBlockHalf.LOWER));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false).with(OPENING, false).with(HINGE, DoorHinge.LEFT).with(POWERED, false).with(HALF, DoubleBlockHalf.LOWER));
     }
 
     @Override
@@ -210,13 +212,13 @@ public class SlidingDoor extends Block {
         }
 
         if (world.isAir(movepos) && world.isAir(isUpperBlock ? movepos.down() : movepos.up())) {
-            // move current block
-            world.setBlockState(movepos, state.with(POWERED, power).cycle(OPEN), Block.NOTIFY_ALL);
-            // move other block
-            world.setBlockState(isUpperBlock ? movepos.down() : movepos.up(), state.with(POWERED, power).with(HALF, isUpperBlock ? DoubleBlockHalf.LOWER : DoubleBlockHalf.UPPER).cycle(OPEN), Block.NOTIFY_ALL);
-            // remove blocks which were moved
-            world.removeBlock(isUpperBlock ? pos.down() : pos, false);
-            world.removeBlock(isUpperBlock ? pos : pos.up(), false);
+            // move lower block
+            world.setBlockState(isUpperBlock ? movepos.down() : movepos, state.with(POWERED, power).with(HALF, DoubleBlockHalf.LOWER).cycle(OPEN), Block.NOTIFY_ALL);
+            // move upper black
+            world.setBlockState(isUpperBlock ? movepos : movepos.up(), state.with(POWERED, power).with(HALF, DoubleBlockHalf.UPPER).cycle(OPEN), Block.NOTIFY_ALL);
+            // flag old (moved) blocks for removal (in getStateForNeighborUpdate)
+            world.setBlockState(pos, state.with(OPENING, true), Block.NOTIFY_ALL); // Tag current block as opening
+            world.setBlockState(isUpperBlock ? pos.down() : pos.up(), state.with(OPENING, true), Block.NOTIFY_ALL); // Tag other block as opening
             // door slid
             slide = true;
         }
@@ -227,6 +229,10 @@ public class SlidingDoor extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         DoubleBlockHalf doubleBlockHalf = state.get(HALF);
+        if (state.get(OPENING)) {
+            // Should prevent block breaking particles from appearing when the door is being opened
+            world.removeBlock(pos, true);
+        }
         if (direction.getAxis() == Direction.Axis.Y && doubleBlockHalf == DoubleBlockHalf.LOWER == (direction == Direction.UP)) {
             if (neighborState.isOf(this) && neighborState.get(HALF) != doubleBlockHalf) {
                 return state.with(FACING, neighborState.get(FACING)).with(OPEN, neighborState.get(OPEN)).with(HINGE, neighborState.get(HINGE)).with(POWERED, neighborState.get(POWERED));
@@ -253,7 +259,6 @@ public class SlidingDoor extends Block {
                 }
             }
         }
-
         super.onBreak(world, pos, state, player);
     }
 
@@ -301,6 +306,6 @@ public class SlidingDoor extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(HALF, FACING, OPEN, HINGE, POWERED);
+        builder.add(HALF, FACING, OPEN, OPENING, HINGE, POWERED);
     }
 }
