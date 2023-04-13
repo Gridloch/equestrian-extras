@@ -6,7 +6,7 @@ Equestrian-Extras is a mod for Minecraft (Fabric) 1.17.1 that adds some horse re
 
 ### Stable and Pasture
  - Horse blankets and halters (worn in the armor slot and can be dyed any color like normal leather horse armor)
- - Saddle Racks - Saddles can be placed on saddle racks similar to how flowers can be placed in pots
+ - Saddle Racks - saddles can be placed on saddle racks similar to how flowers can be placed in pots
  - Sliding and Dutch doors
  - Stable panels and bars (can be centered by holding the sneak key while placing)
  - Straw bedding (stacks like snow layers)
