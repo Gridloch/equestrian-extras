@@ -1,0 +1,7 @@
+{
+	"parent": "equestrianextras:block/oak_poles_bottom",
+	"textures": {
+		"0": "block/stripped_crimson_stem",
+		"1": "block/crimson_stem_top"
+	}
+ }

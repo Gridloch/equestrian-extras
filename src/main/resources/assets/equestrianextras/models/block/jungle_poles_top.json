@@ -1,0 +1,7 @@
+{
+	"parent": "equestrianextras:block/oak_poles_top",
+	"textures": {
+		"0": "block/jungle_log",
+		"1": "block/jungle_log_top"
+	}
+ }

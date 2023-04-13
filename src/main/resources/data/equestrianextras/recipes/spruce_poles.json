@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "||"
+  ],
+  "key": {
+    "|": {
+      "item": "minecraft:spruce_log"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:spruce_poles",
+    "count": 8
+  }
+}

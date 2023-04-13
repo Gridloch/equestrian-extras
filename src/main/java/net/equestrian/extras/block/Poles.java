@@ -46,29 +46,41 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     public static final IntProperty PLACEMENT = IntProperty.of("placement", 1, 3);
     public static final BooleanProperty HIT = BooleanProperty.of("hit");
 
-    protected static final VoxelShape BOTTOM_SHAPE_N = Block.createCuboidShape(0.0, 3.0, 7.0, 16.0, 5.0, 9.0);
-    protected static final VoxelShape BOTTOM_SHAPE_E = Block.createCuboidShape(7.0, 3.0, 0.0, 9.0, 5.0, 16.0);
-    protected static final VoxelShape BOTTOM_SHAPE_DOWN_N = Block.createCuboidShape(0.0, 0.0, 7.0, 16.0, 2.0, 9.0);
-    protected static final VoxelShape BOTTOM_SHAPE_DOWN_E = Block.createCuboidShape(7.0, 0.0, 0.0, 9.0, 2.0, 16.0);
-    protected static final VoxelShape BOTTOM_SHAPE_UP_N = Block.createCuboidShape(0.0, 6.0, 7.0, 16.0, 8.0, 9.0);
-    protected static final VoxelShape BOTTOM_SHAPE_UP_E = Block.createCuboidShape(7.0, 6.0, 0.0, 9.0, 8.0, 16.0);
-
-    protected static final VoxelShape TOP_SHAPE_N = Block.createCuboidShape(0.0, 11.0, 7.0, 16.0, 13.0, 9.0);
-    protected static final VoxelShape TOP_SHAPE_E = Block.createCuboidShape(7.0, 11.0, 0.0, 9.0, 13.0, 16.0);
-    protected static final VoxelShape TOP_SHAPE_DOWN_N = Block.createCuboidShape(0.0, 8.0, 7.0, 16.0, 10.0, 9.0);
-    protected static final VoxelShape TOP_SHAPE_DOWN_E = Block.createCuboidShape(7.0, 8.0, 0.0, 9.0, 10.0, 16.0);
-    protected static final VoxelShape TOP_SHAPE_UP_N = Block.createCuboidShape(0.0, 14.0, 7.0, 16.0, 16.0, 9.0);
-    protected static final VoxelShape TOP_SHAPE_UP_E = Block.createCuboidShape(7.0, 14.0, 0.0, 9.0, 16.0, 16.0);
-
-    protected static final VoxelShape FULL_SHAPE_N = Block.createCuboidShape(0.0, 3.0, 7.0, 16.0, 13.0, 9.0);
-    protected static final VoxelShape FULL_SHAPE_E = Block.createCuboidShape(7.0, 3.0, 0.0, 9.0, 13.0, 16.0);
-    protected static final VoxelShape FULL_SHAPE_DOWN_N = Block.createCuboidShape(0.0, 0.0, 7.0, 16.0, 10.0, 9.0);
-    protected static final VoxelShape FULL_SHAPE_DOWN_E = Block.createCuboidShape(7.0, 0.0, 0.0, 9.0, 10.0, 16.0);
-    protected static final VoxelShape FULL_SHAPE_UP_N = Block.createCuboidShape(0.0, 6.0, 7.0, 16.0, 16.0, 9.0);
-    protected static final VoxelShape FULL_SHAPE_UP_E = Block.createCuboidShape(7.0, 6.0, 0.0, 9.0, 16.0, 16.0);
+    private final double singlePoleHeight; // Height of poles (from top to bottom), Should match width
+    private final double placementChangeYMovement; // Movement up or down when pole has up or down placement
+    private final double minSide;
+    private final double maxSide;
+    private final double bottomPoleMinY; // Lowest point on lower pole
+    public final double bottomPoleMaxY;
+    private final double topPoleMinY; // Lowest point on upper pole
+    public final double topPoleMaxY;
 
     public Poles(AbstractBlock.Settings settings) {
+        this(settings, false);
+    }
+
+
+
+    public Poles(AbstractBlock.Settings settings, boolean isLargePoles) { //
         super(settings.nonOpaque());
+
+        if (isLargePoles) {
+            singlePoleHeight = 6.0;
+            placementChangeYMovement = 1.0;
+            minSide = 5.0;
+            bottomPoleMinY = 1.0;
+            topPoleMinY = 9.0;
+        } else {
+            singlePoleHeight = 2.0; // Height of poles (from top to bottom), Should match width
+            placementChangeYMovement = 3.0; // Movement up or down when pole has up or down placement
+            minSide = 7.0;
+            bottomPoleMinY = 3.0; // Lowest point on lower pole
+            topPoleMinY = 11.0; // Lowest point on upper pole
+        }
+        maxSide = minSide + singlePoleHeight;
+        bottomPoleMaxY = bottomPoleMinY + singlePoleHeight;
+        topPoleMaxY = topPoleMinY + singlePoleHeight;
+
         this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, false).with(PLACEMENT, 1).with(HIT, false));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
@@ -79,8 +91,8 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     }
 
     @Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
-		// Determines the outline shape based on the block's slab type, direction,
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ctx) {
+        // Determines the outline shape based on the block's slab type, direction,
         // and placement (up, down, or centred)
         SlabType slabType = state.get(TYPE);
         Direction dir = state.get(FACING);
@@ -88,51 +100,51 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
             case DOUBLE -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return switch (state.get(PLACEMENT)) {
-                        case 2 -> FULL_SHAPE_DOWN_N;
-                        case 3 -> FULL_SHAPE_UP_N;
-                        default -> FULL_SHAPE_N;
+                        case 2 -> Block.createCuboidShape(0.0, bottomPoleMinY - placementChangeYMovement, minSide, 16.0, topPoleMaxY - placementChangeYMovement, maxSide);
+                        case 3 -> Block.createCuboidShape(0.0, bottomPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement, maxSide);
+                        default -> Block.createCuboidShape(0.0, bottomPoleMinY, minSide, 16.0, topPoleMaxY, maxSide);
                     };
                 } else {
                     return switch (state.get(PLACEMENT)) {
-                        case 2 -> FULL_SHAPE_DOWN_E;
-                        case 3 -> FULL_SHAPE_UP_E;
-                        default -> FULL_SHAPE_E;
+                        case 2 -> Block.createCuboidShape(minSide, bottomPoleMinY - placementChangeYMovement, 0.0, maxSide, topPoleMaxY - placementChangeYMovement, 16.0);
+                        case 3 -> Block.createCuboidShape(minSide, bottomPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement, 16.0);
+                        default -> Block.createCuboidShape(minSide, bottomPoleMinY, 0.0, maxSide, topPoleMaxY, 16.0);
                     };
                 }
             }
             case TOP -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return switch (state.get(PLACEMENT)) {
-                        case 2 -> TOP_SHAPE_DOWN_N;
-                        case 3 -> TOP_SHAPE_UP_N;
-                        default -> TOP_SHAPE_N;
+                        case 2 -> Block.createCuboidShape(0.0, topPoleMinY - placementChangeYMovement, minSide, 16.0, topPoleMaxY - placementChangeYMovement, maxSide);
+                        case 3 -> Block.createCuboidShape(0.0, topPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement, maxSide);
+                        default -> Block.createCuboidShape(0.0, topPoleMinY, minSide, 16.0, topPoleMaxY, maxSide);
                     };
                 } else {
                     return switch (state.get(PLACEMENT)) {
-                        case 2 -> TOP_SHAPE_DOWN_E;
-                        case 3 -> TOP_SHAPE_UP_E;
-                        default -> TOP_SHAPE_E;
+                        case 2 -> Block.createCuboidShape(minSide, topPoleMinY - placementChangeYMovement, 0.0, maxSide, topPoleMaxY - placementChangeYMovement, 16.0);
+                        case 3 -> Block.createCuboidShape(minSide, topPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement, 16.0);
+                        default -> Block.createCuboidShape(minSide, topPoleMinY, 0.0, maxSide, topPoleMaxY, 16.0);
                     };
                 }
             }
             case BOTTOM -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return switch (state.get(PLACEMENT)) {
-                        case 2 -> BOTTOM_SHAPE_DOWN_N;
-                        case 3 -> BOTTOM_SHAPE_UP_N;
-                        default -> BOTTOM_SHAPE_N;
+                        case 2 -> Block.createCuboidShape(0.0, bottomPoleMinY - placementChangeYMovement, minSide, 16.0, bottomPoleMaxY - placementChangeYMovement, maxSide);
+                        case 3 -> Block.createCuboidShape(0.0, bottomPoleMinY + placementChangeYMovement, minSide, 16.0, bottomPoleMaxY + placementChangeYMovement, maxSide);
+                        default -> Block.createCuboidShape(0.0, bottomPoleMinY, minSide, 16.0, bottomPoleMaxY, maxSide);
                     };
                 } else {
                     return switch (state.get(PLACEMENT)) {
-                        case 2 -> BOTTOM_SHAPE_DOWN_E;
-                        case 3 -> BOTTOM_SHAPE_UP_E;
-                        default -> BOTTOM_SHAPE_E;
+                        case 2 -> Block.createCuboidShape(minSide, bottomPoleMinY - placementChangeYMovement, 0.0, maxSide, bottomPoleMaxY - placementChangeYMovement, 16.0);
+                        case 3 -> Block.createCuboidShape(minSide, bottomPoleMinY + placementChangeYMovement, 0.0, maxSide, bottomPoleMaxY + placementChangeYMovement, 16.0);
+                        default -> Block.createCuboidShape(minSide, bottomPoleMinY, 0.0, maxSide, bottomPoleMaxY, 16.0);
                     };
                 }
             }
         }
-        return BOTTOM_SHAPE_N;
-	}
+        return Block.createCuboidShape(0.0, bottomPoleMinY, minSide, 16.0, bottomPoleMaxY, maxSide);
+    }
 
     @Override
     @Nullable
@@ -229,7 +241,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         boolean blockIsGroundPole = state.get(TYPE).equals(SlabType.BOTTOM) && state.get(PLACEMENT).equals(2);
         boolean blockBelowIsSolid = world.getBlockState(pos.down()).shouldSuffocate(world, pos);
         if (!world.isClient && entity.hasPlayerRider() && blockIsHighestPole && !(blockIsGroundPole && blockBelowIsSolid)) {
-            // If entity has a player rider, can be jumped over, and is not a ground pole, then
+            // If entity has a player rider, pole can be jumped over, and is not a ground pole on a solid block, then
             // check that entity is in close contact with the poles
             Box box = getBox(state).offset(pos);
             List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, box);
@@ -285,83 +297,67 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     }
 
 
-	public Box getBox(BlockState state) {
-		// Determines the box shape based on the block's slab type, direction,
+    public Box getBox(BlockState state) {
+        // Determines the box shape based on the block's slab type, direction,
         // and placement (up, down, or centred)
 
         Box box = new Box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
 
         SlabType slabType = state.get(TYPE);
         Direction dir = state.get(FACING);
+        double pixelToBlock = 0.0625; // To convert from pixel scale to box
+        double offset = 0.001;
 
 
         switch (slabType) {
             case DOUBLE -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     box = switch (state.get(PLACEMENT)) {
-                        case 1 -> new Box(0.0, 0.125, 0.375, 1.0, 0.813, 0.625);
-                        // Should match shape (0.0, 3.0, 7.0, 16.0, 13.0, 9.0)
-                        case 3 -> new Box(0.0, 0.312, 0.375, 1.0, 1.0, 0.625);
-                        // Should match shape (0.0, 6.0, 7.0, 16.0, 16.0, 9.0)
-                        default -> new Box(0.0, 0.0, 0.375, 1.0, 0.625, 0.625);
-                        // Should match shape (0.0, 0.0, 7.0, 16.0, 10.0, 9.0)
+                        case 1 -> new Box(0.0, (bottomPoleMinY)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, topPoleMaxY *pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        case 3 -> new Box(0.0, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        default -> new Box(0.0, (bottomPoleMinY - placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
                     };
                 } else {
                     box = switch (state.get(PLACEMENT)) {
-                        case 1 -> new Box(0.375, 0.125, 0.0, 0.625, 0.813, 1.0);
-                        // Should match shape (7.0, 3.0, 0.0, 9.0, 13.0, 16.0)
-                        case 3 -> new Box(0.375, 0.312, 0.0, 0.625, 1.0, 1.0);
-                        // Should match shape (7.0, 6.0, 0.0, 9.0, 16.0, 16.0)
-                        default -> new Box(0.375, 0.0, 0.0, 0.625, 0.625, 1.0);
-                        // Should match shape (7.0, 0.0, 0.0, 9.0, 10.0, 16.0)
+                        case 1 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, topPoleMaxY *pixelToBlock+offset, 1.0);
+                        case 3 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, 1.0);
+                        default -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY - placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, 1.0);
                     };
                 }
             }
             case TOP -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     box = switch (state.get(PLACEMENT)) {
-                        case 1 -> new Box(0.0, 0.625, 0.375, 1.0, 0.813, 0.625);
-                        // Should match shape (0.0, 11.0, 7.0, 16.0, 13.0, 9.0)
-                        case 3 -> new Box(0.0, 0.875, 0.375, 1.0, 1.0, 0.625);
-                        // Should match shape (0.0, 14.0, 7.0, 16.0, 16.0, 9.0)
-                        default -> new Box(0.0, 0.437, 0.375, 1.0, 0.625, 0.625);
-                        // Should match shape (0.0, 8.0, 7.0, 16.0, 10.0, 9.0)
+                        case 1 -> new Box(0.0, (topPoleMinY)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, topPoleMaxY *pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        case 3 -> new Box(0.0, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        default -> new Box(0.0, (topPoleMinY - placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
                     };
                 } else {
                     box = switch (state.get(PLACEMENT)) {
-                        case 1 -> new Box(0.375, 0.625, 0.0, 0.625, 0.813, 1.0);
-                        // Should match shape (7.0, 11.0, 0.0, 9.0, 13.0, 16.0)
-                        case 3 -> new Box(0.375, 0.875, 0.0, 0.625, 1.0, 1.0);
-                        // Should match shape (7.0, 14.0, 0.0, 9.0, 16.0, 16.0)
-                        default -> new Box(0.375, 0.437, 0.0, 0.625, 0.625, 1.0);
-                        // Should match shape (7.0, 8.0, 0.0, 9.0, 10.0, 16.0)
+                        case 1 -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, topPoleMaxY *pixelToBlock+offset, 1.0);
+                        case 3 -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, 1.0);
+                        default -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY - placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, 1.0);
                     };
                 }
             }
             case BOTTOM -> {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     box = switch (state.get(PLACEMENT)) {
-                        case 1 -> new Box(0.0, 0.125, 0.375, 1.0, 0.313, 0.625);
-                        // Should match shape (0.0, 3.0, 7.0, 16.0, 5.0, 9.0)
-                        case 3 -> new Box(0.0, 0.313, 0.375, 1.0, 0.5, 0.625);
-                        // Should match shape (0.0, 6.0, 7.0, 16.0, 8.0, 9.0)
-                        default -> new Box(0.0, 0.0, 0.375, 1.0, 0.125, 0.625);
-                        // Should match shape (0.0, 0.0, 7.0, 16.0, 2.0, 9.0)
+                        case 1 -> new Box(0.0, (bottomPoleMinY)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, bottomPoleMaxY *pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        case 3 -> new Box(0.0, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (bottomPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        default -> new Box(0.0, (bottomPoleMinY - placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (bottomPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
                     };
                 } else {
                     box = switch (state.get(PLACEMENT)) {
-                        case 1 -> new Box(0.375, 0.125, 0.0, 0.625, 0.313, 1.0);
-                        // Should match shape (7.0, 11.0, 0.0, 9.0, 13.0, 16.0)
-                        case 3 -> new Box(0.375, 0.313, 0.0, 0.625, 0.5, 1.0);
-                        // Should match shape (7.0, 14.0, 0.0, 9.0, 16.0, 16.0)
-                        default -> new Box(0.375, 0.0, 0.0, 0.625, 0.125, 1.0);
-                        // Should match shape (7.0, 8.0, 0.0, 9.0, 10.0, 16.0)
+                        case 1 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, bottomPoleMaxY *pixelToBlock+offset, 1.0);
+                        case 3 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (bottomPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, 1.0);
+                        default -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY - placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (bottomPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, 1.0);
                     };
                 }
             }
         }
         return box;
-	}
+    }
 }
 
 

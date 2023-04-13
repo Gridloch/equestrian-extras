@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "||"
+  ],
+  "key": {
+    "|": {
+      "item": "minecraft:stripped_warped_stem"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:stripped_warped_poles",
+    "count": 8
+  }
+}
