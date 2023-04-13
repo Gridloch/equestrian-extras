@@ -13,7 +13,7 @@ Equestrian Extras is a mod for Minecraft (Fabric) 1.17.1 that adds some horse re
  - Thatch blocks, slabs and stairs
  - White gates and fences
  - Iron gates
- - double-wide variants of wooden and iron gates
+ - Double-wide variants of wooden and iron gates
  
 ### Equestrian Sport
  - Ribbon item (which can be dyed any color)
