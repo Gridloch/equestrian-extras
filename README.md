@@ -1,6 +1,6 @@
-# equestrian-extras
+# Equestrian-Extras
 
-Equestrian Extras is a mod for Minecraft (Fabric) 1.17.1 that adds some horse related content
+Equestrian-Extras is a mod for Minecraft (Fabric) 1.17.1 that adds some horse related content
 
 ## Additions
 
