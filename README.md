@@ -2,7 +2,7 @@
 
 Equestrian-Extras is a mod for Minecraft (Fabric) 1.17.1 that adds some horse related content
 
-## Additions
+## Features
 
 ### Stable and Pasture
  - Horse blankets and halters (worn in the armor slot and can be dyed any color like normal leather horse armor)
