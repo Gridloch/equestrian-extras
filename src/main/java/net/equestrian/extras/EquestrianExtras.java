@@ -7,9 +7,12 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.equestrian.extras.block.ModBlocks;
 import net.equestrian.extras.config.ModConfig;
 import net.equestrian.extras.item.ModItems;
+import net.equestrian.extras.item.ConditionalItemsF;
+import net.equestrian.extras.item.ConditionalItemsT;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.tag.TagFactory;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -74,6 +77,14 @@ public class EquestrianExtras implements ModInitializer {
 		// Proceed with mild caution.
 
 		ModItems.registerItems();
+		
+		if (FabricLoader.getInstance().isModLoaded("dyed")) {
+			ConditionalItemsT.registerItems();
+		}
+		else {
+			ConditionalItemsF.registerItems();
+		}
+
 		ModBlocks.registerBlocks();
 		Registry.register(Registry.SOUND_EVENT, DOOR_OPEN_SOUND, DOOR_OPEN_EVENT);
 		Registry.register(Registry.SOUND_EVENT, DOOR_CLOSE_SOUND, DOOR_CLOSE_EVENT);

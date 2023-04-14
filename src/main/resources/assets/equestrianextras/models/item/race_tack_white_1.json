@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+      "layer0": "equestrianextras:item/race_tack_1",
+      "layer1": "equestrianextras:item/race_tack_1_overlay"
+    }
+  }
