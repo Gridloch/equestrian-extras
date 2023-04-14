@@ -42,4 +42,16 @@ Equestrian-Extras is a mod for Minecraft (Fabric) 1.17.1 that adds some horse re
  
  ### Other
   - Horse breeding is altered to allow foals to be more similar to their parents
+     <details>
+     <summary>How the Foal Stats are Generated</summary>
+
+     - A random number between 0 and 1 is generated as a random weight so the initial foal stat can be anywhere between the two parent stats
+     - A random number between the max and min percents of the base vanilla stat is generated as a bonus to be added to the foal's stat
+     - The actual calculation is:
+     ```math
+     foalStat = (parent1Stat)*randomWeight) + (parent2Stat*(1-randomWeight)) + bonus
+     ```
+     - Finally, the stat is checked to make sure it is less than the max and greater than the min breedable stats (if not, it is set to the max or min value it goes past)
+
+     </details>
   - Altered horse breeding and pole/barrel break chance can be configured with the [cloth-config mod](https://modrinth.com/mod/cloth-config)
