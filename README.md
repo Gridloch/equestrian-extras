@@ -1,6 +1,11 @@
 # Equestrian-Extras
 
-Equestrian-Extras is a mod for Minecraft (Fabric) 1.17.1 that adds some horse related content
+Equestrian-Extras is a mod for Minecraft (Fabric) that adds some horse related content
+
+## Dependencies
+ - [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
+ - [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
+ - [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
 
 ## Features
 
