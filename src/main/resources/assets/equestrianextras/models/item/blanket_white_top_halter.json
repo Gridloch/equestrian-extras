@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+      "layer0": "equestrianextras:item/blanket_plain_halter",
+      "layer1": "equestrianextras:item/blanket_white_top_overlay"
+    }
+  }

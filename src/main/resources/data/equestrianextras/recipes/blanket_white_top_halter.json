@@ -1,0 +1,22 @@
+  {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "equestrianextras:blanket_white_top"
+      },
+      {
+        "item": "equestrianextras:halter"
+      }
+    ],
+    "result": {
+      "item": "equestrianextras:blanket_white_top_halter"
+    },
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "dyed"
+        ]
+      }
+    ]
+  }

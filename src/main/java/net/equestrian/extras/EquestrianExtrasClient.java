@@ -1,10 +1,13 @@
 package net.equestrian.extras;
 
 import net.equestrian.extras.block.ModBlocks;
+import net.equestrian.extras.item.ConditionalItemsF;
+import net.equestrian.extras.item.ConditionalItemsT;
 import net.equestrian.extras.item.ModItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.DyeableItem;
 
@@ -42,6 +45,40 @@ public class EquestrianExtrasClient implements ClientModInitializer  {
 	
 		for (int i = 0; i < ModBlocks.transparentBlocks.size(); i++) {
 			BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.transparentBlocks.get(i), RenderLayer.getCutout());
+		}
+
+
+		if (FabricLoader.getInstance().isModLoaded("dyed")) {
+			ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)(stack.getItem())).getColor(stack),
+				ConditionalItemsT.RACE_TACK_W1, 
+				ConditionalItemsT.RACE_TACK_W2, 
+				ConditionalItemsT.RACE_TACK_W3, 
+				ConditionalItemsT.RACE_TACK_W4, 
+				ConditionalItemsT.RACE_TACK_W5, 
+				ConditionalItemsT.RACE_TACK_W6, 
+				ConditionalItemsT.RACE_TACK_W7, 
+				ConditionalItemsT.RACE_TACK_W8,
+				ConditionalItemsT.BLANKET_WHITE_TOP,
+				ConditionalItemsT.BLANKET_WHITE_TOP_H,
+				ConditionalItemsT.BLANKET_WHITE_BOTTOM,
+				ConditionalItemsT.BLANKET_WHITE_BOTTOM_H
+			);
+		}
+		else {
+			ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)(stack.getItem())).getColor(stack),
+				ConditionalItemsF.RACE_TACK_W1, 
+				ConditionalItemsF.RACE_TACK_W2, 
+				ConditionalItemsF.RACE_TACK_W3, 
+				ConditionalItemsF.RACE_TACK_W4, 
+				ConditionalItemsF.RACE_TACK_W5, 
+				ConditionalItemsF.RACE_TACK_W6, 
+				ConditionalItemsF.RACE_TACK_W7, 
+				ConditionalItemsF.RACE_TACK_W8,
+				ConditionalItemsF.BLANKET_WHITE_TOP,
+				ConditionalItemsF.BLANKET_WHITE_TOP_H,
+				ConditionalItemsF.BLANKET_WHITE_BOTTOM,
+				ConditionalItemsF.BLANKET_WHITE_BOTTOM_H
+			);
 		}
 	}
 }
