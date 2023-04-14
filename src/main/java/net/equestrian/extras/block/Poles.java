@@ -103,13 +103,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return switch (state.get(PLACEMENT)) {
                         case 2 -> Block.createCuboidShape(0.0, bottomPoleMinY - placementChangeYMovement, minSide, 16.0, topPoleMaxY - placementChangeYMovement, maxSide);
-                        case 3 -> Block.createCuboidShape(0.0, bottomPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement, maxSide);
+                        case 3 -> Block.createCuboidShape(0.0, bottomPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement-0.1, maxSide);
                         default -> Block.createCuboidShape(0.0, bottomPoleMinY, minSide, 16.0, topPoleMaxY, maxSide);
                     };
                 } else {
                     return switch (state.get(PLACEMENT)) {
                         case 2 -> Block.createCuboidShape(minSide, bottomPoleMinY - placementChangeYMovement, 0.0, maxSide, topPoleMaxY - placementChangeYMovement, 16.0);
-                        case 3 -> Block.createCuboidShape(minSide, bottomPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement, 16.0);
+                        case 3 -> Block.createCuboidShape(minSide, bottomPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement-0.1, 16.0);
                         default -> Block.createCuboidShape(minSide, bottomPoleMinY, 0.0, maxSide, topPoleMaxY, 16.0);
                     };
                 }
@@ -118,13 +118,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return switch (state.get(PLACEMENT)) {
                         case 2 -> Block.createCuboidShape(0.0, topPoleMinY - placementChangeYMovement, minSide, 16.0, topPoleMaxY - placementChangeYMovement, maxSide);
-                        case 3 -> Block.createCuboidShape(0.0, topPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement, maxSide);
+                        case 3 -> Block.createCuboidShape(0.0, topPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement-0.1, maxSide);
                         default -> Block.createCuboidShape(0.0, topPoleMinY, minSide, 16.0, topPoleMaxY, maxSide);
                     };
                 } else {
                     return switch (state.get(PLACEMENT)) {
                         case 2 -> Block.createCuboidShape(minSide, topPoleMinY - placementChangeYMovement, 0.0, maxSide, topPoleMaxY - placementChangeYMovement, 16.0);
-                        case 3 -> Block.createCuboidShape(minSide, topPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement, 16.0);
+                        case 3 -> Block.createCuboidShape(minSide, topPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement-0.1, 16.0);
                         default -> Block.createCuboidShape(minSide, topPoleMinY, 0.0, maxSide, topPoleMaxY, 16.0);
                     };
                 }
@@ -317,13 +317,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     box = switch (state.get(PLACEMENT)) {
                         case 1 -> new Box(0.0, (bottomPoleMinY)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, topPoleMaxY *pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
-                        case 3 -> new Box(0.0, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        case 3 -> new Box(0.0, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock, (maxSide)*pixelToBlock+offset);
                         default -> new Box(0.0, (bottomPoleMinY - placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
                     };
                 } else {
                     box = switch (state.get(PLACEMENT)) {
                         case 1 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, topPoleMaxY *pixelToBlock+offset, 1.0);
-                        case 3 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, 1.0);
+                        case 3 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock, 1.0);
                         default -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY - placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, 1.0);
                     };
                 }
@@ -332,13 +332,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     box = switch (state.get(PLACEMENT)) {
                         case 1 -> new Box(0.0, (topPoleMinY)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, topPoleMaxY *pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
-                        case 3 -> new Box(0.0, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        case 3 -> new Box(0.0, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock, (maxSide)*pixelToBlock+offset);
                         default -> new Box(0.0, (topPoleMinY - placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
                     };
                 } else {
                     box = switch (state.get(PLACEMENT)) {
                         case 1 -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, topPoleMaxY *pixelToBlock+offset, 1.0);
-                        case 3 -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, 1.0);
+                        case 3 -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock, 1.0);
                         default -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY - placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, 1.0);
                     };
                 }
