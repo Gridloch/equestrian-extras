@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "N",
+      "P"
+    ],
+    "key": {
+      "N": {
+        "item": "minecraft:iron_nugget"
+      },
+      "P": {
+        "item": "equestrianextras:saddle_pad"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:race_tack_white_1"
+    },
+    "fabric:load_conditions": [
+      {
+        "condition": "fabric:all_mods_loaded",
+        "values": [
+          "dyed"
+        ]
+      }
+    ]
+  }

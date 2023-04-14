@@ -6,6 +6,8 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.equestrian.extras.block.ModBlocks;
 import net.equestrian.extras.config.ModConfig;
+import net.equestrian.extras.item.ConditionalItemsF;
+import net.equestrian.extras.item.ConditionalItemsT;
 import net.equestrian.extras.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -74,6 +76,14 @@ public class EquestrianExtras implements ModInitializer  {
 		// Proceed with mild caution.
 
 		ModItems.registerItems();
+		
+		if (FabricLoader.getInstance().isModLoaded("dyed")) {
+			ConditionalItemsT.registerItems();
+		}
+		else {
+			ConditionalItemsF.registerItems();
+		}
+
 		ModBlocks.registerBlocks();
 		Registry.register(Registry.SOUND_EVENT, DOOR_OPEN_SOUND, DOOR_OPEN_EVENT);
 		Registry.register(Registry.SOUND_EVENT, DOOR_CLOSE_SOUND, DOOR_CLOSE_EVENT);
