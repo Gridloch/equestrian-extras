@@ -54,6 +54,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     public final double bottomPoleMaxY;
     private final double topPoleMinY; // Lowest point on upper pole
     public final double topPoleMaxY;
+    public final boolean isLargePoles;
 
     public Poles(AbstractBlock.Settings settings) {
         this(settings, false);
@@ -63,6 +64,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
 
     public Poles(AbstractBlock.Settings settings, boolean isLargePoles) { //
         super(settings.nonOpaque());
+        this.isLargePoles = isLargePoles;
 
         if (isLargePoles) {
             singlePoleHeight = 6.0;
@@ -272,7 +274,8 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                     // Chance to break block when hit
                     int x = EquestrianExtras.RANDOM.nextInt(100); // Generates random integers 0 to 99
                     ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
-                    if (x < config.poleBreakChance()) {
+                    int breakChance = isLargePoles ? config.largePoleBreakChance() : config.poleBreakChance();
+                    if (x < breakChance) {
                         world.breakBlock(pos, true);
                     }
                 }

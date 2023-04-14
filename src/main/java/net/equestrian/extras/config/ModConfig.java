@@ -15,6 +15,9 @@ public class ModConfig implements ConfigData {
     private final Integer poleBreakChance = 10;
 
     @ConfigEntry.Gui.Tooltip
+    private final Integer largePoleBreakChance = 5;
+
+    @ConfigEntry.Gui.Tooltip
     private final boolean useImprovedBreeding = true;
 
     @ConfigEntry.Gui.Tooltip
@@ -47,6 +50,10 @@ public class ModConfig implements ConfigData {
 
     public Integer poleBreakChance() {
         return poleBreakChance;
+    }
+
+    public Integer largePoleBreakChance() {
+        return largePoleBreakChance;
     }
 
     public boolean useImprovedBreeding() {

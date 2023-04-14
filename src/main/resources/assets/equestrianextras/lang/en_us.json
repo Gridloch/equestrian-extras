@@ -345,12 +345,12 @@
 
   "text.autoconfig.equestrianextras.title": "Equestrian Extras Config", 
   "text.autoconfig.equestrianextras.category.default": "Options",
-  "text.autoconfig.equestrianextras.option.doubleDoorsSlideTogether": "Pair sliding doors", 
-  "text.autoconfig.equestrianextras.option.doubleDoorsSlideTogether.@Tooltip": "Double sliding doors move at the same time when opened or closed", 
   "text.autoconfig.equestrianextras.option.barrelBreakChance": "Barrels knocked over chance", 
   "text.autoconfig.equestrianextras.option.barrelBreakChance.@Tooltip": "Chance that barrels get knocked over (broken) when hit", 
-  "text.autoconfig.equestrianextras.option.poleBreakChance": "Pole knocked down chance", 
-  "text.autoconfig.equestrianextras.option.poleBreakChance.@Tooltip": "Chance that poles get knocked down (broken) when hit", 
+  "text.autoconfig.equestrianextras.option.poleBreakChance": "Colored pole knocked down chance",
+  "text.autoconfig.equestrianextras.option.poleBreakChance.@Tooltip": "Chance that smaller, colored poles get knocked down (broken) when hit",
+  "text.autoconfig.equestrianextras.option.largePoleBreakChance": "Log pole knocked down chance",
+  "text.autoconfig.equestrianextras.option.largePoleBreakChance.@Tooltip": "Chance that larger, wooden poles get knocked down (broken) when hit",
   "text.autoconfig.equestrianextras.option.useImprovedBreeding": "Use improved breeding", 
   "text.autoconfig.equestrianextras.option.useImprovedBreeding.@Tooltip": "Alters horse breeding formula so foals display similar stats to their parents", 
 
