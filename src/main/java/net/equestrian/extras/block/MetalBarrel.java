@@ -103,7 +103,7 @@ public class MetalBarrel extends SlabBlock {
             if (Boolean.TRUE.equals(b1)) {
                 // If entity has a player rider and is in close contact with berrel, play sound on first contact
                 // and continue to check for it
-                world.getBlockTickScheduler().schedule(new BlockPos(pos), this, 20);
+                world.createAndScheduleBlockTick(new BlockPos(pos), this, 20);
                 
                 if (state.get(HIT).equals(false)) {
                     world.playSound(

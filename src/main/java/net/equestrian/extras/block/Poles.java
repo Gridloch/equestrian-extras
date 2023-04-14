@@ -210,7 +210,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) {
-            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
@@ -259,8 +259,8 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
             if (b1) {
                 // If entity has a player rider and is in close contact with poles, play sound on first contact
                 // and continue to check for it
-                world.getBlockTickScheduler().schedule(new BlockPos(pos), this, 20);
-
+                world.createAndScheduleBlockTick(new BlockPos(pos), this, 20);
+                
                 if (state.get(HIT).equals(false)) {
                     world.playSound(
                         null, // Player - if non-null, will play sound for every nearby player *except* the specified player

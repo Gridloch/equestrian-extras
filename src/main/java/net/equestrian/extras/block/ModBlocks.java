@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.equestrian.extras.EquestrianExtras;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -11,6 +12,7 @@ import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.Material;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -29,7 +31,7 @@ public class ModBlocks {
 
 
 
-    public static final Block OAK_SADDLE_RACK = registerFlammableTransparencyBlock("oak_saddle_rack", 
+    public static final Block OAK_SADDLE_RACK = registerFlammableTransparencyBlock("oak_saddle_rack",
         new SaddleRack(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_STABLE,
         30, 20
@@ -1572,7 +1574,7 @@ public class ModBlocks {
 
     private static Block registerTransparencyBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
-        transparentBlocks.add(block);
+        BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
         return Registry.register(Registry.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
     }
 
@@ -1586,7 +1588,7 @@ public class ModBlocks {
     private static Block registerFlammableTransparencyBlock(String name, Block block, ItemGroup group, Integer burn, Integer spread) {
         registerBlockItem(name, block, group);
         FlammableBlockRegistry.getDefaultInstance().add(block, burn, spread);
-        transparentBlocks.add(block);
+        BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
         return Registry.register(Registry.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
     }
     

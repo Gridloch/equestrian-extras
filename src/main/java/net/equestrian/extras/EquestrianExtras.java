@@ -9,16 +9,16 @@ import net.equestrian.extras.config.ModConfig;
 import net.equestrian.extras.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.tag.TagFactory;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class EquestrianExtras implements ModInitializer {
+public class EquestrianExtras implements ModInitializer  {
 
 	public static final String MOD_ID = "equestrianextras";
 	public static final Random RANDOM = new Random();
@@ -36,13 +36,13 @@ public class EquestrianExtras implements ModInitializer {
 		private BlockTags() {
 			throw new IllegalStateException("Utility class");
 		}
-  		public static final Tag<Block> STANDARDS = TagFactory.BLOCK.create(new Identifier(MOD_ID, "standards"));
-		public static final Tag<Block> PANELSTANDARDS = TagFactory.BLOCK.create(new Identifier(MOD_ID, "panel_standards"));
-		public static final Tag<Block> VRSTANDARDS = TagFactory.BLOCK.create(new Identifier(MOD_ID, "vertical_rail_standards"));
-		public static final Tag<Block> GATEFILLER = TagFactory.BLOCK.create(new Identifier(MOD_ID, "gate_fillers"));
-		public static final Tag<Block> SHORT_FENCE = TagFactory.BLOCK.create(new Identifier(MOD_ID, "short_fences"));
-		public static final Tag<Block> SLIDEDOORS = TagFactory.BLOCK.create(new Identifier(MOD_ID, "sliding_doors"));
-		public static final Tag<Block> MBARRELS = TagFactory.BLOCK.create(new Identifier(MOD_ID, "metal_barrels"));
+  		public static final TagKey<Block> STANDARDS = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "standards"));
+		public static final TagKey<Block> PANELSTANDARDS = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "panel_standards"));
+		public static final TagKey<Block> VRSTANDARDS = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "vertical_rail_standards"));
+		public static final TagKey<Block> GATEFILLER = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "gate_fillers"));
+		public static final TagKey<Block> SHORT_FENCE = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "short_fences"));
+		public static final TagKey<Block> SLIDEDOORS = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "sliding_doors"));
+		public static final TagKey<Block> MBARRELS = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "metal_barrels"));
 	}
 
 	// Sliding door sounds

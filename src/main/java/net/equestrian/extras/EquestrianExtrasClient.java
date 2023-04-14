@@ -3,16 +3,15 @@ package net.equestrian.extras;
 import net.equestrian.extras.block.ModBlocks;
 import net.equestrian.extras.item.ModItems;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.client.render.RenderLayer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.DyeableItem;
 
 public class EquestrianExtrasClient implements ClientModInitializer  {
 
 	@Override
 	public void onInitializeClient() {
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem) stack.getItem()).getColor(stack),
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)(stack.getItem())).getColor(stack),
 			ModItems.RIBBON, 
 			ModItems.SADDLE_PAD,
 			ModItems.JUMP_TACK,
