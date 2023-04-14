@@ -35,7 +35,7 @@ Equestrian-Extras is a mod for Minecraft (Fabric) that adds some horse related c
      - Vertical Rail
      - Horizontal Rail
      - Panel
-     - Fancy Panel (these have connecting patterns a bit like glazed terracotta
+     - Fancy Panel (these have connecting patterns a bit like glazed terracotta)
    - Fillers (16 colors)
      - Ladder
      - Panel
