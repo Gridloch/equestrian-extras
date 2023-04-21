@@ -6,6 +6,7 @@ Equestrian-Extras is a mod for Minecraft (Fabric) that adds some horse related c
  - [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
  - [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
  - [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
+ - _(optional)_ [Dyed](https://www.curseforge.com/minecraft/mc-mods/dyed) - allows for more tack variants
 
 ## Features
 
@@ -39,10 +40,14 @@ Equestrian-Extras is a mod for Minecraft (Fabric) that adds some horse related c
    - Fillers (16 colors)
      - Ladder
      - Panel
-   - Poles - poles can be placed at different heights by right-clicking them with an empty hand may be knocked over (broken) when hit by a ridden horse
+   - Poles - placed like slabs, have adjustable heights and may be knocked over (broken) when hit by a ridden horse
      - Colored Poles (16 colours)
      - Log Poles (larger poles with log and stripped log variants)
- - Flags (16 colours) - are normally centered when placed but will move to the side when placed on standards
+     - Note:
+       - Poles can be placed at different heights by right-clicking them with an empty hand
+       - Sneaking while placing a pole will place it in the down position
+       - Ground poles (in the lowest position on a solid block) will emit a redstone signal instead of having a chance to break
+ - Flags (16 colours) - are normally centered when placed but will move to the side when placed on jump standards
  - Barrels (16 colors) - placed like slabs and may be knocked over (broken) when hit by a ridden horse
  
  ### Other

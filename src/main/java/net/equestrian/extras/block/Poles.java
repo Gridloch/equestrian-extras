@@ -45,6 +45,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final IntProperty PLACEMENT = IntProperty.of("placement", 1, 3);
     public static final BooleanProperty HIT = BooleanProperty.of("hit");
+    public static final BooleanProperty POWERED = Properties.POWERED;
 
     private final double singlePoleHeight; // Height of poles (from top to bottom), Should match width
     private final double placementChangeYMovement; // Movement up or down when pole has up or down placement
@@ -83,13 +84,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         bottomPoleMaxY = bottomPoleMinY + singlePoleHeight;
         topPoleMaxY = topPoleMinY + singlePoleHeight;
 
-        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, false).with(PLACEMENT, 1).with(HIT, false));
+        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, false).with(PLACEMENT, 1).with(HIT, false).with(POWERED, false));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(TYPE, WATERLOGGED, Properties.HORIZONTAL_FACING, PLACEMENT, HIT);
+        builder.add(TYPE, WATERLOGGED, Properties.HORIZONTAL_FACING, PLACEMENT, HIT, POWERED);
     }
 
     @Override
@@ -156,9 +157,9 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
 
         if (blockState.isOf(this)) {
-            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
+            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false).with(POWERED, false);
         }
-        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
+        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false).with(POWERED, false);
         Direction direction = ctx.getSide();
         if (direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.5) {
             return blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
@@ -241,8 +242,8 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         boolean blockIsHighestPole = world.getBlockState(pos.up()).canPathfindThrough(world, pos.up(), NavigationType.LAND);
         boolean blockIsGroundPole = state.get(TYPE).equals(SlabType.BOTTOM) && state.get(PLACEMENT).equals(2);
-        boolean blockBelowIsSolid = world.getBlockState(pos.down()).shouldSuffocate(world, pos);
-        if (!world.isClient && entity.hasPlayerRider() && blockIsHighestPole && !(blockIsGroundPole && blockBelowIsSolid)) {
+        boolean blockBelowIsSolid = world.getBlockState(pos.down()).isSolidBlock(world, pos);
+        if (!world.isClient && entity.hasPlayerRider() && blockIsHighestPole) {
             // If entity has a player rider, pole can be jumped over, and is not a ground pole on a solid block, then
             // check that entity is in close contact with the poles
             Box box = getBox(state).offset(pos);
@@ -262,21 +263,27 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 world.getBlockTickScheduler().schedule(new BlockPos(pos), this, 20);
 
                 if (state.get(HIT).equals(false)) {
-                    world.playSound(
-                        null, // Player - if non-null, will play sound for every nearby player *except* the specified player
-                        pos, // The position of where the sound will come from
-                        EquestrianExtras.POLE_HIT_EVENT, // The sound that will play
-                        SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
-                        1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
-                        1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
-                    );
                     world.setBlockState(pos, state.with(HIT, true), Block.NOTIFY_LISTENERS);
-                    // Chance to break block when hit
-                    int x = EquestrianExtras.RANDOM.nextInt(100); // Generates random integers 0 to 99
-                    ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
-                    int breakChance = isLargePoles ? config.largePoleBreakChance() : config.poleBreakChance();
-                    if (x < breakChance) {
-                        world.breakBlock(pos, true);
+                    if (blockIsGroundPole && blockBelowIsSolid) {
+                        world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
+                        this.updateNeighbors(world, pos);
+                    } else {
+                        world.playSound(
+                            null, // Player - if non-null, will play sound for every nearby player *except* the specified player
+                            pos, // The position of where the sound will come from
+                            EquestrianExtras.POLE_HIT_EVENT, // The sound that will play
+                            SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
+                            1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
+                            1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
+                        );
+
+                        // Chance to break block when hit
+                        int x = EquestrianExtras.RANDOM.nextInt(100); // Generates random integers 0 to 99
+                        ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+                        int breakChance = isLargePoles ? config.largePoleBreakChance() : config.poleBreakChance();
+                        if (x < breakChance) {
+                            world.breakBlock(pos, true);
+                        }
                     }
                 }
             }
@@ -288,6 +295,9 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         // checks for contact with poles
         Box box = getBox(state).offset(pos);
         List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, box);
+        boolean blockIsGroundPole = state.get(TYPE).equals(SlabType.BOTTOM) && state.get(PLACEMENT).equals(2);
+        boolean blockBelowIsSolid = world.getBlockState(pos.down()).isSolidBlock(world, pos);
+
         boolean b1 = false;
 
         if (!list.isEmpty()) {
@@ -296,7 +306,8 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 b1 = true;
             }
         }
-        world.setBlockState(pos, state.with(HIT, b1), Block.NOTIFY_LISTENERS);
+        world.setBlockState(pos, state.with(HIT, b1).with(POWERED, blockIsGroundPole && blockBelowIsSolid && b1), Block.NOTIFY_LISTENERS);
+        this.updateNeighbors(world, pos);
     }
 
 
@@ -360,6 +371,37 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
             }
         }
         return box;
+    }
+
+
+    protected void updateNeighbors(World world, BlockPos pos) {
+        world.updateNeighborsAlways(pos, this);
+        world.updateNeighborsAlways(pos.down(), this);
+    }
+
+    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+        return this.getRedstoneOutput(state);
+    }
+
+    public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+        return direction == Direction.UP ? this.getRedstoneOutput(state) : 0;
+    }
+
+    public boolean emitsRedstonePower(BlockState state) {
+        return true;
+    }
+
+
+    protected int getRedstoneOutput(BlockState state) {
+        return (Boolean)state.get(POWERED) ? 15 : 0;
+    }
+
+    protected int getRedstoneOutput(World world, BlockPos pos) {
+        return (Boolean)world.getBlockState(pos).get(POWERED) ? 15 : 0;
+    }
+
+    protected BlockState setRedstoneOutput(BlockState state, int rsOut) {
+        return (BlockState)state.with(POWERED, rsOut > 0);
     }
 }
 
