@@ -117,8 +117,8 @@ public class HalfFence extends FenceBlock {
         }
         else {
             boolean fullside = state.get(NORTH) && state.get(SOUTH) || state.get(EAST) && state.get(WEST);
-            boolean onsolid = !world.getBlockState(pos.down()).isAir();
-            state = state.with(DOWN, !(fullside && !onsolid));
+            boolean onsolid = world.getBlockState(pos.down()).getMaterial().isSolid();
+            state = state.with(DOWN, (!fullside || onsolid));
         }
 
         return state;
