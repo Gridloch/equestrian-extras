@@ -4,6 +4,7 @@
 build/
 out/
 classes/
+gradle/wrapper/jdk-17_windows-x64_bin.exe
 
 # eclipse
 
