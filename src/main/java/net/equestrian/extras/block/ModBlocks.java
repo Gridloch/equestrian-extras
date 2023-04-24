@@ -1011,105 +1011,7 @@ public class ModBlocks {
     );
 
 
-    public static final Block OAK_POLES = registerFlammableBlock("oak_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block SPRUCE_POLES = registerFlammableBlock("spruce_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block BIRCH_POLES = registerFlammableBlock("birch_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block JUNGLE_POLES = registerFlammableBlock("jungle_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block ACACIA_POLES = registerFlammableBlock("acacia_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block DARK_OAK_POLES = registerFlammableBlock("dark_oak_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block CRIMSON_POLES = registerFlammableBlock("crimson_poles",
-            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block WARPED_POLES = registerFlammableBlock("warped_poles",
-            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-
-    public static final Block STRIPPED_OAK_POLES = registerFlammableBlock("stripped_oak_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_SPRUCE_POLES = registerFlammableBlock("stripped_spruce_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_BIRCH_POLES = registerFlammableBlock("stripped_birch_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_JUNGLE_POLES = registerFlammableBlock("stripped_jungle_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_ACACIA_POLES = registerFlammableBlock("stripped_acacia_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_DARK_OAK_POLES = registerFlammableBlock("stripped_dark_oak_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_CRIMSON_POLES = registerFlammableBlock("stripped_crimson_poles",
-            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_WARPED_POLES = registerFlammableBlock("stripped_warped_poles",
-            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-
-    public static final Block BROWN_POLES = registerFlammableBlock("brown_poles", 
+    public static final Block BROWN_POLES = registerFlammableBlock("brown_poles",
         new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
@@ -1478,6 +1380,105 @@ public class ModBlocks {
     public static final Block BLACK_FLAG = registerBlock("black_flag", 
         new Flag(FabricBlockSettings.of(Material.WOOD).resistance(1.0f).hardness(1.0f).collidable(false)) {},
         EquestrianExtras.ITEM_GROUP_ARENA
+    );
+
+
+
+    public static final Block OAK_POLES = registerFlammableBlock("oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block SPRUCE_POLES = registerFlammableBlock("spruce_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block BIRCH_POLES = registerFlammableBlock("birch_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block JUNGLE_POLES = registerFlammableBlock("jungle_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block ACACIA_POLES = registerFlammableBlock("acacia_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block DARK_OAK_POLES = registerFlammableBlock("dark_oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block CRIMSON_POLES = registerFlammableBlock("crimson_poles",
+            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block WARPED_POLES = registerFlammableBlock("warped_poles",
+            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+
+    public static final Block STRIPPED_OAK_POLES = registerFlammableBlock("stripped_oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_SPRUCE_POLES = registerFlammableBlock("stripped_spruce_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_BIRCH_POLES = registerFlammableBlock("stripped_birch_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_JUNGLE_POLES = registerFlammableBlock("stripped_jungle_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_ACACIA_POLES = registerFlammableBlock("stripped_acacia_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_DARK_OAK_POLES = registerFlammableBlock("stripped_dark_oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_CRIMSON_POLES = registerFlammableBlock("stripped_crimson_poles",
+            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_WARPED_POLES = registerFlammableBlock("stripped_warped_poles",
+            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
     );
 
 

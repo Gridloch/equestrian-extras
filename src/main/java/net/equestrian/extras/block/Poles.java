@@ -45,7 +45,6 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     public static final IntProperty PLACEMENT = IntProperty.of("placement", 1, 3);
     public static final BooleanProperty HIT = BooleanProperty.of("hit");
-    public static final BooleanProperty POWERED = Properties.POWERED;
 
     private final double singlePoleHeight; // Height of poles (from top to bottom), Should match width
     private final double placementChangeYMovement; // Movement up or down when pole has up or down placement
@@ -84,13 +83,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         bottomPoleMaxY = bottomPoleMinY + singlePoleHeight;
         topPoleMaxY = topPoleMinY + singlePoleHeight;
 
-        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, false).with(PLACEMENT, 1).with(HIT, false).with(POWERED, false));
+        this.setDefaultState(this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, false).with(PLACEMENT, 1).with(HIT, false));
         setDefaultState(this.stateManager.getDefaultState().with(Properties.HORIZONTAL_FACING, Direction.NORTH));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(TYPE, WATERLOGGED, Properties.HORIZONTAL_FACING, PLACEMENT, HIT, POWERED);
+        builder.add(TYPE, WATERLOGGED, Properties.HORIZONTAL_FACING, PLACEMENT, HIT);
     }
 
     @Override
@@ -157,9 +156,9 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
 
         if (blockState.isOf(this)) {
-            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false).with(POWERED, false);
+            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
         }
-        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false).with(POWERED, false);
+        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
         Direction direction = ctx.getSide();
         if (direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.5) {
             return blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
@@ -264,10 +263,8 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
 
                 if (state.get(HIT).equals(false)) {
                     world.setBlockState(pos, state.with(HIT, true), Block.NOTIFY_LISTENERS);
-                    if (blockIsGroundPole && blockBelowIsSolid) {
-                        world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
-                        this.updateNeighbors(world, pos);
-                    } else {
+                    this.updateNeighbors(world, pos);
+                    if (!blockIsGroundPole || !blockBelowIsSolid) {
                         world.playSound(
                             null, // Player - if non-null, will play sound for every nearby player *except* the specified player
                             pos, // The position of where the sound will come from
@@ -295,8 +292,6 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         // checks for contact with poles
         Box box = getBox(state).offset(pos);
         List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, box);
-        boolean blockIsGroundPole = state.get(TYPE).equals(SlabType.BOTTOM) && state.get(PLACEMENT).equals(2);
-        boolean blockBelowIsSolid = world.getBlockState(pos.down()).isSolidBlock(world, pos);
 
         boolean b1 = false;
 
@@ -306,7 +301,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 b1 = true;
             }
         }
-        world.setBlockState(pos, state.with(HIT, b1).with(POWERED, blockIsGroundPole && blockBelowIsSolid && b1), Block.NOTIFY_LISTENERS);
+        world.setBlockState(pos, state.with(HIT, b1), Block.NOTIFY_LISTENERS);
         this.updateNeighbors(world, pos);
     }
 
@@ -393,15 +388,15 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
 
 
     protected int getRedstoneOutput(BlockState state) {
-        return (Boolean)state.get(POWERED) ? 15 : 0;
+        return (Boolean)state.get(HIT) ? 15 : 0;
     }
 
     protected int getRedstoneOutput(World world, BlockPos pos) {
-        return (Boolean)world.getBlockState(pos).get(POWERED) ? 15 : 0;
+        return (Boolean)world.getBlockState(pos).get(HIT) ? 15 : 0;
     }
 
     protected BlockState setRedstoneOutput(BlockState state, int rsOut) {
-        return (BlockState)state.with(POWERED, rsOut > 0);
+        return (BlockState)state.with(HIT, rsOut > 0);
     }
 }
 

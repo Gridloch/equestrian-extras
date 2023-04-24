@@ -6,13 +6,13 @@ Equestrian-Extras is a mod for Minecraft (Fabric) that adds some horse related c
  - [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
  - [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
  - [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
- - _(optional)_ [Dyed](https://www.curseforge.com/minecraft/mc-mods/dyed) - allows for more tack variants
+ - [Dyed](https://www.curseforge.com/minecraft/mc-mods/dyed) _(optional)_ - allows for more tack variants
 
 ## Features
 
 ### Stable and Pasture
  - Horse blankets and halters (worn in the armor slot and can be dyed any color like normal leather horse armor)
- - Saddle Racks - saddles can be placed on saddle racks similar to how flowers can be placed in pots
+ - Saddle Racks - saddles can be placed on saddle racks
  - Sliding and Dutch doors
  - Stable panels and bars (can be centered by holding the sneak key while placing)
  - Straw bedding (stacks like snow layers)
@@ -40,15 +40,15 @@ Equestrian-Extras is a mod for Minecraft (Fabric) that adds some horse related c
    - Fillers (16 colors)
      - Ladder
      - Panel
-   - Poles - placed like slabs, have adjustable heights and may be knocked over (broken) when hit by a ridden horse
+   - Poles - placed like slabs, have adjustable heights and may be knocked over (broken) when hit by a ridden entity
      - Colored Poles (16 colours)
      - Log Poles (larger poles with log and stripped log variants)
      - Note:
        - Poles can be placed at different heights by right-clicking them with an empty hand
        - Sneaking while placing a pole will place it in the down position
-       - Ground poles (in the lowest position on a solid block) will emit a redstone signal instead of having a chance to break
+       - Poles emit a redstone signal when they are hit by a ridden entity
  - Flags (16 colours) - are normally centered when placed but will move to the side when placed on jump standards
- - Barrels (16 colors) - placed like slabs and may be knocked over (broken) when hit by a ridden horse
+ - Barrels (16 colors) - placed like slabs and may be knocked over (broken) when hit by a ridden entity
  
  ### Other
   - Horse breeding is altered to allow foals to be more similar to their parents
