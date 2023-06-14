@@ -3,19 +3,11 @@
     "display": {
         "thirdperson_righthand": {
             "scale": [ 0.5, 0.5, 0.5 ],
-            "rotation": [ 0, 90, 0 ]
-        },
-        "thirdperson_lefthand": {
-            "scale": [ 0.5, 0.5, 0.5 ],
-            "rotation": [ 0, 90, 0 ]
+            "rotation": [ 0, 0, 0 ]
         },
         "firstperson_righthand": {
             "scale": [ 0.5, 0.5, 0.5 ],
-            "rotation": [ 0, 90, 0 ]
-        },
-        "firstperson_lefthand": {
-            "scale": [ 0.5, 0.5, 0.5 ],
-            "rotation": [ 0, 90, 0 ]
+            "rotation": [ 30, 45, 0 ]
         },
         "gui": {
             "rotation": [ 30, 45, 0 ],
