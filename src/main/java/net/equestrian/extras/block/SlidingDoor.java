@@ -190,8 +190,6 @@ public class SlidingDoor extends DoorBlock {
      * @return True if the door's open state was changed, false if it was not
      */
     private boolean doorSlide(BlockState state, World world, BlockPos pos) {
-        // TODO This sort of works now but probably shouldn't produce block breaking particles every time
-        //  you open/close a door...
 
         Boolean slide = false;
         boolean isUpperBlock = state.get(HALF) == DoubleBlockHalf.UPPER;
