@@ -29,49 +29,54 @@ public abstract class HorseBreeding extends AnimalEntity {
         if (config.useImprovedBreeding()) {
             
             //Health
-            double h = Math.random();
-            double hBonus = (Math.random()*(config.maxIncrease()-config.minIncrease())+config.minIncrease())*30/100; // random bonus between max and min percent of 30
-            double health = (this.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH)*h) + (mate.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH)*(1-h)) + hBonus;
-            
-            if (health > config.maxBreedHealth()) {
-                health = config.maxBreedHealth(); // Prevents health exceeding max
-            }
-            else if (health < config.minBreedHealth()) {
-                health =  config.minBreedHealth(); // Prevents health less than min
-            }
-
+            double health = generateStat(30,
+                    this.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH),
+                    mate.getAttributeBaseValue(EntityAttributes.GENERIC_MAX_HEALTH),
+                    config.maxBreedHealth(),
+                    config.minBreedHealth());
             child.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(health);
 
 
             //Jump
-            double j = Math.random();
-            double jBonus = (Math.random() * (config.maxIncrease() - config.minIncrease()) + config.minIncrease()) / 100; // random bonus between max and min percent of 1.0
-            double jump = (this.getAttributeBaseValue(EntityAttributes.HORSE_JUMP_STRENGTH)*j) + (mate.getAttributeBaseValue(EntityAttributes.HORSE_JUMP_STRENGTH)*(1-j)) + jBonus;
-            
-            if (jump > config.maxBreedJump()) {
-                jump = config.maxBreedJump(); // Prevents jump exceeding max
-            }
-            else if (jump < config.minBreedJump()) {
-                jump = config.minBreedJump(); // Prevents jump less than min
-            }
-            
+            double jump = generateStat(1,
+                    this.getAttributeBaseValue(EntityAttributes.HORSE_JUMP_STRENGTH),
+                    mate.getAttributeBaseValue(EntityAttributes.HORSE_JUMP_STRENGTH),
+                    config.maxBreedJump(),
+                    config.minBreedJump());
             child.getAttributeInstance(EntityAttributes.HORSE_JUMP_STRENGTH).setBaseValue(jump);
 
 
             //Speed
-            double s = Math.random();
-            double sBonus = (Math.random()*(config.maxIncrease()-config.minIncrease())+config.minIncrease())*0.3375/100; // random bonus between max and min percent of 0.3375
-            double speed = (this.getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED)*s) + (mate.getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED)*(1-s)) + sBonus;
-            
-            if (speed > config.maxBreedSpeed()) {
-                speed = config.maxBreedSpeed(); // Prevents speed exceeding max
-            }
-            else if (speed < config.minBreedSpeed()) {
-                speed = config.minBreedSpeed(); // Prevents speed less than min
-            }
-            
+            double speed = generateStat(0.3375,
+                    this.getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED),
+                    mate.getAttributeBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED),
+                    config.maxBreedSpeed(),
+                    config.minBreedSpeed());
             child.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(speed);
-
         }
+    }
+
+    /** Generates a foal stat based on the parents stats
+     * @param maxVanillaStat the max vanilla value of the stat
+     * @param parent1Stat the stat from the first parent
+     * @param parent2Stat the stat from the other parent
+     * @param maxBreedable the maximum percent value of the vanilla stat that the foals stat can increase/decrease by
+     * @param minBreedable the minimum percent value of the vanilla stat that the foals stat can increase/decrease by
+     */
+    private static double generateStat(double maxVanillaStat, double parent1Stat, double parent2Stat, double maxBreedable, double minBreedable) {
+        ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+
+        double randomWeight = Math.random();
+        double bonus = (Math.random()*(config.maxIncrease()-config.minIncrease())+config.minIncrease())* maxVanillaStat /100; // random bonus between max and min percent of the max vanilla stat
+        double newStat = (parent1Stat*randomWeight) + (parent2Stat*(1-randomWeight)) + bonus;
+
+        if (newStat > maxBreedable) {
+            newStat = maxBreedable; // Prevents newStat exceeding max
+        }
+        else if (newStat < minBreedable) {
+            newStat = minBreedable; // Prevents newStat less than min
+        }
+
+        return newStat;
     }
 }

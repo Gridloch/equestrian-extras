@@ -624,97 +624,97 @@ public class ModBlocks {
 
 
     public static final Block BR_VRSTANDARD = registerFlammableBlock("brown_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block R_VRSTANDARD = registerFlammableBlock("red_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block O_VRSTANDARD = registerFlammableBlock("orange_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block Y_VRSTANDARD = registerFlammableBlock("yellow_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block L_VRSTANDARD = registerFlammableBlock("lime_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block GR_VRSTANDARD = registerFlammableBlock("green_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block C_VRSTANDARD = registerFlammableBlock("cyan_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block LB_VRSTANDARD = registerFlammableBlock("light_blue_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block B_VRSTANDARD = registerFlammableBlock("blue_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block P_VRSTANDARD = registerFlammableBlock("purple_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block M_VRSTANDARD = registerFlammableBlock("magenta_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block PK_VRSTANDARD = registerFlammableBlock("pink_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block W_VRSTANDARD = registerFlammableBlock("white_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block LG_VRSTANDARD = registerFlammableBlock("light_gray_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block G_VRSTANDARD = registerFlammableBlock("gray_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block K_VRSTANDARD = registerFlammableBlock("black_vertical_rail_standard", 
-        new VRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
@@ -722,97 +722,97 @@ public class ModBlocks {
 
 
     public static final Block BR_HRSTANDARD = registerFlammableBlock("brown_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block R_HRSTANDARD = registerFlammableBlock("red_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block O_HRSTANDARD = registerFlammableBlock("orange_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block Y_HRSTANDARD = registerFlammableBlock("yellow_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block L_HRSTANDARD = registerFlammableBlock("lime_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block GR_HRSTANDARD = registerFlammableBlock("green_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block C_HRSTANDARD = registerFlammableBlock("cyan_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block LB_HRSTANDARD = registerFlammableBlock("light_blue_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block B_HRSTANDARD = registerFlammableBlock("blue_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block P_HRSTANDARD = registerFlammableBlock("purple_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block M_HRSTANDARD = registerFlammableBlock("magenta_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block PK_HRSTANDARD = registerFlammableBlock("pink_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block W_HRSTANDARD = registerFlammableBlock("white_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block LG_HRSTANDARD = registerFlammableBlock("light_gray_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block G_HRSTANDARD = registerFlammableBlock("gray_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block K_HRSTANDARD = registerFlammableBlock("black_horizontal_rail_standard", 
-        new HRStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
@@ -820,298 +820,200 @@ public class ModBlocks {
 
 
     public static final Block BR_PSTANDARD = registerFlammableBlock("brown_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block R_PSTANDARD = registerFlammableBlock("red_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block O_PSTANDARD = registerFlammableBlock("orange_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block Y_PSTANDARD = registerFlammableBlock("yellow_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block L_PSTANDARD = registerFlammableBlock("lime_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block GR_PSTANDARD = registerFlammableBlock("green_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block C_PSTANDARD = registerFlammableBlock("cyan_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block LB_PSTANDARD = registerFlammableBlock("light_blue_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block B_PSTANDARD = registerFlammableBlock("blue_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block P_PSTANDARD = registerFlammableBlock("purple_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block M_PSTANDARD = registerFlammableBlock("magenta_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block PK_PSTANDARD = registerFlammableBlock("pink_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block W_PSTANDARD = registerFlammableBlock("white_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block LG_PSTANDARD = registerFlammableBlock("light_gray_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block G_PSTANDARD = registerFlammableBlock("gray_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block K_PSTANDARD = registerFlammableBlock("black_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
     
 
     public static final Block BR_FPSTANDARD = registerFlammableBlock("brown_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block R_FPSTANDARD = registerFlammableBlock("red_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block O_FPSTANDARD = registerFlammableBlock("orange_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block Y_FPSTANDARD = registerFlammableBlock("yellow_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block L_FPSTANDARD = registerFlammableBlock("lime_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block GR_FPSTANDARD = registerFlammableBlock("green_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block C_FPSTANDARD = registerFlammableBlock("cyan_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block LB_FPSTANDARD = registerFlammableBlock("light_blue_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block B_FPSTANDARD = registerFlammableBlock("blue_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block P_FPSTANDARD = registerFlammableBlock("purple_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block M_FPSTANDARD = registerFlammableBlock("magenta_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block PK_FPSTANDARD = registerFlammableBlock("pink_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block W_FPSTANDARD = registerFlammableBlock("white_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block LG_FPSTANDARD = registerFlammableBlock("light_gray_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block G_FPSTANDARD = registerFlammableBlock("gray_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
     public static final Block K_FPSTANDARD = registerFlammableBlock("black_fancy_panel_wing_standard", 
-        new PStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new JumpStandard(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
     );
 
 
-    public static final Block OAK_POLES = registerFlammableBlock("oak_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block SPRUCE_POLES = registerFlammableBlock("spruce_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block BIRCH_POLES = registerFlammableBlock("birch_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block JUNGLE_POLES = registerFlammableBlock("jungle_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block ACACIA_POLES = registerFlammableBlock("acacia_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block DARK_OAK_POLES = registerFlammableBlock("dark_oak_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block CRIMSON_POLES = registerFlammableBlock("crimson_poles",
-            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block WARPED_POLES = registerFlammableBlock("warped_poles",
-            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-
-    public static final Block STRIPPED_OAK_POLES = registerFlammableBlock("stripped_oak_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_SPRUCE_POLES = registerFlammableBlock("stripped_spruce_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_BIRCH_POLES = registerFlammableBlock("stripped_birch_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_JUNGLE_POLES = registerFlammableBlock("stripped_jungle_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_ACACIA_POLES = registerFlammableBlock("stripped_acacia_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_DARK_OAK_POLES = registerFlammableBlock("stripped_dark_oak_poles",
-            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_CRIMSON_POLES = registerFlammableBlock("stripped_crimson_poles",
-            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-    public static final Block STRIPPED_WARPED_POLES = registerFlammableBlock("stripped_warped_poles",
-            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
-            EquestrianExtras.ITEM_GROUP_ARENA,
-            30, 20
-    );
-
-
-    public static final Block BROWN_POLES = registerFlammableBlock("brown_poles", 
+    public static final Block BROWN_POLES = registerFlammableBlock("brown_poles",
         new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         30, 20
@@ -1480,6 +1382,105 @@ public class ModBlocks {
     public static final Block BLACK_FLAG = registerBlock("black_flag", 
         new Flag(FabricBlockSettings.of(Material.WOOD).resistance(1.0f).hardness(1.0f).collidable(false)) {},
         EquestrianExtras.ITEM_GROUP_ARENA
+    );
+
+
+
+    public static final Block OAK_POLES = registerFlammableBlock("oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block SPRUCE_POLES = registerFlammableBlock("spruce_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block BIRCH_POLES = registerFlammableBlock("birch_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block JUNGLE_POLES = registerFlammableBlock("jungle_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block ACACIA_POLES = registerFlammableBlock("acacia_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block DARK_OAK_POLES = registerFlammableBlock("dark_oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block CRIMSON_POLES = registerFlammableBlock("crimson_poles",
+            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block WARPED_POLES = registerFlammableBlock("warped_poles",
+            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+
+    public static final Block STRIPPED_OAK_POLES = registerFlammableBlock("stripped_oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_SPRUCE_POLES = registerFlammableBlock("stripped_spruce_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_BIRCH_POLES = registerFlammableBlock("stripped_birch_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_JUNGLE_POLES = registerFlammableBlock("stripped_jungle_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_ACACIA_POLES = registerFlammableBlock("stripped_acacia_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_DARK_OAK_POLES = registerFlammableBlock("stripped_dark_oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_CRIMSON_POLES = registerFlammableBlock("stripped_crimson_poles",
+            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_WARPED_POLES = registerFlammableBlock("stripped_warped_poles",
+            new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
     );
 
 

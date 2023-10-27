@@ -14,7 +14,7 @@ public class ModItems {
     }
 
     public static final Item RIBBON = registerItem("ribbon", 
-        new DyedItem(
+        new DyeableHorseArmorItem(0, "ribbon",
             new FabricItemSettings().group(EquestrianExtras.ITEM_GROUP_ARENA).maxCount(16)
         )
     );

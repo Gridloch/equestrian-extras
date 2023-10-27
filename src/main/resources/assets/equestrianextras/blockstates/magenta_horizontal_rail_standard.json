@@ -5,20 +5,47 @@
     "facing=south,up=0,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "y":  180, "uvlock": false },
     "facing=west,up=0,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "y":  270, "uvlock": false },
 
+
     "facing=north,up=1,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "uvlock": false },
     "facing=east,up=1,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "y":  90, "uvlock": false },
     "facing=south,up=1,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "y":  180, "uvlock": false },
     "facing=west,up=1,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "y":  270, "uvlock": false },
+
+    "facing=north,up=2,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "uvlock": false },
+    "facing=east,up=2,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "y":  90, "uvlock": false },
+    "facing=south,up=2,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "y":  180, "uvlock": false },
+    "facing=west,up=2,down=0": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_b", "y":  270, "uvlock": false },
+
 
     "facing=north,up=0,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_t", "uvlock": false },
     "facing=east,up=0,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_t", "y":  90, "uvlock": false },
     "facing=south,up=0,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_t", "y":  180, "uvlock": false },
     "facing=west,up=0,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_t", "y":  270, "uvlock": false },
 
+    "facing=north,up=0,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_t", "uvlock": false },
+    "facing=east,up=0,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_t", "y":  90, "uvlock": false },
+    "facing=south,up=0,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_t", "y":  180, "uvlock": false },
+    "facing=west,up=0,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_t", "y":  270, "uvlock": false },
+
+
     "facing=north,up=1,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "uvlock": false },
     "facing=east,up=1,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  90, "uvlock": false },
     "facing=south,up=1,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  180, "uvlock": false },
-    "facing=west,up=1,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  270, "uvlock": false }
+    "facing=west,up=1,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  270, "uvlock": false },
+
+    "facing=north,up=2,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "uvlock": false },
+    "facing=east,up=2,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  90, "uvlock": false },
+    "facing=south,up=2,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  180, "uvlock": false },
+    "facing=west,up=2,down=1": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  270, "uvlock": false },
+
+    "facing=north,up=1,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "uvlock": false },
+    "facing=east,up=1,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  90, "uvlock": false },
+    "facing=south,up=1,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  180, "uvlock": false },
+    "facing=west,up=1,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  270, "uvlock": false },
+
+    "facing=north,up=2,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "uvlock": false },
+    "facing=east,up=2,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  90, "uvlock": false },
+    "facing=south,up=2,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  180, "uvlock": false },
+    "facing=west,up=2,down=2": { "model": "equestrianextras:block/standards/magenta_horizontal_rail_standard_m", "y":  270, "uvlock": false }
   }
 }
-

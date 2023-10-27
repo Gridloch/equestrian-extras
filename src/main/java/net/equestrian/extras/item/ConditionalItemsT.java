@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+// Registers white tack items and displays them in the creative menu
 public class ConditionalItemsT {
 
     private ConditionalItemsT() {

@@ -1,5 +1,5 @@
 {
-    "parent": "minecraft:item/handheld",
+    "parent": "equestrianextras:item/dressage_lettera",
     "textures": {
       "layer0": "equestrianextras:block/letter_h"
     }

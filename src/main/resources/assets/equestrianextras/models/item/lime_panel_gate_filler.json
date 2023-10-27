@@ -1,42 +1,6 @@
 {
-  "parent": "equestrianextras:block/white_panel_gate_filler_inventory",
+    "parent": "equestrianextras:item/white_panel_gate_filler",
 	"textures": {
-		"0":"equestrianextras:block/lime_planks"
-	},
-  "display": {
-      "thirdperson_righthand": {
-          "scale": [ 0.5, 0.5, 0.5 ],
-          "rotation": [ 0, 90, 0 ]
-      },
-      "thirdperson_lefthand": {
-          "scale": [ 0.5, 0.5, 0.5 ],
-          "rotation": [ 0, 90, 0 ]
-      },
-      "firstperson_righthand": {
-          "scale": [ 0.5, 0.5, 0.5 ],
-          "rotation": [ 0, 90, 0 ]
-      },
-      "firstperson_lefthand": {
-          "scale": [ 0.5, 0.5, 0.5 ],
-          "rotation": [ 0, 90, 0 ]
-      },
-      "gui": {
-          "rotation": [ 30, 45, 0 ],
-          "translation": [ 0, 0, 0],
-          "scale":[ 0.8, 0.8, 0.8 ]
-      },
-      "fixed": {
-          "rotation": [ 0, 0, 0 ],
-          "translation": [ 0, 0, 0],
-          "scale":[ 0.5, 0.5, 0.5 ]
-      },
-      "head": {
-          "scale": [ 0.5, 0.5, 0.5 ],
-          "rotation": [ 0, 90, 0 ]
-      },
-      "ground": {
-          "scale": [ 0.5, 0.5, 0.5 ],
-          "rotation": [ 0, 90, 0 ]
-      }
-  }
+		"0": "equestrianextras:block/lime_planks"
+	}
 }

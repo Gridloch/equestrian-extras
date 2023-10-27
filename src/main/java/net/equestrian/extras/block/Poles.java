@@ -103,13 +103,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return switch (state.get(PLACEMENT)) {
                         case 2 -> Block.createCuboidShape(0.0, bottomPoleMinY - placementChangeYMovement, minSide, 16.0, topPoleMaxY - placementChangeYMovement, maxSide);
-                        case 3 -> Block.createCuboidShape(0.0, bottomPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement, maxSide);
+                        case 3 -> Block.createCuboidShape(0.0, bottomPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement-0.1, maxSide);
                         default -> Block.createCuboidShape(0.0, bottomPoleMinY, minSide, 16.0, topPoleMaxY, maxSide);
                     };
                 } else {
                     return switch (state.get(PLACEMENT)) {
                         case 2 -> Block.createCuboidShape(minSide, bottomPoleMinY - placementChangeYMovement, 0.0, maxSide, topPoleMaxY - placementChangeYMovement, 16.0);
-                        case 3 -> Block.createCuboidShape(minSide, bottomPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement, 16.0);
+                        case 3 -> Block.createCuboidShape(minSide, bottomPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement-0.1, 16.0);
                         default -> Block.createCuboidShape(minSide, bottomPoleMinY, 0.0, maxSide, topPoleMaxY, 16.0);
                     };
                 }
@@ -118,13 +118,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     return switch (state.get(PLACEMENT)) {
                         case 2 -> Block.createCuboidShape(0.0, topPoleMinY - placementChangeYMovement, minSide, 16.0, topPoleMaxY - placementChangeYMovement, maxSide);
-                        case 3 -> Block.createCuboidShape(0.0, topPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement, maxSide);
+                        case 3 -> Block.createCuboidShape(0.0, topPoleMinY + placementChangeYMovement, minSide, 16.0, topPoleMaxY + placementChangeYMovement-0.1, maxSide);
                         default -> Block.createCuboidShape(0.0, topPoleMinY, minSide, 16.0, topPoleMaxY, maxSide);
                     };
                 } else {
                     return switch (state.get(PLACEMENT)) {
                         case 2 -> Block.createCuboidShape(minSide, topPoleMinY - placementChangeYMovement, 0.0, maxSide, topPoleMaxY - placementChangeYMovement, 16.0);
-                        case 3 -> Block.createCuboidShape(minSide, topPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement, 16.0);
+                        case 3 -> Block.createCuboidShape(minSide, topPoleMinY + placementChangeYMovement, 0.0, maxSide, topPoleMaxY + placementChangeYMovement-0.1, 16.0);
                         default -> Block.createCuboidShape(minSide, topPoleMinY, 0.0, maxSide, topPoleMaxY, 16.0);
                     };
                 }
@@ -241,8 +241,8 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         boolean blockIsHighestPole = world.getBlockState(pos.up()).canPathfindThrough(world, pos.up(), NavigationType.LAND);
         boolean blockIsGroundPole = state.get(TYPE).equals(SlabType.BOTTOM) && state.get(PLACEMENT).equals(2);
-        boolean blockBelowIsSolid = world.getBlockState(pos.down()).shouldSuffocate(world, pos);
-        if (!world.isClient && entity.hasPlayerRider() && blockIsHighestPole && !(blockIsGroundPole && blockBelowIsSolid)) {
+        boolean blockBelowIsSolid = world.getBlockState(pos.down()).isSolidBlock(world, pos);
+        if (!world.isClient && entity.hasPlayerRider() && blockIsHighestPole) {
             // If entity has a player rider, pole can be jumped over, and is not a ground pole on a solid block, then
             // check that entity is in close contact with the poles
             Box box = getBox(state).offset(pos);
@@ -262,21 +262,25 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 world.createAndScheduleBlockTick(new BlockPos(pos), this, 20);
                 
                 if (state.get(HIT).equals(false)) {
-                    world.playSound(
-                        null, // Player - if non-null, will play sound for every nearby player *except* the specified player
-                        pos, // The position of where the sound will come from
-                        EquestrianExtras.POLE_HIT_EVENT, // The sound that will play
-                        SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
-                        1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
-                        1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
-                    );
                     world.setBlockState(pos, state.with(HIT, true), Block.NOTIFY_LISTENERS);
-                    // Chance to break block when hit
-                    int x = EquestrianExtras.RANDOM.nextInt(100); // Generates random integers 0 to 99
-                    ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
-                    int breakChance = isLargePoles ? config.largePoleBreakChance() : config.poleBreakChance();
-                    if (x < breakChance) {
-                        world.breakBlock(pos, true);
+                    this.updateNeighbors(world, pos);
+                    if (!blockIsGroundPole || !blockBelowIsSolid) {
+                        world.playSound(
+                            null, // Player - if non-null, will play sound for every nearby player *except* the specified player
+                            pos, // The position of where the sound will come from
+                            EquestrianExtras.POLE_HIT_EVENT, // The sound that will play
+                            SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
+                            1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
+                            1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
+                        );
+
+                        // Chance to break block when hit
+                        int x = EquestrianExtras.RANDOM.nextInt(100); // Generates random integers 0 to 99
+                        ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
+                        int breakChance = isLargePoles ? config.largePoleBreakChance() : config.poleBreakChance();
+                        if (x < breakChance) {
+                            world.breakBlock(pos, true);
+                        }
                     }
                 }
             }
@@ -288,6 +292,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         // checks for contact with poles
         Box box = getBox(state).offset(pos);
         List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, box);
+
         boolean b1 = false;
 
         if (!list.isEmpty()) {
@@ -297,6 +302,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
             }
         }
         world.setBlockState(pos, state.with(HIT, b1), Block.NOTIFY_LISTENERS);
+        this.updateNeighbors(world, pos);
     }
 
 
@@ -317,13 +323,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     box = switch (state.get(PLACEMENT)) {
                         case 1 -> new Box(0.0, (bottomPoleMinY)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, topPoleMaxY *pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
-                        case 3 -> new Box(0.0, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        case 3 -> new Box(0.0, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock, (maxSide)*pixelToBlock+offset);
                         default -> new Box(0.0, (bottomPoleMinY - placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
                     };
                 } else {
                     box = switch (state.get(PLACEMENT)) {
                         case 1 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, topPoleMaxY *pixelToBlock+offset, 1.0);
-                        case 3 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, 1.0);
+                        case 3 -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock, 1.0);
                         default -> new Box((minSide)*pixelToBlock-offset, (bottomPoleMinY - placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, 1.0);
                     };
                 }
@@ -332,13 +338,13 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
                 if (dir == Direction.NORTH || dir == Direction.SOUTH) {
                     box = switch (state.get(PLACEMENT)) {
                         case 1 -> new Box(0.0, (topPoleMinY)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, topPoleMaxY *pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
-                        case 3 -> new Box(0.0, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
+                        case 3 -> new Box(0.0, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY + placementChangeYMovement)*pixelToBlock, (maxSide)*pixelToBlock+offset);
                         default -> new Box(0.0, (topPoleMinY - placementChangeYMovement)*pixelToBlock-offset, (minSide)*pixelToBlock-offset, 1.0, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, (maxSide)*pixelToBlock+offset);
                     };
                 } else {
                     box = switch (state.get(PLACEMENT)) {
                         case 1 -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, topPoleMaxY *pixelToBlock+offset, 1.0);
-                        case 3 -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock+offset, 1.0);
+                        case 3 -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY + placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY + placementChangeYMovement)*pixelToBlock, 1.0);
                         default -> new Box((minSide)*pixelToBlock-offset, (topPoleMinY - placementChangeYMovement)*pixelToBlock-offset, 0.0, (maxSide)*pixelToBlock+offset, (topPoleMaxY - placementChangeYMovement)*pixelToBlock+offset, 1.0);
                     };
                 }
@@ -360,6 +366,37 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
             }
         }
         return box;
+    }
+
+
+    protected void updateNeighbors(World world, BlockPos pos) {
+        world.updateNeighborsAlways(pos, this);
+        world.updateNeighborsAlways(pos.down(), this);
+    }
+
+    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+        return this.getRedstoneOutput(state);
+    }
+
+    public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+        return direction == Direction.UP ? this.getRedstoneOutput(state) : 0;
+    }
+
+    public boolean emitsRedstonePower(BlockState state) {
+        return true;
+    }
+
+
+    protected int getRedstoneOutput(BlockState state) {
+        return (Boolean)state.get(HIT) ? 15 : 0;
+    }
+
+    protected int getRedstoneOutput(World world, BlockPos pos) {
+        return (Boolean)world.getBlockState(pos).get(HIT) ? 15 : 0;
+    }
+
+    protected BlockState setRedstoneOutput(BlockState state, int rsOut) {
+        return (BlockState)state.with(HIT, rsOut > 0);
     }
 }
 
