@@ -1,8 +1,8 @@
 {
 	"parent": "equestrianextras:block/doors/oak_dutch_door_bottom_hinge",
 	"textures": {
-		"1": "equestrianextras:block/s_door_hinge",
-		"2": "equestrianextras:block/sddoor_bb",
-		"3": "equestrianextras:block/sddoor_bf"
+		"1": "equestrianextras:block/spruce_door_hinge",
+		"2": "equestrianextras:block/spruce_ddoor_bb",
+		"3": "equestrianextras:block/spruce_ddoor_bf"
 	}
 }

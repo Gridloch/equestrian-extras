@@ -1,8 +1,8 @@
 {
 	"parent": "equestrianextras:block/doors/oak_dutch_door_top_hinge_rev",
 	"textures": {
-		"1": "equestrianextras:block/a_door_hinge",
-		"2": "equestrianextras:block/addoor_tb",
-		"3": "equestrianextras:block/addoor_tf"
+		"1": "equestrianextras:block/acacia_door_hinge",
+		"2": "equestrianextras:block/acacia_ddoor_tb",
+		"3": "equestrianextras:block/acacia_ddoor_tf"
 	}
 }

@@ -1,7 +1,7 @@
 {
 	"parent": "equestrianextras:block/panels/oak_panel_centred",
 	"textures": {
-		"0": "equestrianextras:block/a_door_hinge",
-		"1": "equestrianextras:block/a_panel"
+		"0": "equestrianextras:block/acacia_door_hinge",
+		"1": "equestrianextras:block/acacia_panel"
 	}
 }

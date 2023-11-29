@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "equestrianextras:block/o_door_hinge",
-		"2": "equestrianextras:block/oddoor_tb",
-		"3": "equestrianextras:block/oddoor_tf",
+		"1": "equestrianextras:block/oak_door_hinge",
+		"2": "equestrianextras:block/oak_ddoor_tb",
+		"3": "equestrianextras:block/oak_ddoor_tf",
 		"particle": "#3"
 	},
 	"elements": [

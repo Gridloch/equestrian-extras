@@ -3,9 +3,9 @@
 	"ambientocclusion": false,
 	"texture_size": [35, 32],
 	"textures": {
-		"1": "equestrianextras:block/o_door_hinge",
-		"2": "equestrianextras:block/osdoor_bb",
-		"3": "equestrianextras:block/osdoor_bf",
+		"1": "equestrianextras:block/oak_door_hinge",
+		"2": "equestrianextras:block/oak_sdoor_bb",
+		"3": "equestrianextras:block/oak_sdoor_bf",
 		"particle": "#2"
 	},
 	"elements": [

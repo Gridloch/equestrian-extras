@@ -1,9 +1,9 @@
 {
 	"parent": "equestrianextras:block/doors/oak_v_front_door_top",
 	"textures": {
-		"1": "equestrianextras:block/s_door_hinge",
-		"4": "equestrianextras:block/ssdoor_tb",
-		"5": "equestrianextras:block/ssdoor_tf",
+		"1": "equestrianextras:block/spruce_door_hinge",
+		"4": "equestrianextras:block/spruce_sdoor_tb",
+		"5": "equestrianextras:block/spruce_sdoor_tf",
 		"6": "equestrianextras:block/v_bars"
 	}
 }
