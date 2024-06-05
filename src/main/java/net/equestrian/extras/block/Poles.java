@@ -156,12 +156,12 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
 
         if (blockState.isOf(this)) {
-            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
+            return blockState.with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite()).with(HIT, false);
         }
-        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(HIT, false);
+        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite()).with(HIT, false);
         Direction direction = ctx.getSide();
         if (direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.5) {
-            return blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
+            return blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite());
         }
 
         if (!ctx.getWorld().isClient() && ctx.getPlayer().isSneaking()) {
@@ -210,7 +210,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) {
-            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
@@ -259,8 +259,8 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
             if (b1) {
                 // If entity has a player rider and is in close contact with poles, play sound on first contact
                 // and continue to check for it
-                world.getBlockTickScheduler().schedule(new BlockPos(pos), this, 20);
-
+                world.scheduleBlockTick(new BlockPos(pos), this, 20);
+                
                 if (state.get(HIT).equals(false)) {
                     world.setBlockState(pos, state.with(HIT, true), Block.NOTIFY_LISTENERS);
                     this.updateNeighbors(world, pos);
@@ -287,7 +287,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         }
     }
 
-    @Override
+    // @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         // checks for contact with poles
         Box box = getBox(state).offset(pos);

@@ -1,5 +1,6 @@
 package net.equestrian.extras.block;
 
+import net.minecraft.block.BlockSetType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
@@ -10,8 +11,8 @@ import net.minecraft.world.WorldAccess;
 
 public class DutchDoor extends DoorBlock {
 
-    protected DutchDoor(Settings settings) {
-        super(settings.nonOpaque());
+    protected DutchDoor(Settings settings, BlockSetType blockType) {
+        super(settings.nonOpaque(), blockType);
     }
 
     @Override

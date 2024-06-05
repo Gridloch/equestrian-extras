@@ -10,12 +10,12 @@ import net.equestrian.extras.config.ModConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.HorseBaseEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.world.World;
 
 
-@Mixin(HorseBaseEntity.class)
+@Mixin(AbstractHorseEntity.class)
 public abstract class HorseBreeding extends AnimalEntity {
     
     protected HorseBreeding(EntityType<? extends AnimalEntity> entityType, World world) {
@@ -23,7 +23,7 @@ public abstract class HorseBreeding extends AnimalEntity {
     }
 
     @Inject(method = "setChildAttributes", at = @At(value = "TAIL"))
-    protected void onSetChildAttributes(PassiveEntity mate, HorseBaseEntity child, CallbackInfo ci) {
+    protected void onSetChildAttributes(PassiveEntity mate, AbstractHorseEntity child, CallbackInfo ci) {
 
         ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
         if (config.useImprovedBreeding()) {

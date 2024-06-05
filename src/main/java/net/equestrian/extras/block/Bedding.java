@@ -14,7 +14,7 @@ public class Bedding extends SnowBlock {
         super(settings);
     }
 
-    @Override
+    // @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         // Prevents "melting"
     }

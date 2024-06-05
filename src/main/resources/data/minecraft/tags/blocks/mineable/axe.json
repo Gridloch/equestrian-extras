@@ -5,24 +5,6 @@
       "#equestrianextras:standards",
       "#equestrianextras:gate_fillers",
       "#equestrianextras:sliding_doors",
-
-      "equestrianextras:oak_poles",
-      "equestrianextras:spruce_poles",
-      "equestrianextras:birch_poles",
-      "equestrianextras:jungle_poles",
-      "equestrianextras:acacia_poles",
-      "equestrianextras:dark_oak_poles",
-      "equestrianextras:crimson_poles",
-      "equestrianextras:warped_poles",
-
-      "equestrianextras:stripped_oak_poles",
-      "equestrianextras:stripped_spruce_poles",
-      "equestrianextras:stripped_birch_poles",
-      "equestrianextras:stripped_jungle_poles",
-      "equestrianextras:stripped_acacia_poles",
-      "equestrianextras:stripped_dark_oak_poles",
-      "equestrianextras:stripped_crimson_poles",
-      "equestrianextras:stripped_warped_poles",
       
       "equestrianextras:brown_poles",
       "equestrianextras:red_poles",
@@ -47,6 +29,7 @@
       "equestrianextras:jungle_saddle_rack",
       "equestrianextras:acacia_saddle_rack",
       "equestrianextras:dark_oak_saddle_rack",
+      "equestrianextras:mangrove_saddle_rack",
       "equestrianextras:crimson_saddle_rack",
       "equestrianextras:warped_saddle_rack",
 
@@ -57,16 +40,7 @@
       "equestrianextras:dressage_letterc",
       "equestrianextras:dressage_letterm",
       "equestrianextras:dressage_letterb",
-      "equestrianextras:dressage_letterf",
-
-      "equestrianextras:oak_panel",
-      "equestrianextras:spruce_panel",
-      "equestrianextras:birch_panel",
-      "equestrianextras:jungle_panel",
-      "equestrianextras:acacia_panel",
-      "equestrianextras:dark_oak_panel",
-      "equestrianextras:crimson_panel",
-      "equestrianextras:warped_panel"
+      "equestrianextras:dressage_letterf"
     ]
   }
 

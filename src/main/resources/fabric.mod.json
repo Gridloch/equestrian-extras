@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "equestrianextras",
-  "version": "1.0.2",
+  "version": "${version}",
 
   "name": "Equestrian Extras",
   "description": "Adds horse jumps, tack and more!",
@@ -21,7 +21,7 @@
       "net.equestrian.extras.EquestrianExtrasClient"
     ],
     "modmenu": [
-       "net.equestrian.extras.config.ModMenuImpl" 
+      "net.equestrian.extras.config.ModMenuImpl" 
     ]
   },
   "mixins": [
@@ -29,10 +29,10 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.11.3",
-    "fabric": ">=0.43.1+1.17",
-    "minecraft": "1.17.x",
-    "java": ">=16",
-    "cloth-config2": ">=5.1.40"
+    "fabricloader": ">=0.15",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "cloth-config2": ">=7.0.65"
   }
 }

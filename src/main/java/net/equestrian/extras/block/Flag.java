@@ -46,7 +46,7 @@ public class Flag extends Block implements Waterloggable {
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
         
-        return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(CENTRED, !blockView.getBlockState(blockPos.down()).isIn(EquestrianExtras.BlockTags.STANDARDS));
+        return this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite()).with(CENTRED, !blockView.getBlockState(blockPos.down()).isIn(EquestrianExtras.BlockTags.STANDARDS));
 	}
     
     @Override
@@ -76,7 +76,7 @@ public class Flag extends Block implements Waterloggable {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) {
-            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         if (direction == Direction.DOWN) {
             return state.with(CENTRED, !neighborState.isIn(EquestrianExtras.BlockTags.STANDARDS));

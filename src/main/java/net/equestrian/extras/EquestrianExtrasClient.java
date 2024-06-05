@@ -1,21 +1,18 @@
 package net.equestrian.extras;
 
-import net.equestrian.extras.block.ModBlocks;
 import net.equestrian.extras.item.ConditionalItemsF;
 import net.equestrian.extras.item.ConditionalItemsT;
 import net.equestrian.extras.item.ModItems;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.DyeableItem;
 
 public class EquestrianExtrasClient implements ClientModInitializer  {
 
 	@Override
 	public void onInitializeClient() {
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem) stack.getItem()).getColor(stack),
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)(stack.getItem())).getColor(stack),
 			ModItems.RIBBON, 
 			ModItems.SADDLE_PAD,
 			ModItems.JUMP_TACK,
@@ -41,11 +38,6 @@ public class EquestrianExtrasClient implements ClientModInitializer  {
 			ModItems.BLANKET_DARK_BOTTOM,
 			ModItems.BLANKET_DARK_BOTTOM_H
 		);
-
-	
-		for (int i = 0; i < ModBlocks.transparentBlocks.size(); i++) {
-			BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.transparentBlocks.get(i), RenderLayer.getCutout());
-		}
 
 
 		if (FabricLoader.getInstance().isModLoaded("dyed")) {

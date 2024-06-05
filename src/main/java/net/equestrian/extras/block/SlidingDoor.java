@@ -38,8 +38,8 @@ public class SlidingDoor extends DoorBlock {
     protected static final VoxelShape EAST_SHAPE = Block.createCuboidShape(13.0, 0.0, 0.0, 16.0, 16.0, 16.0);
     protected static final VoxelShape WEST_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 3.0, 16.0, 16.0);
 
-    protected SlidingDoor(Settings settings) {
-        super(settings.nonOpaque());
+    protected SlidingDoor(Settings settings, BlockSetType blockType) {
+        super(settings.nonOpaque(), blockType);
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false).with(OPENING, false).with(HINGE, DoorHinge.LEFT).with(POWERED, false).with(HALF, DoubleBlockHalf.LOWER));
     }
 
@@ -100,7 +100,7 @@ public class SlidingDoor extends DoorBlock {
         World world = ctx.getWorld();
         if (blockPos.getY() < world.getTopY() - 1 && world.getBlockState(blockPos.up()).canReplace(ctx)) {
             boolean bl = world.isReceivingRedstonePower(blockPos) || world.isReceivingRedstonePower(blockPos.up());
-            return this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(HINGE, this.getSlideDirection(ctx)).with(POWERED, bl).with(HALF, DoubleBlockHalf.LOWER);
+            return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection()).with(HINGE, this.getSlideDirection(ctx)).with(POWERED, bl).with(HALF, DoubleBlockHalf.LOWER);
         }
         return null;
     }
@@ -108,7 +108,7 @@ public class SlidingDoor extends DoorBlock {
     private DoorHinge getSlideDirection(ItemPlacementContext ctx) {
         World blockView = ctx.getWorld();
         BlockPos blockPos = ctx.getBlockPos();
-        Direction direction = ctx.getPlayerFacing();
+        Direction direction = ctx.getPlayerLookDirection();
         BlockPos blockPos2 = blockPos.up();
         Direction direction2 = direction.rotateYCounterclockwise();
         BlockPos blockPos3 = blockPos.offset(direction2);

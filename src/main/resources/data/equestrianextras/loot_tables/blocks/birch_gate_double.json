@@ -12,7 +12,7 @@
                 "condition": "minecraft:block_state_property",
                 "block": "equestrianextras:birch_gate_double",
                 "properties": {
-                  "is_hinge": "true"
+                  "outer": "true"
                 }
               }
             ],

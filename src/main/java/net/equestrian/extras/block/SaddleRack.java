@@ -64,10 +64,10 @@ public class SaddleRack extends Block {
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         BlockPos blockPos = ctx.getBlockPos();
 
-        BlockState blockState2 = this.getDefaultState().with(ON_WALL, false).with(SADDLE, false).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
+        BlockState blockState2 = this.getDefaultState().with(ON_WALL, false).with(SADDLE, false).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite());
         Direction direction = ctx.getSide();
         if (direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.1) {
-            return blockState2.with(ON_WALL, true).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
+            return blockState2.with(ON_WALL, true).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite());
         }
         return blockState2;
     }

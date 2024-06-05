@@ -4,18 +4,26 @@ import java.util.LinkedList;
 import java.util.List;
 
 import net.equestrian.extras.EquestrianExtras;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSetType;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.Material;
 import net.minecraft.block.SlabBlock;
+import net.minecraft.block.WoodType;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 
 
@@ -29,7 +37,7 @@ public class ModBlocks {
 
 
 
-    public static final Block OAK_SADDLE_RACK = registerFlammableTransparencyBlock("oak_saddle_rack", 
+    public static final Block OAK_SADDLE_RACK = registerFlammableTransparencyBlock("oak_saddle_rack",
         new SaddleRack(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_STABLE,
         30, 20
@@ -78,124 +86,124 @@ public class ModBlocks {
 
 
     public static final Block OAK_DUTCH_DOOR = registerTransparencyBlock("oak_dutch_door", 
-        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.OAK),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block SPRUCE_DUTCH_DOOR = registerTransparencyBlock("spruce_dutch_door", 
-        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.SPRUCE),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block BIRCH_DUTCH_DOOR = registerTransparencyBlock("birch_dutch_door", 
-        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.BIRCH),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block JUNGLE_DUTCH_DOOR = registerTransparencyBlock("jungle_dutch_door", 
-        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.JUNGLE),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block ACACIA_DUTCH_DOOR = registerTransparencyBlock("acacia_dutch_door", 
-        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.ACACIA),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block DARK_OAK_DUTCH_DOOR = registerTransparencyBlock("dark_oak_dutch_door", 
-        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.DARK_OAK),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block CRIMSON_DUTCH_DOOR = registerTransparencyBlock("crimson_dutch_door", 
-        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.CRIMSON),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block WARPED_DUTCH_DOOR = registerTransparencyBlock("warped_dutch_door", 
-        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.WARPED),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
 
     public static final Block OAK_V_FRONT_DOOR = registerTransparencyBlock("oak_v_front_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.OAK),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block SPRUCE_V_FRONT_DOOR = registerTransparencyBlock("spruce_v_front_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.SPRUCE),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block BIRCH_V_FRONT_DOOR = registerTransparencyBlock("birch_v_front_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.BIRCH),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block JUNGLE_V_FRONT_DOOR = registerTransparencyBlock("jungle_v_front_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.JUNGLE),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block ACACIA_V_FRONT_DOOR = registerTransparencyBlock("acacia_v_front_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.ACACIA),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block DARK_OAK_V_FRONT_DOOR = registerTransparencyBlock("dark_oak_v_front_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.DARK_OAK),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block CRIMSON_V_FRONT_DOOR = registerTransparencyBlock("crimson_v_front_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.CRIMSON),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block WARPED_V_FRONT_DOOR = registerTransparencyBlock("warped_v_front_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.WARPED),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
 
     public static final Block OAK_SLIDE_DOOR = registerTransparencyBlock("oak_slide_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.OAK),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block SPRUCE_SLIDE_DOOR = registerTransparencyBlock("spruce_slide_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.SPRUCE),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block BIRCH_SLIDE_DOOR = registerTransparencyBlock("birch_slide_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.BIRCH),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block JUNGLE_SLIDE_DOOR = registerTransparencyBlock("jungle_slide_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.JUNGLE),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block ACACIA_SLIDE_DOOR = registerTransparencyBlock("acacia_slide_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.ACACIA),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block DARK_OAK_SLIDE_DOOR = registerTransparencyBlock("dark_oak_slide_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.DARK_OAK),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block CRIMSON_SLIDE_DOOR = registerTransparencyBlock("crimson_slide_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.CRIMSON),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block WARPED_SLIDE_DOOR = registerTransparencyBlock("warped_slide_door", 
-        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f)),
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.WARPED),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
@@ -301,7 +309,7 @@ public class ModBlocks {
     );
     
     public static final Block W_GATE = registerFlammableBlock("white_fence_gate", 
-        new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new FenceGateBlock(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.OAK),
         EquestrianExtras.ITEM_GROUP_STABLE,
         5, 20
     );
@@ -1568,32 +1576,36 @@ public class ModBlocks {
 
     private static Block registerBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
-        return Registry.register(Registry.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
     }
 
     private static Block registerTransparencyBlock(String name, Block block, ItemGroup group) {
         registerBlockItem(name, block, group);
-        transparentBlocks.add(block);
-        return Registry.register(Registry.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
+        BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
+        return Registry.register(Registries.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
     }
 
 
     private static Block registerFlammableBlock(String name, Block block, ItemGroup group, Integer burn, Integer spread) {
         registerBlockItem(name, block, group);
         FlammableBlockRegistry.getDefaultInstance().add(block, burn, spread);
-        return Registry.register(Registry.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
     }
 
     private static Block registerFlammableTransparencyBlock(String name, Block block, ItemGroup group, Integer burn, Integer spread) {
         registerBlockItem(name, block, group);
         FlammableBlockRegistry.getDefaultInstance().add(block, burn, spread);
-        transparentBlocks.add(block);
-        return Registry.register(Registry.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
+        BlockRenderLayerMap.INSTANCE.putBlock(block, RenderLayer.getCutout());
+        return Registry.register(Registries.BLOCK, new Identifier(EquestrianExtras.MOD_ID, name), block);
     }
     
 
-    private static Item registerBlockItem(String name, Block block, ItemGroup group) {
-        return Registry.register(Registry.ITEM, new Identifier(EquestrianExtras.MOD_ID, name), new BlockItem(block, new FabricItemSettings().group(group)));
+    private static Item registerBlockItem(String name, Block block, ItemGroup group) {  
+        Item item = Registry.register(Registries.ITEM, new Identifier(EquestrianExtras.MOD_ID, name), new BlockItem(block, new FabricItemSettings()));
+        ItemGroupEvents.modifyEntriesEvent(group).register(content -> {
+            content.add(item);
+        });  
+        return item;
     }
     
 

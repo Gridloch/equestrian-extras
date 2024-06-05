@@ -1,7 +1,6 @@
 {
     "replace": false,
-    "values": [
-      "equestrianextras:straw_bedding",
+    "values": [      
       "equestrianextras:thatch",
       "equestrianextras:thatch_slab",
       "equestrianextras:thatch_stairs"

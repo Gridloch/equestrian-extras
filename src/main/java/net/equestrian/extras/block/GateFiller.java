@@ -105,13 +105,13 @@ public class GateFiller extends HorizontalFacingBlock implements Waterloggable {
         BlockState blockState = ctx.getWorld().getBlockState(blockPos);
 
         if (blockState.isOf(this)) {
-            return this.getDefaultState().with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
+            return this.getDefaultState().with(TYPE, SlabType.DOUBLE).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
         }
 
-        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
+        BlockState blockState2 = this.getDefaultState().with(TYPE, SlabType.BOTTOM).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
         Direction direction = ctx.getSide();
         if (direction == Direction.DOWN || direction != Direction.UP && ctx.getHitPos().y - (double)blockPos.getY() > 0.5) {
-            return blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
+            return blockState2.with(TYPE, SlabType.TOP).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite()).with(UP, checkUp(ctx)).with(DOWN, checkDown(ctx));
         }
         return blockState2;
     }
@@ -175,7 +175,7 @@ public class GateFiller extends HorizontalFacingBlock implements Waterloggable {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) {
-            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         
         if (neighborState.isIn(EquestrianExtras.BlockTags.GATEFILLER) && direction == Direction.DOWN) {

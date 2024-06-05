@@ -18,7 +18,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +28,7 @@ public class ModGate extends FenceGateBlock {
     protected static final VoxelShape X_AXIS_COLLISION_SHAPE = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 24.0, 16.0);
 
     protected ModGate(Settings settings) {
-        super(settings.nonOpaque());
+        super(settings.nonOpaque(), WoodType.OAK);
         this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT));
     }
 
@@ -40,13 +39,13 @@ public class ModGate extends FenceGateBlock {
         World world = ctx.getWorld();
 
         boolean bl = world.isReceivingRedstonePower(blockPos) || world.isReceivingRedstonePower(blockPos.up());
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(HINGE, this.getHinge(ctx)).with(POWERED, bl);
+        return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection()).with(HINGE, this.getHinge(ctx)).with(POWERED, bl);
     }
 
     private DoorHinge getHinge(ItemPlacementContext ctx) {
         World blockView = ctx.getWorld();
         BlockPos blockPos = ctx.getBlockPos();
-        Direction direction = ctx.getPlayerFacing();
+        Direction direction = ctx.getPlayerLookDirection();
         BlockPos blockPos2 = blockPos.up();
         Direction direction2 = direction.rotateYCounterclockwise();
         BlockPos blockPos3 = blockPos.offset(direction2);
@@ -175,7 +174,7 @@ public class ModGate extends FenceGateBlock {
                     1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
                     1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
                 );
-                world.emitGameEvent(bl ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+                world.emitGameEvent(bl ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos, GameEvent.Emitter.of(state));
             }
         }
     }
@@ -194,7 +193,7 @@ public class ModGate extends FenceGateBlock {
             }
         }
         else {
-            world.syncWorldEvent(player, Boolean.TRUE.equals(direction) ? WorldEvents.FENCE_GATE_OPENS : WorldEvents.FENCE_GATE_CLOSES, pos, 0);
+            world.emitGameEvent(player, Boolean.TRUE.equals(direction) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
         }
     }
     

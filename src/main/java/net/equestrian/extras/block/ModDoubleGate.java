@@ -8,12 +8,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -36,7 +36,7 @@ public class ModDoubleGate extends FenceGateBlock {
     protected static final VoxelShape X_AXIS_COLLISION_SHAPE = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 24.0, 16.0);
 
     protected ModDoubleGate(Settings settings) {
-        super(settings.nonOpaque());
+        super(settings.nonOpaque(), WoodType.OAK);
         this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT).with(IS_HINGE, true));
     }
 
@@ -46,7 +46,7 @@ public class ModDoubleGate extends FenceGateBlock {
         BlockPos blockPos = ctx.getBlockPos();
         World world = ctx.getWorld();
         DoorHinge hinge = this.getHinge(ctx);
-        Direction facing = ctx.getPlayerFacing();
+        Direction facing = ctx.getPlayerLookDirection();
         
         if (world.getBlockState(findPosOfOtherGateHalf(blockPos, this.getDefaultState().with(FACING, facing).with(HINGE, hinge))).canReplace(ctx)) {
             boolean bl = world.isReceivingRedstonePower(blockPos);
@@ -106,7 +106,7 @@ public class ModDoubleGate extends FenceGateBlock {
     private DoorHinge getHinge(ItemPlacementContext ctx) {
         World blockView = ctx.getWorld();
         BlockPos blockPos = ctx.getBlockPos();
-        Direction direction = ctx.getPlayerFacing();
+        Direction direction = ctx.getPlayerLookDirection();
         BlockPos blockPos2 = blockPos.up();
         Direction direction2 = direction.rotateYCounterclockwise();
         BlockPos blockPos3 = blockPos.offset(direction2);
@@ -217,7 +217,7 @@ public class ModDoubleGate extends FenceGateBlock {
             }
         }
         else {
-            world.syncWorldEvent(player, Boolean.TRUE.equals(isOpened) ? WorldEvents.FENCE_GATE_OPENS : WorldEvents.FENCE_GATE_CLOSES, pos, 0);
+            world.emitGameEvent(player, isOpened ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
         }
     }
 
@@ -302,7 +302,7 @@ public class ModDoubleGate extends FenceGateBlock {
                     if (gateOpen(state, world, pos)) {
                         boolean isOpened = state.cycle(OPEN).get(OPEN);
                         playSound(world, pos, null, isOpened);
-                        world.emitGameEvent(posPowered ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+                        world.emitGameEvent(posPowered ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos, GameEvent.Emitter.of(state));
                     }
                 }
             }

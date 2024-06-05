@@ -76,7 +76,7 @@ public class JumpStandard extends Block implements Waterloggable {
         boolean upCheckMatch = (panelCheckThis && panelCheckUp) || (vertRailCheckThis && vertRailCheckUp);
         boolean downCheckMatch = (panelCheckThis && panelCheckDown) || (vertRailCheckThis && vertRailCheckDown);
 
-        BlockState state = this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerFacing().getOpposite());
+        BlockState state = this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite());
 
         if (downCheckMatch) {
             state = state.with(DOWN, 2);
@@ -99,7 +99,7 @@ public class JumpStandard extends Block implements Waterloggable {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) {
-            world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
         boolean panelCheckThis = this.getDefaultState().isIn(EquestrianExtras.BlockTags.PANELSTANDARDS);
