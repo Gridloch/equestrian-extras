@@ -2,10 +2,11 @@
 ![](https://img.shields.io/badge/environment-both-4caf50?style=flat-square)
 ![](https://img.shields.io/badge/mod%20loader-fabric-d64541?style=flat-square)
 ![](https://img.shields.io/badge/minecraft%20version-1.17.1-1976d2?style=flat-square)
+![](https://img.shields.io/badge/minecraft%20version-1.18-1976d2?style=flat-square)
 
 Equestrian-Extras is a mod for Minecraft (Fabric) that adds some horse related content. I thought Minecraft needed more horse related mods, especially for Fabric, so was my attempt at making that happen.
 
-It is currently only available for 1.17.1 but later versions are planned if I find the time.
+It is currently only available for 1.17.1 and 1.18, but later versions are planned if I find the time.
 
 ## Installation
 Equestrian-Extras is a Fabric mod, so it requires the [Fabric Loader](https://fabricmc.net/use/installer/). Once you have installed the Fabric Loader, you can place Equestrian-Extras and its dependencies into your mods folder like any other mod.
@@ -13,13 +14,16 @@ Equestrian-Extras is a Fabric mod, so it requires the [Fabric Loader](https://fa
 More detailed instructions on how to install mods can be found [on the Fabric wiki](https://fabricmc.net/wiki/player:tutorials:adding_mods).
 
 ## Dependencies
- - [Fabric Loader](https://fabricmc.net/use/installer/) for minecraft 1.17.1
+ - [Fabric Loader](https://fabricmc.net/use/installer/)
  - [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
  - [Cloth Config](https://www.curseforge.com/minecraft/mc-mods/cloth-config)
  - [Mod Menu](https://www.curseforge.com/minecraft/mc-mods/modmenu)
  - [Dyed](https://www.curseforge.com/minecraft/mc-mods/dyed) _(optional)_ - enables more tack variants
 
 ## Features
+
+ ![image](https://github.com/Gridloch/equestrian-extras/assets/125079472/5d6314b5-8a7d-4ef0-a5e2-3997159d2ac2)
+
 - <details>
   <summary>The <b>Stable and Pasture</b> creative tab includes horse blankets, halters and various blocks for building stables and pastures (such as metal gates and sliding doors).</summary>
   
