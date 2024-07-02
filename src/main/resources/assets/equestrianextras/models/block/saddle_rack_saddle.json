@@ -4,7 +4,7 @@
 		"0": "block/acacia_log",
 		"1": "block/acacia_log_top",
 		"2": "block/acacia_planks",
-		"3": "entity/horse/horse_chestnut",
+		"3": "equestrianextras:block/horse_chestnut",
 		"particle": "block/acacia_log"
 	},
 	"elements": [

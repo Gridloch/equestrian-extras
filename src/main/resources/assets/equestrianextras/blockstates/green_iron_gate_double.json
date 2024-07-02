@@ -1,329 +1,329 @@
 {
   "variants": {
-    "facing=east,open=false,hinge=left,outer=true,in_wall=false": {
+    "facing=east,open=false,hinge=left,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=east,open=false,hinge=right,outer=true,in_wall=false": {
+    "facing=east,open=false,hinge=right,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=east,open=true,hinge=left,outer=true,in_wall=false": {
+    "facing=east,open=true,hinge=left,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_lo"
     },
-    "facing=east,open=true,hinge=right,outer=true,in_wall=false": {
+    "facing=east,open=true,hinge=right,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_ro"
     },
 
-    "facing=east,open=false,hinge=left,outer=false,in_wall=false": {
+    "facing=east,open=false,hinge=left,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=east,open=false,hinge=right,outer=false,in_wall=false": {
+    "facing=east,open=false,hinge=right,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=east,open=true,hinge=left,outer=false,in_wall=false": {
+    "facing=east,open=true,hinge=left,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_li"
     },
-    "facing=east,open=true,hinge=right,outer=false,in_wall=false": {
+    "facing=east,open=true,hinge=right,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_ri"
     },
 
 
-    "facing=north,open=false,hinge=left,outer=false,in_wall=false": {
+    "facing=north,open=false,hinge=left,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=north,open=false,hinge=right,outer=false,in_wall=false": {
+    "facing=north,open=false,hinge=right,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=north,open=true,hinge=left,outer=false,in_wall=false": {
+    "facing=north,open=true,hinge=left,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_li"
     },
-    "facing=north,open=true,hinge=right,outer=false,in_wall=false": {
+    "facing=north,open=true,hinge=right,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_ri"
     },
 
-    "facing=north,open=false,hinge=left,outer=true,in_wall=false": {
+    "facing=north,open=false,hinge=left,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=north,open=false,hinge=right,outer=true,in_wall=false": {
+    "facing=north,open=false,hinge=right,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=north,open=true,hinge=left,outer=true,in_wall=false": {
+    "facing=north,open=true,hinge=left,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_lo"
     },
-    "facing=north,open=true,hinge=right,outer=true,in_wall=false": {
+    "facing=north,open=true,hinge=right,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_ro"
     },
 
 
-    "facing=south,open=false,hinge=left,outer=false,in_wall=false": {
+    "facing=south,open=false,hinge=left,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=south,open=false,hinge=right,outer=false,in_wall=false": {
+    "facing=south,open=false,hinge=right,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=south,open=true,hinge=left,outer=false,in_wall=false": {
+    "facing=south,open=true,hinge=left,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_li"
     },
-    "facing=south,open=true,hinge=right,outer=false,in_wall=false": {
+    "facing=south,open=true,hinge=right,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_ri"
     },
     
-    "facing=south,open=false,hinge=left,outer=true,in_wall=false": {
+    "facing=south,open=false,hinge=left,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=south,open=false,hinge=right,outer=true,in_wall=false": {
+    "facing=south,open=false,hinge=right,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=south,open=true,hinge=left,outer=true,in_wall=false": {
+    "facing=south,open=true,hinge=left,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_lo"
     },
-    "facing=south,open=true,hinge=right,outer=true,in_wall=false": {
+    "facing=south,open=true,hinge=right,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_ro"
     },
 
 
-    "facing=west,open=false,hinge=left,outer=true,in_wall=false": {
+    "facing=west,open=false,hinge=left,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=west,open=false,hinge=right,outer=true,in_wall=false": {
+    "facing=west,open=false,hinge=right,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=west,open=true,hinge=left,outer=true,in_wall=false": {
+    "facing=west,open=true,hinge=left,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_lo"
     },
-    "facing=west,open=true,hinge=right,outer=true,in_wall=false": {
+    "facing=west,open=true,hinge=right,is_hinge=true,in_wall=false": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_ro"
     },
 
-    "facing=west,open=false,hinge=left,outer=false,in_wall=false": {
+    "facing=west,open=false,hinge=left,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=west,open=false,hinge=right,outer=false,in_wall=false": {
+    "facing=west,open=false,hinge=right,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double"
     },
-    "facing=west,open=true,hinge=left,outer=false,in_wall=false": {
+    "facing=west,open=true,hinge=left,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_li"
     },
-    "facing=west,open=true,hinge=right,outer=false,in_wall=false": {
+    "facing=west,open=true,hinge=right,is_hinge=false,in_wall=false": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_open_ri"
     },
 
 
 
-    "facing=east,open=false,hinge=left,outer=true,in_wall=true": {
+    "facing=east,open=false,hinge=left,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=east,open=false,hinge=right,outer=true,in_wall=true": {
+    "facing=east,open=false,hinge=right,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=east,open=true,hinge=left,outer=true,in_wall=true": {
+    "facing=east,open=true,hinge=left,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_lo"
     },
-    "facing=east,open=true,hinge=right,outer=true,in_wall=true": {
+    "facing=east,open=true,hinge=right,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_ro"
     },
 
-    "facing=east,open=false,hinge=left,outer=false,in_wall=true": {
+    "facing=east,open=false,hinge=left,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=east,open=false,hinge=right,outer=false,in_wall=true": {
+    "facing=east,open=false,hinge=right,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=east,open=true,hinge=left,outer=false,in_wall=true": {
+    "facing=east,open=true,hinge=left,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_li"
     },
-    "facing=east,open=true,hinge=right,outer=false,in_wall=true": {
+    "facing=east,open=true,hinge=right,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_ri"
     },
 
 
-    "facing=north,open=false,hinge=left,outer=false,in_wall=true": {
+    "facing=north,open=false,hinge=left,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=north,open=false,hinge=right,outer=false,in_wall=true": {
+    "facing=north,open=false,hinge=right,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=north,open=true,hinge=left,outer=false,in_wall=true": {
+    "facing=north,open=true,hinge=left,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_li"
     },
-    "facing=north,open=true,hinge=right,outer=false,in_wall=true": {
+    "facing=north,open=true,hinge=right,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_ri"
     },
 
-    "facing=north,open=false,hinge=left,outer=true,in_wall=true": {
+    "facing=north,open=false,hinge=left,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=north,open=false,hinge=right,outer=true,in_wall=true": {
+    "facing=north,open=false,hinge=right,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=north,open=true,hinge=left,outer=true,in_wall=true": {
+    "facing=north,open=true,hinge=left,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_lo"
     },
-    "facing=north,open=true,hinge=right,outer=true,in_wall=true": {
+    "facing=north,open=true,hinge=right,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_ro"
     },
 
 
-    "facing=south,open=false,hinge=left,outer=false,in_wall=true": {
+    "facing=south,open=false,hinge=left,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=south,open=false,hinge=right,outer=false,in_wall=true": {
+    "facing=south,open=false,hinge=right,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=south,open=true,hinge=left,outer=false,in_wall=true": {
+    "facing=south,open=true,hinge=left,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_li"
     },
-    "facing=south,open=true,hinge=right,outer=false,in_wall=true": {
+    "facing=south,open=true,hinge=right,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_ri"
     },
     
-    "facing=south,open=false,hinge=left,outer=true,in_wall=true": {
+    "facing=south,open=false,hinge=left,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=south,open=false,hinge=right,outer=true,in_wall=true": {
+    "facing=south,open=false,hinge=right,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=south,open=true,hinge=left,outer=true,in_wall=true": {
+    "facing=south,open=true,hinge=left,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_lo"
     },
-    "facing=south,open=true,hinge=right,outer=true,in_wall=true": {
+    "facing=south,open=true,hinge=right,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_ro"
     },
 
 
-    "facing=west,open=false,hinge=left,outer=true,in_wall=true": {
+    "facing=west,open=false,hinge=left,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=west,open=false,hinge=right,outer=true,in_wall=true": {
+    "facing=west,open=false,hinge=right,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=west,open=true,hinge=left,outer=true,in_wall=true": {
+    "facing=west,open=true,hinge=left,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_lo"
     },
-    "facing=west,open=true,hinge=right,outer=true,in_wall=true": {
+    "facing=west,open=true,hinge=right,is_hinge=true,in_wall=true": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_ro"
     },
 
-    "facing=west,open=false,hinge=left,outer=false,in_wall=true": {
+    "facing=west,open=false,hinge=left,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 90,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=west,open=false,hinge=right,outer=false,in_wall=true": {
+    "facing=west,open=false,hinge=right,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 270,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall"
     },
-    "facing=west,open=true,hinge=left,outer=false,in_wall=true": {
+    "facing=west,open=true,hinge=left,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "y": 180,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_li"
     },
-    "facing=west,open=true,hinge=right,outer=false,in_wall=true": {
+    "facing=west,open=true,hinge=right,is_hinge=false,in_wall=true": {
       "uvlock": true,
       "model": "equestrianextras:block/gates/green_iron_gate_double_wall_open_ri"
     }
