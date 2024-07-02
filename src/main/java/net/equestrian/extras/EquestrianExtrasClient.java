@@ -14,6 +14,7 @@ public class EquestrianExtrasClient implements ClientModInitializer  {
 	public void onInitializeClient() {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)(stack.getItem())).getColor(stack),
 			ModItems.RIBBON, 
+			ModItems.HARNESS, 
 			ModItems.SADDLE_PAD,
 			ModItems.JUMP_TACK,
 			ModItems.RACE_TACK_1, 
