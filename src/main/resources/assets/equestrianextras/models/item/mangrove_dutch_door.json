@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+      "layer0": "equestrianextras:item/mangrove_dutch_door"
+    }
+  }

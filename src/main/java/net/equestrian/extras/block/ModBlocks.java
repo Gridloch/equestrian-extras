@@ -73,6 +73,12 @@ public class ModBlocks {
         30, 20
     );
 
+    public static final Block MANGROVE_SADDLE_RACK = registerFlammableTransparencyBlock("mangrove_saddle_rack", 
+        new SaddleRack(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        EquestrianExtras.ITEM_GROUP_STABLE,
+        30, 20
+    );
+
     public static final Block CRIMSON_SADDLE_RACK = registerTransparencyBlock("crimson_saddle_rack", 
         new SaddleRack(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_STABLE
@@ -112,6 +118,11 @@ public class ModBlocks {
 
     public static final Block DARK_OAK_DUTCH_DOOR = registerTransparencyBlock("dark_oak_dutch_door", 
         new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.DARK_OAK),
+        EquestrianExtras.ITEM_GROUP_STABLE
+    );
+
+    public static final Block MANGROVE_DUTCH_DOOR = registerTransparencyBlock("mangrove_dutch_door", 
+        new DutchDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.MANGROVE),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
@@ -156,6 +167,11 @@ public class ModBlocks {
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
+    public static final Block MANGROVE_V_FRONT_DOOR = registerTransparencyBlock("mangrove_v_front_door", 
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.MANGROVE),
+        EquestrianExtras.ITEM_GROUP_STABLE
+    );
+
     public static final Block CRIMSON_V_FRONT_DOOR = registerTransparencyBlock("crimson_v_front_door", 
         new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.CRIMSON),
         EquestrianExtras.ITEM_GROUP_STABLE
@@ -194,6 +210,11 @@ public class ModBlocks {
 
     public static final Block DARK_OAK_SLIDE_DOOR = registerTransparencyBlock("dark_oak_slide_door", 
         new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.DARK_OAK),
+        EquestrianExtras.ITEM_GROUP_STABLE
+    );
+
+    public static final Block MANGROVE_SLIDE_DOOR = registerTransparencyBlock("mangrove_slide_door", 
+        new SlidingDoor(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(3.0f), BlockSetType.MANGROVE),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
@@ -239,6 +260,12 @@ public class ModBlocks {
     );
 
     public static final Block DARK_OAK_PANEL = registerFlammableTransparencyBlock("dark_oak_panel", 
+        new StablePanel(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        EquestrianExtras.ITEM_GROUP_STABLE,
+        30, 20
+    );
+
+    public static final Block MANGROVE_PANEL = registerFlammableTransparencyBlock("mangrove_panel", 
         new StablePanel(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_STABLE,
         30, 20
@@ -345,6 +372,12 @@ public class ModBlocks {
     );
 
     public static final Block DARK_OAK_GATE_D = registerFlammableBlock("dark_oak_gate_double", 
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        EquestrianExtras.ITEM_GROUP_STABLE,
+        5, 20
+    );
+
+    public static final Block MANGROVE_GATE_D = registerFlammableBlock("mangrove_gate_double", 
         new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_STABLE,
         5, 20
@@ -558,6 +591,12 @@ public class ModBlocks {
     );
 
     public static final Block DARK_OAK_SHORT_FENCE = registerFlammableBlock("dark_oak_short_fence", 
+        new HalfFence(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        EquestrianExtras.ITEM_GROUP_ARENA,
+        5, 40
+    );
+
+    public static final Block MANGROVE_SHORT_FENCE = registerFlammableBlock("mangrove_short_fence", 
         new HalfFence(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
         EquestrianExtras.ITEM_GROUP_ARENA,
         5, 40
@@ -1428,6 +1467,12 @@ public class ModBlocks {
             30, 20
     );
 
+    public static final Block MANGROVE_POLES = registerFlammableBlock("mangrove_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
     public static final Block CRIMSON_POLES = registerFlammableBlock("crimson_poles",
             new Poles(FabricBlockSettings.of(Material.NETHER_WOOD).resistance(3.0f).hardness(2.0f), true),
             EquestrianExtras.ITEM_GROUP_ARENA,
@@ -1472,6 +1517,12 @@ public class ModBlocks {
     );
 
     public static final Block STRIPPED_DARK_OAK_POLES = registerFlammableBlock("stripped_dark_oak_poles",
+            new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
+            EquestrianExtras.ITEM_GROUP_ARENA,
+            30, 20
+    );
+
+    public static final Block STRIPPED_MANGROVE_POLES = registerFlammableBlock("stripped_mangrove_poles",
             new Poles(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), true),
             EquestrianExtras.ITEM_GROUP_ARENA,
             30, 20
