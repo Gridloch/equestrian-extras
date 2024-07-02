@@ -21,9 +21,11 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 
 public class MetalBarrel extends SlabBlock {
 
@@ -90,20 +92,26 @@ public class MetalBarrel extends SlabBlock {
             // check that entity is in close contact with barrel
             List<LivingEntity> list;
             Box box = getBox(state).offset(pos);
-            Boolean b1 = false;
+            Boolean entityHasRider = false;
 
             list = world.getNonSpectatingEntities(LivingEntity.class, box);
             if (!list.isEmpty()) {
                 for (Entity listentity : list) {
                     if (!listentity.hasPlayerRider()) continue;
-                    b1 = true;
+                    entityHasRider = true;
                 }
             }
 
-            if (Boolean.TRUE.equals(b1)) {
+            world.scheduleBlockTick(new BlockPos(pos), this, 20);
+            world.setBlockState(pos, state.with(HIT, entityHasRider), Block.NOTIFY_LISTENERS);
+            this.updateNeighbors(world, pos);
+
+            world.emitGameEvent(entity, entityHasRider ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
+
+
+            if (entityHasRider) {
                 // If entity has a player rider and is in close contact with berrel, play sound on first contact
                 // and continue to check for it
-                world.scheduleBlockTick(new BlockPos(pos), this, 20);
                 
                 if (state.get(HIT).equals(false)) {
                     world.playSound(
@@ -114,7 +122,6 @@ public class MetalBarrel extends SlabBlock {
                         1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
                         1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
                     );
-                    world.setBlockState(pos, state.with(HIT, true), Block.NOTIFY_LISTENERS);
                     
                     // Chance to break block when hit
                     int x = EquestrianExtras.RANDOM.nextInt(100); // Generates random integers 0 to 99  
@@ -129,8 +136,9 @@ public class MetalBarrel extends SlabBlock {
 
     // @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        System.out.println("scheduledTick");
         // checks for contact with barrel
-        Boolean b1 = false;
+        Boolean entityHasRider = false;
         List<LivingEntity> list;
         Box box = getBox(state).offset(pos);
         list = world.getNonSpectatingEntities(LivingEntity.class, box);
@@ -138,11 +146,11 @@ public class MetalBarrel extends SlabBlock {
         if (!list.isEmpty()) {
             for (Entity entity : list) {
                 if (!entity.hasPlayerRider()) continue;
-                b1 = true;
+                entityHasRider = true;
             }
         }
 
-        world.setBlockState(pos, state.with(HIT, b1), Block.NOTIFY_LISTENERS);
+        world.setBlockState(pos, state.with(HIT, entityHasRider), Block.NOTIFY_LISTENERS);
     }
 
 
@@ -161,4 +169,9 @@ public class MetalBarrel extends SlabBlock {
         }
         return box;
 	}
+
+    protected void updateNeighbors(World world, BlockPos pos) {
+        world.updateNeighborsAlways(pos, this);
+        world.updateNeighborsAlways(pos.down(), this);
+    }
 }

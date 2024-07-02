@@ -39,6 +39,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.event.GameEvent;
 
 public class Poles extends HorizontalFacingBlock implements Waterloggable {
     public static final EnumProperty<SlabType> TYPE = Properties.SLAB_TYPE;
@@ -247,23 +248,27 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
             // check that entity is in close contact with the poles
             Box box = getBox(state).offset(pos);
             List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, box);
-            Boolean b1 = false;
+            Boolean entityHasRider = false;
 
             if (!list.isEmpty()) {
                 for (Entity listentity : list) {
                     if (!listentity.hasPlayerRider()) continue;
-                    b1 = true;
+                    entityHasRider = true;
                 }
             }
 
-            if (b1) {
+            // Update block state
+            world.setBlockState(pos, state.with(HIT, entityHasRider), Block.NOTIFY_LISTENERS);
+            this.updateNeighbors(world, pos);
+
+            world.emitGameEvent(entity, entityHasRider ? GameEvent.BLOCK_ACTIVATE : GameEvent.BLOCK_DEACTIVATE, pos);
+
+            if (entityHasRider) {
                 // If entity has a player rider and is in close contact with poles, play sound on first contact
                 // and continue to check for it
                 world.scheduleBlockTick(new BlockPos(pos), this, 20);
                 
                 if (state.get(HIT).equals(false)) {
-                    world.setBlockState(pos, state.with(HIT, true), Block.NOTIFY_LISTENERS);
-                    this.updateNeighbors(world, pos);
                     if (!blockIsGroundPole || !blockBelowIsSolid) {
                         world.playSound(
                             null, // Player - if non-null, will play sound for every nearby player *except* the specified player
@@ -293,15 +298,15 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         Box box = getBox(state).offset(pos);
         List<LivingEntity> list = world.getNonSpectatingEntities(LivingEntity.class, box);
 
-        boolean b1 = false;
+        boolean entityHasRider = false;
 
         if (!list.isEmpty()) {
             for (Entity entity : list) {
                 if (!entity.hasPlayerRider()) continue;
-                b1 = true;
+                entityHasRider = true;
             }
         }
-        world.setBlockState(pos, state.with(HIT, b1), Block.NOTIFY_LISTENERS);
+        world.setBlockState(pos, state.with(HIT, entityHasRider), Block.NOTIFY_LISTENERS);
         this.updateNeighbors(world, pos);
     }
 
@@ -367,7 +372,6 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         }
         return box;
     }
-
 
     protected void updateNeighbors(World world, BlockPos pos) {
         world.updateNeighborsAlways(pos, this);
