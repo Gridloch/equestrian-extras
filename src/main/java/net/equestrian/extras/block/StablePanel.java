@@ -59,7 +59,7 @@ public class StablePanel extends HorizontalFacingBlock implements Waterloggable 
         BlockPos blockPos = ctx.getBlockPos();
         FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
 
-        BlockState blockState = this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite()).with(CENTRED, false);
+        BlockState blockState = this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite()).with(CENTRED, false);
 
         if (!ctx.getWorld().isClient() && ctx.getPlayer().isSneaking()) {
             return blockState.with(CENTRED, true);

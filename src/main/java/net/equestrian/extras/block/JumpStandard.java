@@ -76,7 +76,7 @@ public class JumpStandard extends Block implements Waterloggable {
         boolean upCheckMatch = (panelCheckThis && panelCheckUp) || (vertRailCheckThis && vertRailCheckUp);
         boolean downCheckMatch = (panelCheckThis && panelCheckDown) || (vertRailCheckThis && vertRailCheckDown);
 
-        BlockState state = this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getPlayerLookDirection().getOpposite());
+        BlockState state = this.getDefaultState().with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER).with(Properties.HORIZONTAL_FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 
         if (downCheckMatch) {
             state = state.with(DOWN, 2);

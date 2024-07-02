@@ -39,13 +39,13 @@ public class ModGate extends FenceGateBlock {
         World world = ctx.getWorld();
 
         boolean bl = world.isReceivingRedstonePower(blockPos) || world.isReceivingRedstonePower(blockPos.up());
-        return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection()).with(HINGE, this.getHinge(ctx)).with(POWERED, bl);
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing()).with(HINGE, this.getHinge(ctx)).with(POWERED, bl);
     }
 
     private DoorHinge getHinge(ItemPlacementContext ctx) {
         World blockView = ctx.getWorld();
         BlockPos blockPos = ctx.getBlockPos();
-        Direction direction = ctx.getPlayerLookDirection();
+        Direction direction = ctx.getHorizontalPlayerFacing();
         BlockPos blockPos2 = blockPos.up();
         Direction direction2 = direction.rotateYCounterclockwise();
         BlockPos blockPos3 = blockPos.offset(direction2);

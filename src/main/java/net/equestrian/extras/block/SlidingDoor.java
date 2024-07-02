@@ -100,7 +100,7 @@ public class SlidingDoor extends DoorBlock {
         World world = ctx.getWorld();
         if (blockPos.getY() < world.getTopY() - 1 && world.getBlockState(blockPos.up()).canReplace(ctx)) {
             boolean bl = world.isReceivingRedstonePower(blockPos) || world.isReceivingRedstonePower(blockPos.up());
-            return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection()).with(HINGE, this.getSlideDirection(ctx)).with(POWERED, bl).with(HALF, DoubleBlockHalf.LOWER);
+            return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing()).with(HINGE, this.getSlideDirection(ctx)).with(POWERED, bl).with(HALF, DoubleBlockHalf.LOWER);
         }
         return null;
     }
@@ -108,7 +108,7 @@ public class SlidingDoor extends DoorBlock {
     private DoorHinge getSlideDirection(ItemPlacementContext ctx) {
         World blockView = ctx.getWorld();
         BlockPos blockPos = ctx.getBlockPos();
-        Direction direction = ctx.getPlayerLookDirection();
+        Direction direction = ctx.getHorizontalPlayerFacing();
         BlockPos blockPos2 = blockPos.up();
         Direction direction2 = direction.rotateYCounterclockwise();
         BlockPos blockPos3 = blockPos.offset(direction2);

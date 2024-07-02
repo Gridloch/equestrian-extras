@@ -46,7 +46,7 @@ public class ModDoubleGate extends FenceGateBlock {
         BlockPos blockPos = ctx.getBlockPos();
         World world = ctx.getWorld();
         DoorHinge hinge = this.getHinge(ctx);
-        Direction facing = ctx.getPlayerLookDirection();
+        Direction facing = ctx.getHorizontalPlayerFacing();
         
         if (world.getBlockState(findPosOfOtherGateHalf(blockPos, this.getDefaultState().with(FACING, facing).with(HINGE, hinge))).canReplace(ctx)) {
             boolean bl = world.isReceivingRedstonePower(blockPos);
@@ -106,7 +106,7 @@ public class ModDoubleGate extends FenceGateBlock {
     private DoorHinge getHinge(ItemPlacementContext ctx) {
         World blockView = ctx.getWorld();
         BlockPos blockPos = ctx.getBlockPos();
-        Direction direction = ctx.getPlayerLookDirection();
+        Direction direction = ctx.getHorizontalPlayerFacing();
         BlockPos blockPos2 = blockPos.up();
         Direction direction2 = direction.rotateYCounterclockwise();
         BlockPos blockPos3 = blockPos.offset(direction2);

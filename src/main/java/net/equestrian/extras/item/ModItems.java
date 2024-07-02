@@ -111,8 +111,9 @@ public class ModItems {
     
     public static final Item HARNESS = registerItem("harness", 
         new DyeableHorseArmorItem(0, "harness",
-            new FabricItemSettings().group(EquestrianExtras.ITEM_GROUP_ARENA).maxCount(16)
-        )
+            new FabricItemSettings().maxCount(16)
+            ),
+            EquestrianExtras.ITEM_GROUP_ARENA
     );
 
 
