@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      " P ",
+      "P|P",
+      " | "
+    ],
+    "key": {
+      "P": {
+        "item": "minecraft:mangrove_planks"
+      },
+      "|": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "equestrianextras:mangrove_saddle_rack"
+    }
+  }

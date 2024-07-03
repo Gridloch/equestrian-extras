@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "SS",
+    "PP"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:mangrove_slab"
+    },
+    "P": {
+      "item": "minecraft:mangrove_planks"
+    }
+  },
+  "result": {
+    "item": "equestrianextras:mangrove_dutch_door",
+    "count": 3
+  }
+}

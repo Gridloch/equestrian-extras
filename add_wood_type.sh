@@ -129,6 +129,8 @@ main() {
     log_info "${SCRIPT_NAME}" "Finding ${base_wood} block asset files to copy in ${mod_path}/src/main/resources/assets/${mod_name}/blockstates/ and ${mod_path}/src/main/resources/assets/${mod_name}/models/"
     find_files "${mod_path}/src/main/resources/assets/${mod_name}/blockstates/"
     find_files "${mod_path}/src/main/resources/assets/${mod_name}/models/"
+    find_files "${mod_path}/src/main/resources/data/${mod_name}/loot_tables/blocks/"
+    find_files "${mod_path}/src/main/resources/data/${mod_name}/recipes/"
     log_info "${SCRIPT_NAME}" "Found ${#files[@]} ${base_wood} block asset files"
 
     for f in "${files[@]}" ; do
@@ -144,9 +146,7 @@ The following still needs to be done:
  - Register block / item
  - Add missing textures
  - Add to lang
- - Update tags
- - Add loot table
- - Add recipes"
+ - Update tags"
 
 
   else
@@ -154,6 +154,8 @@ The following still needs to be done:
     log_info "${SCRIPT_NAME}" "Finding ${base_wood} block asset files to copy in ${mod_path}/src/main/resources/assets/${mod_name}/blockstates/ and ${mod_path}/src/main/resources/assets/${mod_name}/models/"
     find_files "${mod_path}/src/main/resources/assets/${mod_name}/blockstates/"
     find_files "${mod_path}/src/main/resources/assets/${mod_name}/models/"
+    find_files "${mod_path}/src/main/resources/data/${mod_name}/loot_tables/blocks/"
+    find_files "${mod_path}/src/main/resources/data/${mod_name}/recipes/"
     log_info "${SCRIPT_NAME}" "Found ${#files[@]} ${base_wood} block asset files"
 
     for f in "${files[@]}" ; do
@@ -167,10 +169,9 @@ The following still needs to be done:
 Blockstate, item model and block model '$new_wood' files would have been generated from '$base_wood' files.
 The following would still need to be done:
  - Register block / item
+ - Add missing textures
  - Add to lang
- - Update tags
- - Add loot table
- - Add recipes"
+ - Update tags"
 
   fi
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "equestrianextras:mangrove_gate_double"
+    }
+  ],
+  "result": {
+    "item": "minecraft:mangrove_fence_gate",
+    "count": 2
+  }
+}
