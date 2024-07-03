@@ -1,8 +1,8 @@
 package net.equestrian.extras.block;
 
 import java.util.List;
-import java.util.Random;
 
+import net.minecraft.util.math.random.Random;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.equestrian.extras.EquestrianExtras;
 import net.equestrian.extras.config.ModConfig;
@@ -21,7 +21,6 @@ import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -134,9 +133,8 @@ public class MetalBarrel extends SlabBlock {
         }
     }
 
-    // @Override
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        System.out.println("scheduledTick");
         // checks for contact with barrel
         Boolean entityHasRider = false;
         List<LivingEntity> list;

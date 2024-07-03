@@ -1,8 +1,8 @@
 package net.equestrian.extras.block;
 
 import java.util.List;
-import java.util.Random;
 
+import net.minecraft.util.math.random.Random;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.state.property.*;
 import org.jetbrains.annotations.Nullable;
@@ -292,7 +292,7 @@ public class Poles extends HorizontalFacingBlock implements Waterloggable {
         }
     }
 
-    // @Override
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         // checks for contact with poles
         Box box = getBox(state).offset(pos);
