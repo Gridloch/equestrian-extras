@@ -348,48 +348,48 @@ public class ModBlocks {
     );
 
     public static final Block SPRUCE_GATE_D = registerFlammableBlock("spruce_gate_double", 
-        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.SPRUCE),
         EquestrianExtras.ITEM_GROUP_STABLE,
         5, 20
     );
 
     public static final Block BIRCH_GATE_D = registerFlammableBlock("birch_gate_double", 
-        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.BIRCH),
         EquestrianExtras.ITEM_GROUP_STABLE,
         5, 20
     );
 
     public static final Block JUNGLE_GATE_D = registerFlammableBlock("jungle_gate_double", 
-        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.JUNGLE),
         EquestrianExtras.ITEM_GROUP_STABLE,
         5, 20
     );
 
     public static final Block ACACIA_GATE_D = registerFlammableBlock("acacia_gate_double", 
-        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.ACACIA),
         EquestrianExtras.ITEM_GROUP_STABLE,
         5, 20
     );
 
     public static final Block DARK_OAK_GATE_D = registerFlammableBlock("dark_oak_gate_double", 
-        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.DARK_OAK),
         EquestrianExtras.ITEM_GROUP_STABLE,
         5, 20
     );
 
     public static final Block MANGROVE_GATE_D = registerFlammableBlock("mangrove_gate_double", 
-        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.MANGROVE),
         EquestrianExtras.ITEM_GROUP_STABLE,
         5, 20
     );
 
     public static final Block CRIMSON_GATE_D = registerBlock("crimson_gate_double", 
-        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.CRIMSON),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 
     public static final Block WARPED_GATE_D = registerBlock("warped_gate_double", 
-        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f)),
+        new ModDoubleGate(FabricBlockSettings.of(Material.WOOD).resistance(3.0f).hardness(2.0f), WoodType.WARPED),
         EquestrianExtras.ITEM_GROUP_STABLE
     );
 

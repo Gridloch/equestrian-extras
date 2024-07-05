@@ -26,9 +26,17 @@ public class ModGate extends FenceGateBlock {
     public static final EnumProperty<DoorHinge> HINGE = Properties.DOOR_HINGE;
     protected static final VoxelShape Z_AXIS_COLLISION_SHAPE = Block.createCuboidShape(0.0, 0.0, 6.0, 16.0, 24.0, 10.0);
     protected static final VoxelShape X_AXIS_COLLISION_SHAPE = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 24.0, 16.0);
+    private final WoodType type;
 
     protected ModGate(Settings settings) {
         super(settings.nonOpaque(), WoodType.OAK);
+        this.type = WoodType.OAK;
+        this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT));
+    }
+
+    protected ModGate(Settings settings, WoodType woodType) {
+        super(settings.nonOpaque(), woodType);
+        this.type = woodType;
         this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT));
     }
 
@@ -163,36 +171,42 @@ public class ModGate extends FenceGateBlock {
             return;
         }
         boolean bl = world.isReceivingRedstonePower(pos);
-        if (Boolean.TRUE.equals(state.get(POWERED)) != bl) {
+        if (state.get(POWERED) != bl) {
             world.setBlockState(pos, state.with(POWERED, bl).with(OPEN, bl), Block.NOTIFY_LISTENERS);
-            if (Boolean.TRUE.equals(state.get(OPEN) != bl) && this.material == Material.METAL) {
-                world.playSound(
-                    null, // Player - if non-null, will play sound for every nearby player *except* the specified player
-                    pos, // The position of where the sound will come from
-                    Boolean.FALSE.equals(state.get(OPEN)) ? EquestrianExtras.GATE_OPEN_EVENT : EquestrianExtras.GATE_CLOSE_EVENT, // The sound that will play
-                    SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
-                    1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
-                    1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
-                );
+            if (state.get(OPEN) != bl) {
+                if (this.material == Material.METAL) {
+                    world.playSound(
+                        null, // Player - if non-null, will play sound for every nearby player *except* the specified player
+                        pos, // The position of where the sound will come from
+                        Boolean.FALSE.equals(state.get(OPEN)) ? EquestrianExtras.GATE_OPEN_EVENT : EquestrianExtras.GATE_CLOSE_EVENT, // The sound that will play
+                        SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
+                        1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
+                        1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
+                    );
+                }
+                else {
+                    world.playSound(null, pos, bl ? this.type.fenceGateOpen() : this.type.fenceGateClose(), SoundCategory.BLOCKS, 1.0f, world.getRandom().nextFloat() * 0.1f + 0.9f);
+                }
                 world.emitGameEvent(bl ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos, GameEvent.Emitter.of(state));
             }
         }
     }
 
     private void playSound(World world, BlockPos pos, PlayerEntity player, Boolean direction) {
-        if (this.material == Material.METAL) {
-            if (!world.isClient) {
-                world.playSound(
-                    null, // Player - if non-null, will play sound for every nearby player *except* the specified player
-                    pos, // The position of where the sound will come from
-                    Boolean.TRUE.equals(direction) ? EquestrianExtras.GATE_OPEN_EVENT : EquestrianExtras.GATE_CLOSE_EVENT, // The sound that will play
-                    SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
-                    1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
-                    1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
-                );
+        if (!world.isClient) {
+            if (this.material == Material.METAL) {
+                    world.playSound(
+                        null, // Player - if non-null, will play sound for every nearby player *except* the specified player
+                        pos, // The position of where the sound will come from
+                        Boolean.TRUE.equals(direction) ? EquestrianExtras.GATE_OPEN_EVENT : EquestrianExtras.GATE_CLOSE_EVENT, // The sound that will play
+                        SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
+                        1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
+                        1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
+                    );
+                }
+            else {
+                world.playSound(player, pos, direction ? this.type.fenceGateOpen() : this.type.fenceGateClose(), SoundCategory.BLOCKS, 1.0f, world.getRandom().nextFloat() * 0.1f + 0.9f);
             }
-        }
-        else {
             world.emitGameEvent(player, Boolean.TRUE.equals(direction) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
         }
     }

@@ -34,9 +34,17 @@ public class ModDoubleGate extends FenceGateBlock {
     public static final BooleanProperty IS_HINGE = BooleanProperty.of("is_hinge");
     protected static final VoxelShape Z_AXIS_COLLISION_SHAPE = Block.createCuboidShape(0.0, 0.0, 6.0, 16.0, 24.0, 10.0);
     protected static final VoxelShape X_AXIS_COLLISION_SHAPE = Block.createCuboidShape(6.0, 0.0, 0.0, 10.0, 24.0, 16.0);
+    private final WoodType type;
 
     protected ModDoubleGate(Settings settings) {
         super(settings.nonOpaque(), WoodType.OAK);
+        this.type = WoodType.OAK;
+        this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT).with(IS_HINGE, true));
+    }
+
+    protected ModDoubleGate(Settings settings, WoodType type) {
+        super(settings.nonOpaque(), type);
+        this.type = type;
         this.setDefaultState(this.stateManager.getDefaultState().with(OPEN, false).with(POWERED, false).with(IN_WALL, false).with(HINGE, DoorHinge.LEFT).with(IS_HINGE, true));
     }
 
@@ -204,8 +212,8 @@ public class ModDoubleGate extends FenceGateBlock {
 
 
     private void playSound(World world, BlockPos pos, PlayerEntity player, Boolean isOpened) {
-        if (this.material == Material.METAL) {
-            if (!world.isClient) {
+        if (!world.isClient) {
+            if (this.material == Material.METAL) {
                 world.playSound(
                         null, // Player - if non-null, will play sound for every nearby player *except* the specified player
                         pos, // The position of where the sound will come from
@@ -215,9 +223,9 @@ public class ModDoubleGate extends FenceGateBlock {
                         1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
                 );
             }
-        }
-        else {
-            world.emitGameEvent(player, isOpened ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+            else {
+                world.playSound(null, pos, isOpened ? this.type.fenceGateOpen() : this.type.fenceGateClose(), SoundCategory.BLOCKS, 1.0f, world.getRandom().nextFloat() * 0.1f + 0.9f);
+            }
         }
     }
 
@@ -300,9 +308,10 @@ public class ModDoubleGate extends FenceGateBlock {
                 world.setBlockState(pos, state.with(POWERED, posPowered));
                 if (posPowered != state.get(OPEN)) {
                     if (gateOpen(state, world, pos)) {
-                        boolean isOpened = state.cycle(OPEN).get(OPEN);
+                        state = state.cycle(OPEN);
+                        boolean isOpened = state.get(OPEN);
                         playSound(world, pos, null, isOpened);
-                        world.emitGameEvent(posPowered ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos, GameEvent.Emitter.of(state));
+                        world.emitGameEvent(null, posPowered ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
                     }
                 }
             }
