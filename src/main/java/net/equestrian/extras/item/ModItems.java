@@ -44,6 +44,13 @@ public class ModItems {
         ),
         EquestrianExtras.ITEM_GROUP_ARENA
     );
+    
+    public static final Item HARNESS = registerItem("harness", 
+        new DyeableHorseArmorItem(0, "harness",
+            new FabricItemSettings().maxCount(16)
+            ),
+            EquestrianExtras.ITEM_GROUP_ARENA
+    );
 
     public static final Item BARDING_TACK = registerItem("barding_tack", 
     new DyeableHorseArmorItem(2, "barding_tack", 
@@ -106,14 +113,6 @@ public class ModItems {
         new FabricItemSettings().maxCount(16)
         ),
         EquestrianExtras.ITEM_GROUP_ARENA
-    );
-
-    
-    public static final Item HARNESS = registerItem("harness", 
-        new DyeableHorseArmorItem(0, "harness",
-            new FabricItemSettings().maxCount(16)
-            ),
-            EquestrianExtras.ITEM_GROUP_ARENA
     );
 
 
